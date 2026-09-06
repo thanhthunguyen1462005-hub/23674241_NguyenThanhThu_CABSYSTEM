@@ -81,34 +81,31 @@ Dưới đây là bảng **Business Requirements (BR)** chi tiết gồm 17 yêu
 | **BR16** | Báo cáo Thống kê Quản trị | Hệ thống cung cấp báo cáo thống kê cho Ban Giám đốc về tổng số chuyến, doanh thu, tỷ lệ hoàn thành/hủy chuyến và hiệu quả hoạt động của Tài xế.|
 | **BR17** | Đánh giá Dịch vụ | Hệ thống cho phép Khách hàng thực hiện đánh giá (rating/comment) chất lượng Tài xế sau khi hoàn thành chuyến đi.|
 
-# 6. Mô hình hóa quy trình nghiệp vụ
+## 6. Business Process Modeling (Mô hình hóa Quy trình Nghiệp vụ)
 
-## 6.1. Quy trình Tiếp nhận Yêu cầu & Phân bổ Tài xế
+### 6.1. Luồng Đặt xe & Điều phối Tự động
 
 ```mermaid
-sequenceDiagram
-    autonumber
-    actor KH as Khách hàng
-    participant HT as Hệ thống CAB
-    actor TX as Tài xế
+flowchart TD
+    Start([Khách hàng mở app & Nhập thông tin chuyến đi]) --> Request[Gửi yêu cầu đặt xe]
+    Request --> FindDriver[Hệ thống xác định vị trí GPS & Tìm tài xế gần nhất đang sẵn sàng]
+    
+    FindDriver --> CheckFound{Có tài xế phù hợp?}
+    
+    CheckFound -- Không --> NotifyNoDriver[Thông báo không tìm thấy tài xế phù hợp]
+    NotifyNoDriver --> EndNoDriver([Kết thúc luồng đặt xe])
 
-    KH->>HT: Gửi yêu cầu chuyến xe (Điểm đón, Điểm đến, Loại xe)
-    HT->>HT: Kiểm tra yêu cầu & xác định vị trí
-    HT->>HT: Lọc danh sách tài xế đang hoạt động phù hợp
+    CheckFound -- Có --> SendOffer[Gửi thông báo nhận chuyến cho Tài xế - Có đếm ngược thời gian]
+    
+    SendOffer --> DriverResponse{Tài xế phản hồi?}
+    
+    DriverResponse -- Chấp nhận --> ConfirmBooking[Hệ thống xác nhận chuyến đi & Gửi thông tin tài xế cho Khách hàng]
+    ConfirmBooking --> Transition[Chuyển sang Luồng Thực hiện chuyến đi]
 
-    alt Có tài xế đáp ứng
-        HT->>TX: Gửi yêu cầu nhận chuyến
+    DriverResponse -- Từ chối / Hết giờ --> ForwardNext[Tự động chuyển tiếp yêu cầu tới tài xế tiếp theo]
+    ForwardNext --> CheckFound
+```
 
-        alt Tài xế đồng ý
-            TX-->>HT: Xác nhận nhận chuyến
-            HT-->>KH: Xác nhận đặt xe & cung cấp thông tin tài xế
-
-        else Tài xế từ chối / Không phản hồi
-            TX-->>HT: Từ chối hoặc quá thời gian phản hồi
-            HT->>HT: Chuyển yêu cầu sang tài xế phù hợp tiếp theo
-        end
-
-    else Không có tài xế phù hợp
 ### 6.2. Quy trình Thực hiện Chuyến đi & Thanh toán
 ```mermaid
 flowchart TD
