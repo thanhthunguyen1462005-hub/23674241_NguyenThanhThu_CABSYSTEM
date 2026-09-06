@@ -1468,3 +1468,109 @@ Hệ thống CAB MVP được xem là đạt nghiệm thu khi đáp ứng đồn
 11. Nhân viên vận hành có thể **giám sát chuyến, hỗ trợ sự cố và tra cứu giao dịch**.
 12. Hệ thống cung cấp **báo cáo cơ bản về chuyến đi, doanh thu và hiệu suất Tài xế**.
 13. Các yêu cầu về **bảo mật, phân quyền, tính toàn vẹn dữ liệu và hiệu năng** đạt mức đã quy định.
+
+# 13. Requirements Traceability Matrix (RTM)
+
+## 13.1. Bảng truy vết Business Requirement → Functional Requirement → Use Case → Acceptance Criteria
+
+| BR | Business Requirement | FR | Use Case | Acceptance Criteria |
+|---|---|---|---|---|
+| BR01 | Đăng ký & Quản lý Khách hàng | FR01, FR02, FR03 | UC01, UC02, UC03, UC04 | AC07–AC13 |
+| BR02 | Đăng ký & Quản lý Tài xế | FR02, FR04, FR05 | UC02, UC05, UC06, UC07 | AC11–AC13 |
+| BR03 | Tạo yêu cầu Đặt xe | FR06, FR07 | UC08 | AC14–AC16 |
+| BR04 | Định vị & Đề xuất Tài xế | FR08, FR09 | UC09, UC10 | AC17–AC22 |
+| BR05 | Tự động Chuyển tiếp Điều phối | FR10 | UC12 | AC23–AC25 |
+| BR06 | Thông báo Không tìm thấy Tài xế | FR11 | UC13 | AC26 |
+| BR07 | Tiếp nhận Chuyến đi | FR09, FR12 | UC10, UC11, UC14 | AC20–AC22 |
+| BR08 | Cập nhật Tiến trình Chuyến đi | FR13 | UC15, UC19 | AC27–AC31 |
+| BR09 | Theo dõi Real-time & ETA | FR14, FR15 | UC16, UC17, UC18 | AC32–AC37 |
+| BR10 | Tự động Tính cước | FR17 | UC21 | AC38–AC40 |
+| BR11 | Tích hợp Thanh toán | FR18, FR19, FR21 | UC22, UC23, UC25 | AC41–AC47 |
+| BR12 | Xử lý Lỗi Thanh toán | FR20 | UC24 | AC48–AC51 |
+| BR13 | Thông báo Tức thời Đa kênh | FR22, FR23, FR24 | UC26, UC27, UC28 | AC52–AC58 |
+| BR14 | Giám sát & Hỗ trợ Vận hành | FR25, FR26, FR27, FR28 | UC31, UC32, UC33, UC34 | AC63–AC68 |
+| BR15 | Phân quyền Quản trị | FR29, FR30 | UC35 | AC69–AC71 |
+| BR16 | Báo cáo Thống kê Quản trị | FR34, FR35 | UC37, UC38, UC39, UC40 | AC72–AC76 |
+| BR17 | Đánh giá Dịch vụ | FR32, FR33 | UC29, UC30 | AC59–AC62 |
+
+---
+
+## 13.2. Bảng truy vết Business Rule
+
+| BR | FR | Use Case | Business Rule | AC |
+|---|---|---|---|---|
+| BR01 | FR01–FR03 | UC01–UC04 | BRULE01–BRULE03 | AC07–AC13 |
+| BR02 | FR04–FR05 | UC05–UC07 | BRULE04–BRULE05 | AC11–AC13 |
+| BR03 | FR06–FR07 | UC08 | BRULE06 | AC14–AC16 |
+| BR04 | FR08–FR09 | UC09–UC10 | BRULE07–BRULE08 | AC17–AC22 |
+| BR05 | FR10 | UC12 | BRULE09–BRULE12 | AC23–AC25 |
+| BR06 | FR11 | UC13 | BRULE13–BRULE14 | AC26 |
+| BR07 | FR09, FR12 | UC10–UC14 | BRULE09–BRULE14 | AC20–AC26 |
+| BR08 | FR13 | UC15, UC19 | BRULE15–BRULE19 | AC27–AC31 |
+| BR09 | FR14–FR15 | UC16–UC18 | BRULE20–BRULE21 | AC32–AC37 |
+| BR10 | FR17 | UC21 | BRULE22–BRULE25 | AC38–AC40 |
+| BR11 | FR18–FR21 | UC22–UC25 | BRULE26–BRULE29, BRULE32 | AC41–AC47 |
+| BR12 | FR20 | UC24 | BRULE30 | AC48–AC51 |
+| BR13 | FR22–FR24 | UC26–UC28 | BRULE33–BRULE36 | AC52–AC58 |
+| BR14 | FR25–FR28 | UC31–UC34 | BRULE40–BRULE44 | AC63–AC68 |
+| BR15 | FR29–FR30 | UC35 | BRULE03, BRULE41 | AC69–AC71 |
+| BR16 | FR34–FR35 | UC37–UC40 | BRULE45–BRULE48 | AC72–AC76 |
+| BR17 | FR32–FR33 | UC29–UC30 | BRULE37–BRULE39 | AC59–AC62 |
+
+---
+
+## 13.3. Bảng truy vết Non-Functional Requirement
+
+| NFR | Yêu cầu phi chức năng | Acceptance Criteria | Phương thức kiểm thử |
+|---|---|---|---|
+| NFR01 | Thời gian phản hồi hệ thống ≤ 3 giây trong điều kiện bình thường | AC77 | Performance Test |
+| NFR03 | Cập nhật GPS gần thời gian thực | AC33, AC37 | Integration/Performance Test |
+| NFR07 | Payment/Notification lỗi không làm dừng đặt xe | AC78 | Failure/Recovery Test |
+| NFR10–NFR16 | Bảo mật và kiểm soát truy cập | AC79 | Security Test |
+| NFR17–NFR20 | Khả năng mở rộng hệ thống | AC81 | Load/Scalability Test |
+| NFR21–NFR24 | Khả năng bảo trì | AC82 | Code Review/Architecture Test |
+| NFR25–NFR28 | Khả năng tích hợp và thay thế Provider | AC81 | Integration Test |
+| NFR29–NFR32 | Khả năng sử dụng | AC14, AC35–AC37 | Usability Test |
+| NFR33–NFR35 | Khả năng kiểm thử | AC06 | Test Review |
+| NFR36–NFR38 | Backup & Recovery | AC78, AC80 | Recovery Test |
+| NFR39–NFR41 | Khả năng triển khai | AC82 | Deployment Test |
+
+---
+
+## 13.4. Sơ đồ truy vết yêu cầu
+
+```mermaid
+flowchart LR
+    BR["Business Requirements<br/>BR01–BR17"]
+    FR["Functional Requirements<br/>FR01–FR35"]
+    UC["Use Cases<br/>UC01–UC40"]
+    RULE["Business Rules<br/>BRULE01–BRULE58"]
+    AC["Acceptance Criteria<br/>AC01–AC82"]
+    NFR["Non-Functional Requirements<br/>NFR01–NFR41"]
+    TC["Test Cases"]
+
+    BR --> FR
+    BR --> RULE
+    FR --> UC
+    RULE --> UC
+    UC --> AC
+    FR --> AC
+    NFR --> AC
+    AC --> TC
+```
+
+## 13.5. Chuỗi truy vết
+
+```text
+Business Requirement
+        ↓
+Functional Requirement
+        ↓
+Use Case
+        ↓
+Acceptance Criteria
+        ↓
+Test Case
+```
+
+**Mục đích:** Đảm bảo mọi yêu cầu nghiệp vụ đều được chuyển thành chức năng cụ thể, có Use Case tương ứng, có tiêu chí nghiệm thu và có thể kiểm thử.
