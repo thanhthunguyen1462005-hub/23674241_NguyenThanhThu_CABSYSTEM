@@ -80,3 +80,79 @@ Dưới đây là bảng **Business Requirements (BR)** chi tiết gồm 17 yêu
 | **BR15** | Phân quyền Quản trị | Hệ thống áp dụng cơ chế phân quyền truy cập chặt chẽ để hạn chế Nhân viên vận hành thông thường thực hiện các thao tác quản trị nhạy cảm.|
 | **BR16** | Báo cáo Thống kê Quản trị | Hệ thống cung cấp báo cáo thống kê cho Ban Giám đốc về tổng số chuyến, doanh thu, tỷ lệ hoàn thành/hủy chuyến và hiệu quả hoạt động của Tài xế.|
 | **BR17** | Đánh giá Dịch vụ | Hệ thống cho phép Khách hàng thực hiện đánh giá (rating/comment) chất lượng Tài xế sau khi hoàn thành chuyến đi.|
+
+# 6. Mô hình hóa quy trình nghiệp vụ
+
+## 6.1. Quy trình Tiếp nhận Yêu cầu & Phân bổ Tài xế
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor KH as Khách hàng
+    participant HT as Hệ thống CAB
+    actor TX as Tài xế
+
+    KH->>HT: Gửi yêu cầu chuyến xe (Điểm đón, Điểm đến, Loại xe)
+    HT->>HT: Kiểm tra yêu cầu & xác định vị trí
+    HT->>HT: Lọc danh sách tài xế đang hoạt động phù hợp
+
+    alt Có tài xế đáp ứng
+        HT->>TX: Gửi yêu cầu nhận chuyến
+
+        alt Tài xế đồng ý
+            TX-->>HT: Xác nhận nhận chuyến
+            HT-->>KH: Xác nhận đặt xe & cung cấp thông tin tài xế
+
+        else Tài xế từ chối / Không phản hồi
+            TX-->>HT: Từ chối hoặc quá thời gian phản hồi
+            HT->>HT: Chuyển yêu cầu sang tài xế phù hợp tiếp theo
+        end
+
+    else Không có tài xế phù hợp
+        HT-->>KH: Thông báo chưa tìm thấy tài xế
+    end
+## 6.2. Quy trình Thực hiện Chuyến xe & Xử lý Thanh toán
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor KH as Khách hàng
+    actor TX as Tài xế
+    participant HT as Hệ thống CAB
+    participant TT as Cổng thanh toán
+
+    TX->>HT: Cập nhật trạng thái "Đã đến điểm đón"
+    HT-->>KH: Thông báo tài xế đã đến nơi
+
+    TX->>HT: Cập nhật trạng thái "Đã đón khách"
+    HT-->>KH: Thông báo chuyến xe đang được thực hiện
+
+    loop Theo dõi hành trình
+        TX->>HT: Gửi vị trí GPS hiện tại
+        HT-->>KH: Cập nhật vị trí tài xế và ETA
+    end
+
+    TX->>HT: Cập nhật trạng thái "Hoàn thành chuyến"
+    HT->>HT: Tính toán tổng cước phí
+    HT-->>KH: Thông báo số tiền cần thanh toán
+
+    alt Thanh toán điện tử
+        KH->>TT: Thực hiện thanh toán
+        TT-->>HT: Trả kết quả giao dịch
+
+        alt Thanh toán thành công
+            HT-->>KH: Xác nhận thanh toán thành công
+        else Thanh toán thất bại
+            HT-->>KH: Thông báo thanh toán thất bại
+            KH->>TT: Thực hiện thanh toán lại
+            TT-->>HT: Cập nhật kết quả thanh toán
+        end
+
+    else Thanh toán tiền mặt
+        KH->>TX: Thanh toán trực tiếp
+        TX->>HT: Xác nhận đã nhận tiền
+        HT-->>KH: Xác nhận thanh toán thành công
+    end
+
+    KH->>HT: Gửi đánh giá và nhận xét
+    HT-->>KH: Ghi nhận đánh giá thành công
