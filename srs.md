@@ -109,66 +109,35 @@ sequenceDiagram
         end
 
     else Không có tài xế phù hợp
-## 6.2. Quy trình Thực hiện Chuyến xe & Thanh toán
-
+### 6.2. Quy trình Thực hiện Chuyến đi & Thanh toán
 ```mermaid
-sequenceDiagram
-    autonumber
-
-    actor KH as Khách hàng
-    actor TX as Tài xế
-    participant HT as Hệ thống CAB
-    participant TT as Cổng thanh toán
-
-    TX->>HT: Cập nhật trạng thái "Đã đến điểm đón"
-    HT-->>KH: Thông báo tài xế đã đến điểm đón
-
-    TX->>HT: Cập nhật trạng thái "Đã đón khách"
-    HT-->>KH: Thông báo chuyến xe bắt đầu
-
-    loop Trong quá trình di chuyển
-        TX->>HT: Gửi vị trí GPS
-        HT->>HT: Cập nhật vị trí tài xế
-        HT->>HT: Tính toán ETA
-        HT-->>KH: Cập nhật vị trí và ETA
+flowchart TD
+    Transition([Bắt đầu thực hiện chuyến đi]) --> DriverArrive[Tài xế cập nhật: Đã đến điểm đón]
+    DriverArrive --> NotifyArrived[Hệ thống gửi thông báo cho Khách hàng]
+    
+    NotifyArrived --> StartTrip[Tài xế cập nhật: Đã đón khách / Đang di chuyển]
+    
+    subgraph RealTimeTracking [Quá trình di chuyển]
+        StartTrip --> GPSUpdate[Tài xế gửi tọa độ GPS liên tục]
+        GPSUpdate --> ShowETA[Hệ thống cập nhật vị trí & ETA real-time cho Khách hàng]
     end
 
-    TX->>HT: Cập nhật trạng thái "Hoàn thành chuyến"
-    HT->>HT: Tổng hợp thông tin chuyến đi
-    HT->>HT: Tính toán tổng cước phí
-    HT-->>KH: Thông báo số tiền cần thanh toán
+    ShowETA --> FinishTrip[Tài xế cập nhật: Hoàn thành chuyến đi]
+    FinishTrip --> CalcFare[Hệ thống tự động tính tổng cước phí]
+    CalcFare --> ShowFare[Hiển thị cước phí & Lựa chọn thanh toán]
 
-    alt Khách hàng chọn thanh toán điện tử
-        KH->>TT: Gửi yêu cầu thanh toán
-        TT-->>HT: Trả kết quả giao dịch
+    ShowFare --> PaymentMethod{Phương thức thanh toán?}
 
-        alt Thanh toán thành công
-            HT->>HT: Ghi nhận giao dịch thành công
-            HT-->>KH: Thông báo thanh toán thành công
+    PaymentMethod -- Thanh toán Điện tử --> Gateway[Gửi yêu cầu tới Cổng thanh toán]
+    Gateway --> CheckPay{Thanh toán thành công?}
+    CheckPay -- Có --> IssueInvoice[Hệ thống gửi hóa đơn điện tử]
+    CheckPay -- Lỗi --> RetryPay[Xử lý lại / Yêu cầu chuyển sang tiền mặt]
+    RetryPay --> PaymentMethod
 
-        else Thanh toán thất bại
-            HT-->>KH: Thông báo thanh toán thất bại
-            KH->>TT: Thực hiện thanh toán lại
-            TT-->>HT: Trả kết quả giao dịch mới
+    PaymentMethod -- Tiền mặt --> CashPay[Khách hàng trả tiền mặt cho Tài xế]
+    CashPay --> ConfirmCash[Tài xế xác nhận đã nhận đủ tiền]
+    ConfirmCash --> IssueInvoice
 
-            alt Thanh toán lại thành công
-                HT->>HT: Ghi nhận giao dịch thành công
-                HT-->>KH: Thông báo thanh toán thành công
-            else Thanh toán tiếp tục thất bại
-                HT-->>KH: Thông báo giao dịch chưa hoàn tất
-            end
-        end
-
-    else Khách hàng chọn thanh toán tiền mặt
-        KH->>TX: Thanh toán tiền mặt
-        TX->>HT: Xác nhận đã nhận tiền
-        HT->>HT: Ghi nhận thanh toán tiền mặt
-        HT-->>KH: Xác nhận thanh toán thành công
-    end
-
-    KH->>HT: Gửi đánh giá và nhận xét
-    HT->>HT: Lưu đánh giá chuyến xe
-    HT-->>KH: Thông báo gửi đánh giá thành công
+    IssueInvoice --> Rating[Khách hàng đánh giá & phản hồi chất lượng dịch vụ]
+    Rating --> EndTrip([Kết thúc chuyến đi])
 ```
-        HT-->>KH: Thông báo chưa tìm thấy tài xế
-    end
