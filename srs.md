@@ -58,7 +58,7 @@ quadrantChart
 5. **Module Thông báo (Notification Module):** Gửi thông báo tức thì cho Khách hàng/Tài xế theo từng sự kiện của chuyến đi.
 6. **Module Vận hành & Báo cáo (Admin & Analytics Module):** Giao diện quản trị theo dõi chuyến đi, hỗ trợ xử lý sự cố và xuất báo cáo doanh thu, hiệu suất cho Ban giám đốc.
    
-## 5. Business Requirements – CAB System MVP
+## 5. Business Requirements – CAB System MVP (Yêu cầu nghiệp vụ)
 Dưới đây là bảng **Business Requirements (BR)** chi tiết gồm 17 yêu cầu đã được chuyển sang định dạng bảng Markdown:
 
 | ID | Tên Yêu cầu | Mô tả Chi tiết |
