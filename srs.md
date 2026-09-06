@@ -387,3 +387,591 @@ Hệ thống cung cấp các chỉ số:
 | BR15 – Phân quyền Quản trị | FR28, FR29, FR30 |
 | BR16 – Báo cáo Thống kê | FR34, FR35 |
 | BR17 – Đánh giá Dịch vụ | FR32, FR33 |
+
+# 8. Business Rules (Quy tắc Nghiệp vụ)
+
+## 8.1. Quy tắc Quản lý Tài khoản
+
+| ID | Business Rule | Mô tả |
+|---|---|---|
+| **BRULE01** | Tài khoản duy nhất | Mỗi tài khoản người dùng phải được định danh duy nhất trong hệ thống. |
+| **BRULE02** | Phân loại tài khoản | Mỗi tài khoản phải thuộc một vai trò: Khách hàng, Tài xế hoặc Nhân viên vận hành. |
+| **BRULE03** | Kiểm soát quyền truy cập | Người dùng chỉ được thực hiện các chức năng phù hợp với vai trò và quyền được cấp. |
+| **BRULE04** | Trạng thái Tài xế | Tài xế chỉ được nhận chuyến khi đang ở trạng thái sẵn sàng và không thực hiện chuyến khác. |
+| **BRULE05** | Thông tin Tài xế | Tài xế phải có thông tin hồ sơ và phương tiện hợp lệ trước khi được phép nhận chuyến. |
+
+---
+
+## 8.2. Quy tắc Đặt xe & Điều phối
+
+| ID | Business Rule | Mô tả |
+|---|---|---|
+| **BRULE06** | Thông tin đặt xe bắt buộc | Một yêu cầu đặt xe phải có điểm đón, điểm đến và loại dịch vụ/loại xe. |
+| **BRULE07** | Tìm Tài xế phù hợp | Hệ thống chỉ đề xuất các Tài xế đang sẵn sàng và đáp ứng điều kiện của chuyến đi. |
+| **BRULE08** | Ưu tiên Tài xế | Tài xế phù hợp có vị trí thuận lợi/gần điểm đón được ưu tiên trong quá trình điều phối. |
+| **BRULE09** | Một chuyến – một Tài xế | Một yêu cầu đặt xe chỉ được gán cho tối đa một Tài xế tại một thời điểm. |
+| **BRULE10** | Không trùng chuyến | Tài xế đang thực hiện hoặc đã nhận một chuyến chưa hoàn thành không được nhận thêm chuyến mới. |
+| **BRULE11** | Từ chối chuyến | Khi Tài xế từ chối yêu cầu, hệ thống phải tiếp tục tìm Tài xế phù hợp khác. |
+| **BRULE12** | Hết thời gian phản hồi | Nếu Tài xế không phản hồi trong thời gian quy định, yêu cầu được xem như không được chấp nhận và chuyển sang Tài xế tiếp theo. |
+| **BRULE13** | Không tìm thấy Tài xế | Khi không còn Tài xế phù hợp, hệ thống phải thông báo cho Khách hàng và cập nhật trạng thái yêu cầu. |
+| **BRULE14** | Không đặt lại chuyến | Khách hàng không phải tạo lại yêu cầu khi hệ thống tự động chuyển sang Tài xế khác. |
+
+---
+
+## 8.3. Quy tắc Thực hiện Chuyến đi
+
+| ID | Business Rule | Mô tả |
+|---|---|---|
+| **BRULE15** | Thứ tự trạng thái | Trạng thái chuyến đi phải được cập nhật theo trình tự nghiệp vụ hợp lệ. |
+| **BRULE16** | Trạng thái Đã đến | Tài xế chỉ được chuyển sang trạng thái "Đã đến điểm đón" sau khi đã nhận chuyến. |
+| **BRULE17** | Trạng thái Đã đón khách | Tài xế chỉ được chuyển sang "Đã đón khách" sau khi đã đến điểm đón. |
+| **BRULE18** | Trạng thái Đang di chuyển | Chuyến đi chỉ được chuyển sang "Đang di chuyển" sau khi Tài xế đã đón khách. |
+| **BRULE19** | Hoàn thành chuyến | Chuyến đi chỉ được chuyển sang "Hoàn thành" khi Tài xế kết thúc hành trình. |
+| **BRULE20** | Theo dõi vị trí | Trong thời gian chuyến đi đang diễn ra, hệ thống phải cập nhật vị trí Tài xế để phục vụ theo dõi và tính ETA. |
+| **BRULE21** | Lưu lịch sử trạng thái | Mọi thay đổi trạng thái quan trọng của chuyến đi phải được ghi nhận để phục vụ tra cứu và kiểm soát. |
+
+---
+
+## 8.4. Quy tắc Tính cước
+
+| ID | Business Rule | Mô tả |
+|---|---|---|
+| **BRULE22** | Tính cước tự động | Cước phí phải được hệ thống tự động tính dựa trên loại dịch vụ và thông tin chuyến đi. |
+| **BRULE23** | Thời điểm tính cước | Tổng cước phí được xác định khi chuyến đi hoàn thành. |
+| **BRULE24** | Minh bạch cước phí | Khách hàng phải được thông báo số tiền cần thanh toán trước khi thực hiện thanh toán. |
+| **BRULE25** | Không tự ý thay đổi cước | Cước phí đã được xác định không được thay đổi trái với quy tắc nghiệp vụ hoặc quyền được cấp. |
+
+---
+
+## 8.5. Quy tắc Thanh toán
+
+| ID | Business Rule | Mô tả |
+|---|---|---|
+| **BRULE26** | Phương thức thanh toán | Khách hàng được lựa chọn thanh toán bằng tiền mặt hoặc thanh toán điện tử nếu phương thức đó khả dụng. |
+| **BRULE27** | Thanh toán điện tử | Giao dịch điện tử phải được xử lý thông qua Cổng thanh toán bên ngoài. |
+| **BRULE28** | Không lưu dữ liệu nhạy cảm | CAB không được lưu trữ trực tiếp thông tin thẻ hoặc thông tin tài khoản thanh toán nhạy cảm của Khách hàng. |
+| **BRULE29** | Xác nhận thanh toán | Chỉ ghi nhận giao dịch điện tử là thành công khi nhận được kết quả thành công từ Cổng thanh toán. |
+| **BRULE30** | Thanh toán thất bại | Khi thanh toán điện tử thất bại, hệ thống phải thông báo cho Khách hàng và cho phép thực hiện lại theo chính sách nghiệp vụ. |
+| **BRULE31** | Ghi nhận tiền mặt | Thanh toán tiền mặt chỉ được ghi nhận hoàn tất khi Tài xế xác nhận đã nhận tiền. |
+| **BRULE32** | Liên kết giao dịch | Mỗi giao dịch thanh toán phải được liên kết với chuyến đi tương ứng để phục vụ tra cứu và đối soát. |
+
+---
+
+## 8.6. Quy tắc Thông báo
+
+| ID | Business Rule | Mô tả |
+|---|---|---|
+| **BRULE33** | Thông báo theo sự kiện | Hệ thống phải gửi thông báo khi xảy ra các sự kiện quan trọng của chuyến đi. |
+| **BRULE34** | Thông báo cho Khách hàng | Khách hàng phải nhận được thông báo về việc nhận chuyến, Tài xế đến điểm đón, hoàn thành chuyến và kết quả thanh toán. |
+| **BRULE35** | Thông báo cho Tài xế | Tài xế phải nhận được thông báo khi có yêu cầu chuyến mới hoặc thay đổi liên quan đến chuyến đi. |
+| **BRULE36** | Khả năng mở rộng kênh | Kiến trúc thông báo phải cho phép bổ sung kênh mới mà không cần thay đổi toàn bộ hệ thống. |
+
+---
+
+## 8.7. Quy tắc Đánh giá & Phản hồi
+
+| ID | Business Rule | Mô tả |
+|---|---|---|
+| **BRULE37** | Chỉ đánh giá sau chuyến | Khách hàng chỉ được đánh giá sau khi chuyến đi đã hoàn thành. |
+| **BRULE38** | Đánh giá thuộc chuyến đi | Mỗi đánh giá phải được liên kết với chuyến đi cụ thể và Tài xế tương ứng. |
+| **BRULE39** | Không đánh giá trước khi hoàn thành | Hệ thống không cho phép gửi đánh giá cho chuyến chưa hoàn thành. |
+
+---
+
+## 8.8. Quy tắc Vận hành & Quản trị
+
+| ID | Business Rule | Mô tả |
+|---|---|---|
+| **BRULE40** | Phân quyền vận hành | Nhân viên vận hành chỉ được thực hiện các thao tác nằm trong phạm vi quyền được cấp. |
+| **BRULE41** | Thao tác nhạy cảm | Các thao tác quản trị hoặc can thiệp dữ liệu nhạy cảm phải được giới hạn cho người có quyền phù hợp. |
+| **BRULE42** | Theo dõi chuyến đang diễn ra | Nhân viên vận hành được phép theo dõi các chuyến đang thực hiện theo phạm vi nghiệp vụ. |
+| **BRULE43** | Tra cứu giao dịch | Nhân viên vận hành có thể tra cứu lịch sử giao dịch để hỗ trợ xử lý sự cố và đối soát. |
+| **BRULE44** | Ghi nhận can thiệp | Mọi thao tác can thiệp quan trọng của Nhân viên vận hành phải được ghi nhận vào nhật ký hệ thống. |
+
+---
+
+## 8.9. Quy tắc Báo cáo & Thống kê
+
+| ID | Business Rule | Mô tả |
+|---|---|---|
+| **BRULE45** | Dữ liệu báo cáo | Báo cáo phải được tổng hợp từ dữ liệu chuyến đi, thanh toán và hoạt động Tài xế đã được ghi nhận trên hệ thống. |
+| **BRULE46** | Chỉ số vận hành | Hệ thống phải hỗ trợ thống kê tổng số chuyến, doanh thu, tỷ lệ hoàn thành và tỷ lệ hủy chuyến. |
+| **BRULE47** | Hiệu suất Tài xế | Hệ thống phải cung cấp dữ liệu phục vụ đánh giá hiệu quả hoạt động của Tài xế. |
+| **BRULE48** | Phân quyền báo cáo | Chỉ người dùng có quyền phù hợp mới được xem các báo cáo quản trị và dữ liệu doanh thu. |
+
+---
+
+## 8.10. Quy tắc Bảo mật & Dữ liệu
+
+| ID | Business Rule | Mô tả |
+|---|---|---|
+| **BRULE49** | Xác thực người dùng | Người dùng phải được xác thực trước khi truy cập các chức năng yêu cầu đăng nhập. |
+| **BRULE50** | Bảo vệ dữ liệu cá nhân | Thông tin cá nhân, thông tin phương tiện và dữ liệu vị trí phải được bảo vệ khỏi truy cập trái phép. |
+| **BRULE51** | Bảo vệ dữ liệu giao dịch | Thông tin liên quan đến giao dịch phải được kiểm soát quyền truy cập và bảo vệ phù hợp. |
+| **BRULE52** | Nhật ký hệ thống | Các hoạt động quan trọng liên quan đến tài khoản, chuyến đi, thanh toán và quản trị phải được ghi nhận để phục vụ kiểm tra. |
+| **BRULE53** | Tính toàn vẹn dữ liệu | Hệ thống phải đảm bảo dữ liệu chuyến đi và giao dịch không bị tạo trùng hoặc cập nhật sai trạng thái. |
+
+---
+
+## 8.11. Quy tắc Ngoại lệ & Khả năng mở rộng
+
+| ID | Business Rule | Mô tả |
+|---|---|---|
+| **BRULE54** | Lỗi thanh toán độc lập | Lỗi từ Cổng thanh toán không được làm gián đoạn toàn bộ quy trình đặt và quản lý chuyến đi. |
+| **BRULE55** | Lỗi thông báo độc lập | Lỗi dịch vụ thông báo không được làm mất dữ liệu hoặc làm dừng quy trình đặt xe. |
+| **BRULE56** | Mở rộng dịch vụ | Hệ thống phải cho phép bổ sung loại hình dịch vụ mới mà không phải xây dựng lại toàn bộ hệ thống. |
+| **BRULE57** | Mở rộng thanh toán | Hệ thống phải cho phép tích hợp thêm phương thức hoặc đối tác thanh toán mới. |
+| **BRULE58** | Mở rộng thông báo | Hệ thống phải cho phép bổ sung nhà cung cấp/kênh thông báo mới mà không ảnh hưởng lớn đến các module khác. |
+# 9. Non-Functional Requirements (Yêu cầu Phi chức năng)
+
+## 9.1. Hiệu năng (Performance)
+
+| ID | Yêu cầu | Mô tả |
+|---|---|---|
+| **NFR01** | Thời gian phản hồi | Hệ thống phải phản hồi các thao tác thông thường của người dùng trong thời gian phù hợp, mục tiêu không quá **3 giây** trong điều kiện tải bình thường. |
+| **NFR02** | Xử lý đặt xe | Hệ thống phải tiếp nhận và xử lý yêu cầu đặt xe nhanh chóng, không gây cảm giác chờ đợi kéo dài cho Khách hàng. |
+| **NFR03** | Cập nhật vị trí | Vị trí GPS của Tài xế phải được cập nhật gần thời gian thực để đảm bảo thông tin hiển thị và ETA có độ chính xác phù hợp. |
+| **NFR04** | Xử lý đồng thời | Hệ thống phải có khả năng xử lý nhiều Khách hàng và Tài xế hoạt động đồng thời mà không làm suy giảm nghiêm trọng hiệu năng. |
+
+---
+
+## 9.2. Khả dụng & Độ tin cậy (Availability & Reliability)
+
+| ID | Yêu cầu | Mô tả |
+|---|---|---|
+| **NFR05** | Tính sẵn sàng | Hệ thống phải duy trì hoạt động ổn định trong thời gian phục vụ Khách hàng và Tài xế. |
+| **NFR06** | Hoạt động trong giờ cao điểm | Hệ thống phải có khả năng duy trì các chức năng đặt xe, điều phối và theo dõi chuyến trong thời gian nhu cầu tăng cao. |
+| **NFR07** | Cô lập lỗi | Lỗi của Cổng thanh toán hoặc dịch vụ thông báo không được làm sập hoặc dừng toàn bộ hệ thống đặt xe. |
+| **NFR08** | Khôi phục lỗi | Khi xảy ra lỗi tạm thời, hệ thống phải có khả năng khôi phục và tiếp tục xử lý mà hạn chế tối đa việc mất dữ liệu. |
+| **NFR09** | Tính toàn vẹn dữ liệu | Hệ thống phải đảm bảo dữ liệu chuyến đi, trạng thái và giao dịch không bị mất hoặc ghi nhận sai trong quá trình xử lý. |
+
+---
+
+## 9.3. Bảo mật (Security)
+
+| ID | Yêu cầu | Mô tả |
+|---|---|---|
+| **NFR10** | Xác thực | Các chức năng yêu cầu quyền truy cập phải yêu cầu người dùng đăng nhập và xác thực hợp lệ. |
+| **NFR11** | Phân quyền | Hệ thống phải kiểm soát quyền truy cập dựa trên vai trò của người dùng. |
+| **NFR12** | Bảo vệ dữ liệu cá nhân | Thông tin cá nhân của Khách hàng và Tài xế phải được bảo vệ khỏi truy cập hoặc sử dụng trái phép. |
+| **NFR13** | Bảo vệ dữ liệu vị trí | Dữ liệu vị trí của Tài xế phải được giới hạn quyền truy cập và chỉ sử dụng cho các mục đích nghiệp vụ phù hợp. |
+| **NFR14** | Bảo vệ dữ liệu thanh toán | CAB không được lưu trữ trực tiếp thông tin thẻ hoặc thông tin tài khoản thanh toán nhạy cảm. |
+| **NFR15** | Nhật ký kiểm toán | Các thao tác quan trọng như đăng nhập, thay đổi dữ liệu, thanh toán và can thiệp của Nhân viên vận hành phải được ghi nhận. |
+| **NFR16** | Bảo mật truyền thông | Dữ liệu trao đổi giữa ứng dụng và hệ thống phải được truyền qua kết nối an toàn. |
+
+---
+
+## 9.4. Khả năng mở rộng (Scalability)
+
+| ID | Yêu cầu | Mô tả |
+|---|---|---|
+| **NFR17** | Mở rộng người dùng | Hệ thống phải có khả năng mở rộng để phục vụ số lượng Khách hàng và Tài xế tăng lên trong tương lai. |
+| **NFR18** | Mở rộng tải | Hệ thống phải cho phép tăng tài nguyên xử lý khi lượng yêu cầu đặt xe tăng cao. |
+| **NFR19** | Mở rộng độc lập | Các thành phần như Đặt xe, Điều phối, Thanh toán và Thông báo nên có khả năng mở rộng độc lập. |
+| **NFR20** | Mở rộng chức năng | Việc bổ sung chức năng mới không được yêu cầu xây dựng lại toàn bộ hệ thống hiện tại. |
+
+---
+
+## 9.5. Khả năng bảo trì (Maintainability)
+
+| ID | Yêu cầu | Mô tả |
+|---|---|---|
+| **NFR21** | Kiến trúc module | Hệ thống phải được thiết kế theo các module có trách nhiệm rõ ràng và hạn chế phụ thuộc chặt chẽ giữa các module. |
+| **NFR22** | Dễ bảo trì | Mã nguồn và cấu hình hệ thống phải được tổ chức rõ ràng để Dev/QA có thể dễ dàng sửa lỗi và nâng cấp. |
+| **NFR23** | Triển khai độc lập | Có khả năng triển khai hoặc cập nhật một chức năng mới mà hạn chế ảnh hưởng đến các chức năng đang hoạt động. |
+| **NFR24** | Logging | Hệ thống phải cung cấp log đủ thông tin để hỗ trợ phát hiện, phân tích và xử lý lỗi. |
+
+---
+
+## 9.6. Khả năng mở rộng tích hợp (Integration)
+
+| ID | Yêu cầu | Mô tả |
+|---|---|---|
+| **NFR25** | Tích hợp Payment Gateway | Hệ thống phải hỗ trợ kết nối với Cổng thanh toán bên ngoài thông qua giao diện tích hợp phù hợp. |
+| **NFR26** | Tích hợp Notification Provider | Hệ thống phải có khả năng tích hợp với các nhà cung cấp Push/SMS khác nhau. |
+| **NFR27** | Thay thế đối tác | Việc thay đổi nhà cung cấp thanh toán hoặc thông báo không được yêu cầu thay đổi lớn đối với các module nghiệp vụ cốt lõi. |
+| **NFR28** | Khả năng tương tác | Các thành phần của hệ thống phải trao đổi dữ liệu theo giao diện và định dạng được chuẩn hóa. |
+
+---
+
+## 9.7. Khả năng sử dụng (Usability)
+
+| ID | Yêu cầu | Mô tả |
+|---|---|---|
+| **NFR29** | Giao diện dễ sử dụng | Giao diện dành cho Khách hàng và Tài xế phải đơn giản, trực quan và dễ thao tác. |
+| **NFR30** | Hiển thị trạng thái | Trạng thái chuyến đi, thông tin Tài xế, ETA và kết quả thanh toán phải được hiển thị rõ ràng. |
+| **NFR31** | Thông báo lỗi | Khi xảy ra lỗi, hệ thống phải hiển thị thông báo dễ hiểu và hướng dẫn người dùng xử lý khi có thể. |
+| **NFR32** | Tương thích thiết bị | Giao diện người dùng phải phù hợp với các thiết bị và kích thước màn hình được hệ thống hỗ trợ. |
+
+---
+
+## 9.8. Khả năng kiểm thử (Testability)
+
+| ID | Yêu cầu | Mô tả |
+|---|---|---|
+| **NFR33** | Kiểm thử chức năng | Các chức năng chính phải có khả năng được kiểm thử độc lập. |
+| **NFR34** | Kiểm thử tích hợp | Các kết nối với Payment Gateway và Notification Provider phải có khả năng kiểm thử mà không ảnh hưởng đến dữ liệu thật. |
+| **NFR35** | Theo dõi lỗi | Hệ thống phải cung cấp log và thông tin lỗi cần thiết để QA xác định nguyên nhân sự cố. |
+
+---
+
+## 9.9. Sao lưu & Khôi phục dữ liệu (Backup & Recovery)
+
+| ID | Yêu cầu | Mô tả |
+|---|---|---|
+| **NFR36** | Sao lưu dữ liệu | Dữ liệu quan trọng của hệ thống phải được sao lưu theo chính sách vận hành. |
+| **NFR37** | Khôi phục dữ liệu | Hệ thống phải có khả năng khôi phục dữ liệu khi xảy ra sự cố hệ thống hoặc mất dữ liệu. |
+| **NFR38** | Không mất dữ liệu giao dịch | Dữ liệu giao dịch và thông tin chuyến đi đã xác nhận phải được bảo vệ khỏi mất mát ngoài ý muốn. |
+
+---
+
+## 9.10. Khả năng triển khai (Deployability)
+
+| ID | Yêu cầu | Mô tả |
+|---|---|---|
+| **NFR39** | Triển khai độc lập | Hệ thống phải có khả năng triển khai trên môi trường phát triển, kiểm thử và production. |
+| **NFR40** | Cập nhật hệ thống | Việc triển khai phiên bản mới phải hạn chế tối đa thời gian hệ thống không khả dụng. |
+| **NFR41** | Cấu hình môi trường | Các thông tin cấu hình theo từng môi trường phải được quản lý tách biệt với mã nguồn nghiệp vụ. |
+
+---
+
+## 9.11. Tổng hợp Non-Functional Requirements
+
+| Nhóm | Các NFR |
+|---|---|
+| **Performance** | NFR01 – NFR04 |
+| **Availability & Reliability** | NFR05 – NFR09 |
+| **Security** | NFR10 – NFR16 |
+| **Scalability** | NFR17 – NFR20 |
+| **Maintainability** | NFR21 – NFR24 |
+| **Integration** | NFR25 – NFR28 |
+| **Usability** | NFR29 – NFR32 |
+| **Testability** | NFR33 – NFR35 |
+| **Backup & Recovery** | NFR36 – NFR38 |
+| **Deployability** | NFR39 – NFR41 |
+## 10. Entity Relationship Diagram (Mô hình Dữ liệu ERD)
+
+### 10.1. ERD tổng thể
+
+```mermaid
+erDiagram
+
+    USER {
+        int user_id PK
+        string full_name
+        string phone
+        string email
+        string password_hash
+        string role
+        string status
+        datetime created_at
+        datetime updated_at
+    }
+
+    CUSTOMER {
+        int customer_id PK, FK
+        string default_address
+        datetime created_at
+    }
+
+    DRIVER {
+        int driver_id PK, FK
+        string license_number
+        string availability_status
+        decimal rating
+        datetime created_at
+        datetime updated_at
+    }
+
+    VEHICLE {
+        int vehicle_id PK
+        int driver_id FK
+        string license_plate
+        string vehicle_type
+        string brand
+        string model
+        string color
+        string status
+    }
+
+    BOOKING {
+        int booking_id PK
+        int customer_id FK
+        string pickup_address
+        string destination_address
+        decimal pickup_latitude
+        decimal pickup_longitude
+        decimal destination_latitude
+        decimal destination_longitude
+        string service_type
+        string vehicle_type
+        string status
+        datetime requested_at
+        datetime expired_at
+    }
+
+    DRIVER_ASSIGNMENT {
+        int assignment_id PK
+        int booking_id FK
+        int driver_id FK
+        int attempt_number
+        string status
+        datetime offered_at
+        datetime responded_at
+    }
+
+    TRIP {
+        int trip_id PK
+        int booking_id FK
+        int driver_id FK
+        int vehicle_id FK
+        datetime started_at
+        datetime completed_at
+        string status
+        decimal distance
+        decimal fare_amount
+    }
+
+    LOCATION {
+        int location_id PK
+        int trip_id FK
+        int driver_id FK
+        decimal latitude
+        decimal longitude
+        decimal eta
+        datetime recorded_at
+    }
+
+    PAYMENT {
+        int payment_id PK
+        int trip_id FK
+        string payment_method
+        decimal amount
+        string payment_status
+        string transaction_reference
+        datetime paid_at
+    }
+
+    PAYMENT_ATTEMPT {
+        int attempt_id PK
+        int payment_id FK
+        int attempt_number
+        string status
+        string gateway_response
+        datetime attempted_at
+    }
+
+    RATING {
+        int rating_id PK
+        int trip_id FK
+        int customer_id FK
+        int driver_id FK
+        int score
+        string comment
+        datetime created_at
+    }
+
+    NOTIFICATION {
+        int notification_id PK
+        int user_id FK
+        int booking_id FK
+        int trip_id FK
+        string notification_type
+        string channel
+        string title
+        string message
+        string status
+        datetime sent_at
+    }
+
+    AUDIT_LOG {
+        int log_id PK
+        int user_id FK
+        string action
+        string entity_type
+        int entity_id
+        string description
+        datetime created_at
+    }
+
+    USER ||--o| CUSTOMER : "has"
+    USER ||--o| DRIVER : "has"
+
+    DRIVER ||--o{ VEHICLE : "owns"
+
+    CUSTOMER ||--o{ BOOKING : "creates"
+
+    BOOKING ||--o{ DRIVER_ASSIGNMENT : "has"
+    DRIVER ||--o{ DRIVER_ASSIGNMENT : "receives"
+
+    BOOKING ||--o| TRIP : "generates"
+    DRIVER ||--o{ TRIP : "performs"
+    VEHICLE ||--o{ TRIP : "used_for"
+
+    TRIP ||--o{ LOCATION : "records"
+    DRIVER ||--o{ LOCATION : "sends"
+
+    TRIP ||--o| PAYMENT : "has"
+    PAYMENT ||--o{ PAYMENT_ATTEMPT : "contains"
+
+    TRIP ||--o| RATING : "receives"
+    CUSTOMER ||--o{ RATING : "gives"
+    DRIVER ||--o{ RATING : "receives"
+
+    USER ||--o{ NOTIFICATION : "receives"
+    BOOKING ||--o{ NOTIFICATION : "triggers"
+    TRIP ||--o{ NOTIFICATION : "triggers"
+
+    USER ||--o{ AUDIT_LOG : "performs"
+```
+
+### 10.2. Mô tả các Entity chính
+
+| Entity | Mục đích | Quan hệ chính |
+|---|---|---|
+| **USER** | Lưu thông tin tài khoản và xác định vai trò người dùng | Liên kết Customer/Driver, Notification, AuditLog |
+| **CUSTOMER** | Lưu thông tin nghiệp vụ của Khách hàng | Tạo Booking, thực hiện Rating |
+| **DRIVER** | Lưu thông tin nghiệp vụ của Tài xế và trạng thái sẵn sàng | Có Vehicle, nhận Assignment, thực hiện Trip |
+| **VEHICLE** | Quản lý phương tiện của Tài xế | Thuộc Driver, được sử dụng trong Trip |
+| **BOOKING** | Lưu yêu cầu đặt xe của Khách hàng | Thuộc Customer, có Assignment và có thể tạo Trip |
+| **DRIVER_ASSIGNMENT** | Theo dõi quá trình hệ thống đề xuất chuyến cho từng Tài xế | Liên kết Booking và Driver |
+| **TRIP** | Lưu thông tin chuyến đi thực tế | Liên kết Booking, Driver và Vehicle |
+| **LOCATION** | Lưu vị trí GPS và ETA của Tài xế trong chuyến đi | Thuộc Trip và Driver |
+| **PAYMENT** | Lưu thông tin thanh toán của chuyến đi | Thuộc Trip, có PaymentAttempt |
+| **PAYMENT_ATTEMPT** | Lưu từng lần thử thanh toán điện tử | Thuộc Payment |
+| **RATING** | Lưu đánh giá và nhận xét của Khách hàng | Liên kết Customer, Driver và Trip |
+| **NOTIFICATION** | Lưu thông báo gửi đến người dùng | Liên kết User, Booking và Trip |
+| **AUDIT_LOG** | Lưu lịch sử các thao tác quan trọng | Liên kết User |
+
+### 10.3. Các quan hệ nghiệp vụ chính
+
+#### 1. Customer – Booking
+- Một **Customer** có thể tạo nhiều **Booking**.
+- Một **Booking** chỉ thuộc về một **Customer**.
+
+**Cardinality:** `CUSTOMER 1 — N BOOKING`
+
+#### 2. Booking – Driver Assignment
+- Một **Booking** có thể được gửi lần lượt cho nhiều **Driver**.
+- Mỗi **Driver Assignment** đại diện cho một lần hệ thống đề xuất chuyến cho một Tài xế.
+- `attempt_number` dùng để xác định thứ tự điều phối.
+
+**Cardinality:** `BOOKING 1 — N DRIVER_ASSIGNMENT`
+
+#### 3. Driver – Driver Assignment
+- Một **Driver** có thể nhận nhiều yêu cầu theo thời gian.
+- Một **Driver Assignment** chỉ liên kết với một **Driver**.
+
+**Cardinality:** `DRIVER 1 — N DRIVER_ASSIGNMENT`
+
+#### 4. Booking – Trip
+- Một **Booking** có thể tạo tối đa một **Trip**.
+- Trip được tạo khi một Tài xế chấp nhận Booking.
+
+**Cardinality:** `BOOKING 1 — 0..1 TRIP`
+
+#### 5. Driver – Vehicle
+- Một **Driver** có thể có một hoặc nhiều **Vehicle** được quản lý trên hệ thống.
+- Mỗi **Vehicle** thuộc về một **Driver**.
+
+**Cardinality:** `DRIVER 1 — N VEHICLE`
+
+#### 6. Driver – Trip
+- Một **Driver** có thể thực hiện nhiều **Trip** theo thời gian.
+- Mỗi **Trip** chỉ có một **Driver** thực hiện.
+
+**Cardinality:** `DRIVER 1 — N TRIP`
+
+#### 7. Trip – Location
+- Một **Trip** có nhiều bản ghi vị trí GPS.
+- Các bản ghi được lưu theo thời gian để phục vụ theo dõi hành trình và tính ETA.
+
+**Cardinality:** `TRIP 1 — N LOCATION`
+
+#### 8. Trip – Payment
+- Một **Trip** có tối đa một **Payment**.
+- Payment có thể được thực hiện bằng tiền mặt hoặc thanh toán điện tử.
+
+**Cardinality:** `TRIP 1 — 0..1 PAYMENT`
+
+#### 9. Payment – Payment Attempt
+- Một **Payment** có thể có nhiều lần thử thanh toán.
+- Điều này hỗ trợ nghiệp vụ thanh toán thất bại và thực hiện lại giao dịch.
+
+**Cardinality:** `PAYMENT 1 — N PAYMENT_ATTEMPT`
+
+#### 10. Trip – Rating
+- Một **Trip** có thể có tối đa một **Rating** từ Khách hàng.
+- Rating chỉ được tạo sau khi Trip hoàn thành.
+
+**Cardinality:** `TRIP 1 — 0..1 RATING`
+
+### 10.4. Trạng thái chính
+
+#### Booking Status
+
+```text
+PENDING
+   ↓
+SEARCHING_DRIVER
+   ↓
+DRIVER_ASSIGNED
+   ↓
+CONFIRMED
+   ↓
+COMPLETED / CANCELLED
+```
+
+#### Driver Assignment Status
+
+```text
+OFFERED
+   ├── ACCEPTED
+   ├── REJECTED
+   └── EXPIRED
+```
+
+#### Trip Status
+
+```text
+ASSIGNED
+   ↓
+DRIVER_ARRIVED
+   ↓
+PICKED_UP
+   ↓
+IN_PROGRESS
+   ↓
+COMPLETED
+```
+
+#### Payment Status
+
+```text
+PENDING
+   ├── SUCCESS
+   └── FAILED
+          ↓
+       RETRY
+          ↓
+       SUCCESS
+```
+
+### 10.5. Quy tắc toàn vẹn dữ liệu
+
+| ID | Quy tắc |
+|---|---|
+| **DR01** | Mỗi User phải có một `user_id` duy nhất. |
+| **DR02** | Email và số điện thoại của User phải được kiểm soát tính duy nhất theo chính sách hệ thống. |
+| **DR03** | Customer và Driver phải tham chiếu đến một User hợp lệ. |
+| **DR04** | Một Booking phải thuộc về đúng một Customer. |
+| **DR05** | Một Driver Assignment phải tham chiếu đến Booking và Driver tồn tại. |
+| **DR06** | Một Booking chỉ được tạo tối đa một Trip thực tế. |
+| **DR07** | Driver không được thực hiện đồng thời nhiều Trip đang hoạt động. |
+| **DR08** | Một Trip chỉ được có tối đa một Payment chính. |
+| **DR09** | Payment Attempt phải thuộc về một Payment tồn tại. |
+| **DR10** | Rating chỉ được tạo cho Trip đã hoàn thành. |
+| **DR11** | Rating phải thuộc về đúng Customer và Driver của Trip tương ứng. |
+| **DR12** | Điểm Rating phải nằm trong khoảng giá trị được hệ thống quy định. |
+| **DR13** | Location phải thuộc về Trip hợp lệ và được ghi nhận theo thời gian. |
+| **DR14** | Các thao tác quản trị quan trọng phải được ghi nhận trong Audit Log. |
