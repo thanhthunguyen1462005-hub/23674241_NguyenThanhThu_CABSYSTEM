@@ -109,5 +109,66 @@ sequenceDiagram
         end
 
     else Không có tài xế phù hợp
+## 6.2. Quy trình Thực hiện Chuyến xe & Thanh toán
+
+```mermaid
+sequenceDiagram
+    autonumber
+
+    actor KH as Khách hàng
+    actor TX as Tài xế
+    participant HT as Hệ thống CAB
+    participant TT as Cổng thanh toán
+
+    TX->>HT: Cập nhật trạng thái "Đã đến điểm đón"
+    HT-->>KH: Thông báo tài xế đã đến điểm đón
+
+    TX->>HT: Cập nhật trạng thái "Đã đón khách"
+    HT-->>KH: Thông báo chuyến xe bắt đầu
+
+    loop Trong quá trình di chuyển
+        TX->>HT: Gửi vị trí GPS
+        HT->>HT: Cập nhật vị trí tài xế
+        HT->>HT: Tính toán ETA
+        HT-->>KH: Cập nhật vị trí và ETA
+    end
+
+    TX->>HT: Cập nhật trạng thái "Hoàn thành chuyến"
+    HT->>HT: Tổng hợp thông tin chuyến đi
+    HT->>HT: Tính toán tổng cước phí
+    HT-->>KH: Thông báo số tiền cần thanh toán
+
+    alt Khách hàng chọn thanh toán điện tử
+        KH->>TT: Gửi yêu cầu thanh toán
+        TT-->>HT: Trả kết quả giao dịch
+
+        alt Thanh toán thành công
+            HT->>HT: Ghi nhận giao dịch thành công
+            HT-->>KH: Thông báo thanh toán thành công
+
+        else Thanh toán thất bại
+            HT-->>KH: Thông báo thanh toán thất bại
+            KH->>TT: Thực hiện thanh toán lại
+            TT-->>HT: Trả kết quả giao dịch mới
+
+            alt Thanh toán lại thành công
+                HT->>HT: Ghi nhận giao dịch thành công
+                HT-->>KH: Thông báo thanh toán thành công
+            else Thanh toán tiếp tục thất bại
+                HT-->>KH: Thông báo giao dịch chưa hoàn tất
+            end
+        end
+
+    else Khách hàng chọn thanh toán tiền mặt
+        KH->>TX: Thanh toán tiền mặt
+        TX->>HT: Xác nhận đã nhận tiền
+        HT->>HT: Ghi nhận thanh toán tiền mặt
+        HT-->>KH: Xác nhận thanh toán thành công
+    end
+
+    KH->>HT: Gửi đánh giá và nhận xét
+    HT->>HT: Lưu đánh giá chuyến xe
+    HT-->>KH: Thông báo gửi đánh giá thành công
+```
         HT-->>KH: Thông báo chưa tìm thấy tài xế
     end
