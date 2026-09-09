@@ -13,12 +13,27 @@
 | **Đối tác bên thứ ba (External)**| **Nhà cung cấp thanh toán (Payment Gateway)** | Xử lý giao dịch điện tử an toàn bên ngoài hệ thống CAB, trả về kết quả thanh toán để hệ thống cập nhật. |
 | | **Nhà cung cấp dịch vụ thông báo (Notification Provider)**| Nền tảng trung gian hỗ trợ đẩy thông báo (Push Notification, SMS, Email) trạng thái chuyến đi và giao dịch đến người dùng. |
 ## 2. Stakeholder Matrix (Ma trận Bên liên quan)
-| Phân loại (Quadrant) | Quyền lực (Power) | Quan tâm (Interest) | Bên liên quan (Stakeholder) | Chiến lược quản lý & Giao tiếp (Management Strategy) |
-| :--- | :--- | :--- | :--- | :--- |
-| **Quản lý chặt chẽ (Manage Closely)** | **Cao** | **Cao** | Ban lãnh đạo / Ban giám đốc | **Làm việc trực tiếp và xin phê duyệt.**<br>- Cần chốt ngay các quy tắc nghiệp vụ còn thiếu (tính cước, hủy chuyến...).<br>- Báo cáo tiến độ thường xuyên, đảm bảo kiến trúc hệ thống đáp ứng tầm nhìn dài hạn và khả năng chịu tải. |
-| **Thường xuyên thông tin (Keep Informed)** | **Thấp** | **Cao** | Khách hàng, Tài xế, Nhân viên vận hành | **Cung cấp thông tin và thu thập phản hồi.**<br>- Nhóm này sử dụng hệ thống trực tiếp nhưng không có quyền quyết định dự án.<br>- Cần đảm bảo UX/UI dễ sử dụng, thông báo rõ ràng khi hệ thống tìm xe, lỗi mạng. Hướng dẫn sử dụng chi tiết khi hệ thống Go-live. |
-| **Giữ hài lòng (Keep Satisfied)** | **Cao** | **Thấp** | Nhà cung cấp thanh toán, Nhà cung cấp dịch vụ thông báo | **Tuân thủ tiêu chuẩn kỹ thuật & Chính sách.**<br>- Họ cung cấp API cốt lõi, có quyền lực ảnh hưởng đến kỹ thuật nhưng không quan tâm sâu đến nghiệp vụ đặt xe của ABC.<br>- Đảm bảo bảo mật dữ liệu thẻ, xử lý tốt ngoại lệ giao dịch để hệ thống không bị gián đoạn. |
-| **Theo dõi (Monitor)** | **Thấp** | **Thấp** | Các dịch vụ bên thứ 3 phụ trợ khác (Dịch vụ bản đồ, máy chủ...) | **Theo dõi trạng thái & SLA.**<br>- Theo dõi tài liệu API của họ để cập nhật khi có thay đổi. Chuẩn bị sẵn các phương án dự phòng (fallback) để đảm bảo hệ thống mở rộng độc lập. |
+```mermaid
+quadrantChart
+    title Ma trận Stakeholder (Power vs Interest)
+    x-axis "Mức độ quan tâm Thấp" --> "Mức độ quan tâm Cao"
+    y-axis "Quyền lực / Ảnh hưởng Thấp" --> "Quyền lực / Ảnh hưởng Cao"
+    quadrant-1 "Quản lý chặt chẽ (Manage Closely)"
+    quadrant-2 "Thỏa mãn nhu cầu (Keep Satisfied)"
+    quadrant-3 "Theo dõi tối thiểu (Monitor)"
+    quadrant-4 "Cung cấp thông tin (Keep Informed)"
+    
+    "Ban Giam doc": [0.85, 0.90]
+    "Business Analyst": [0.75, 0.70]
+    "Nhom Phat trien": [0.80, 0.60]
+    "Doi tac Thanh toan": [0.35, 0.75]
+    "Doi tac Thong bao": [0.30, 0.65]
+    "Khach hang": [0.85, 0.35]
+    "Tai xe": [0.80, 0.30]
+    "Nhan vien Van hanh": [0.70, 0.40]
+```
+
+---
 
 
 ## 3. Business Goals (Mục tiêu Kinh doanh)
