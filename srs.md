@@ -24,13 +24,13 @@ quadrantChart
     quadrant-4 "Cung cấp thông tin (Keep Informed)"
     
     "Ban Giam doc": [0.85, 0.90]
-    "Business Analyst": [0.80, 0.45]
-    "Nhom Phat trien": [0.75, 0.40]
+    "Business Analyst": [0.90, 0.45]
+    "Nhom Phat trien": [0.75, 0.42]
     "Doi tac Thanh toan": [0.35, 0.75]
     "Doi tac Thong bao": [0.30, 0.65]
-    "Khach hang": [0.85, 0.35]
-    "Tai xe": [0.80, 0.30]
-    "Nhan vien Van hanh": [0.70, 0.40]
+    "Nhan vien Van hanh": [0.65, 0.30]
+    "Khach hang": [0.85, 0.20]
+    "Tai xe": [0.75, 0.15]
 ```
 
 ---
