@@ -2,17 +2,7 @@
 
 ## 1. Stakeholder List & Roles (Danh sách & Vai trò Bên liên quan)
 
-| Stakeholder | Vai trò chính |
-| :--- | :--- |
-| **Ban Giám đốc** | Ra quyết định chiến lược, duyệt ngân sách và phê duyệt các quy tắc nghiệp vụ. |
-| **Khách hàng** | Đặt xe, theo dõi chuyến đi, thanh toán và đánh giá chất lượng dịch vụ. |
-| **Tài xế** | Bật trạng thái sẵn sàng, nhận/từ chối chuyến và cập nhật tiến trình chuyến đi. |
-| **Nhân viên vận hành** | Theo dõi hệ thống, hỗ trợ xử lý sự cố chuyến đi và quản trị dữ liệu. |
-| **Business Analyst (BA)** | Làm rõ yêu cầu chưa chốt và chi tiết hóa quy trình nghiệp vụ cho team. |
-| **Nhóm Phát triển (Dev/QA)** | Thiết kế kiến trúc, lập trình và hoàn thiện hệ thống trong 7 tuần. |
-| **Đối tác Thanh toán & Thông báo** | Tích hợp xử lý giao dịch điện tử và gửi thông báo tức thì đến người dùng. |
-
----
+Phân loạiBên liên quan (Stakeholder)Vai trò & Trách nhiệm (Role & Responsibilities)Người dùng trực tiếp (End-users)Khách hàng (Passenger)Đăng ký, đặt xe, theo dõi chuyến đi, thanh toán cước phí, nhận thông báo và đánh giá tài xế.Tài xế (Driver)Quản lý trạng thái hoạt động, tiếp nhận/từ chối yêu cầu, cập nhật trạng thái hành trình thực tế và nhận thanh toán.Quản lý & Vận hành nội bộ (Internal)Nhân viên vận hành (Operations Staff/Admin)Quản lý thông tin (tài xế, khách hàng, phương tiện), giám sát chuyến đi realtime, hỗ trợ xử lý sự cố và tra cứu giao dịch dựa trên phân quyền.Ban lãnh đạo / Ban giám đốc (Sponsor/Management)Đưa ra định hướng, phê duyệt dự án và sử dụng các báo cáo thống kê (doanh thu, tỷ lệ hoàn thành/hủy, hiệu suất) để ra quyết định kinh doanh.Nhóm triển khai (Project Team)Business Analyst (BA)Phân tích yêu cầu, xác định phạm vi, làm rõ các quy tắc nghiệp vụ/ngoại lệ chưa chốt với khách hàng và hoàn thiện tài liệu SRS.Nhóm phát triển (Development Team)Thiết kế kiến trúc linh hoạt, lập trình, kiểm thử và triển khai nền tảng CAB trong thời hạn 7 tuần.Đối tác bên thứ ba (External Integrations)Nhà cung cấp thanh toán (Payment Gateway)Xử lý giao dịch điện tử an toàn bên ngoài hệ thống CAB, trả về kết quả thanh toán để hệ thống cập nhật.Nhà cung cấp dịch vụ thông báo (Notification Provider)Nền tảng trung gian hỗ trợ đẩy thông báo (Push Notification, SMS, Email) trạng thái chuyến đi và giao dịch đến người dùng.
 
 ## 2. Stakeholder Matrix (Ma trận Bên liên quan)
 
