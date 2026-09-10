@@ -86,31 +86,43 @@ quadrantChart
 ```mermaid
 flowchart TD
     Start([Khách hàng mở app & Nhập thông tin chuyến đi]) --> Request[Gửi yêu cầu đặt xe]
-    Request --> FindDriver[Hệ thống xác định vị trí GPS & Tìm tài xế gần nhất đang sẵn sàng]
+    Request --> FindDriver[Hệ thống quét vị trí GPS & Tìm tài xế gần nhất đang sẵn sàng]
     
     FindDriver --> CheckFound{Có tài xế phù hợp?}
     
-    CheckFound -- Không --> NotifyNoDriver[Thông báo không tìm thấy tài xế phù hợp]
+    CheckFound -- Không --> CheckTimeout{Quá 3 phút tìm xe?}
+    CheckTimeout -- Có --> NotifyNoDriver[Thông báo không tìm thấy xe]
+    CheckTimeout -- Chưa --> FindDriver
+    
     NotifyNoDriver --> EndNoDriver([Kết thúc luồng đặt xe])
 
-    CheckFound -- Có --> SendOffer[Gửi thông báo nhận chuyến cho Tài xế - Có đếm ngược thời gian]
+    CheckFound -- Có --> SendOffer[Gửi thông báo nhận chuyến cho Tài xế - Đếm ngược 15s]
     
     SendOffer --> DriverResponse{Tài xế phản hồi?}
     
-    DriverResponse -- Chấp nhận --> ConfirmBooking[Hệ thống xác nhận chuyến đi & Gửi thông tin tài xế cho Khách hàng]
+    DriverResponse -- Chấp nhận --> ConfirmBooking[Hệ thống xác nhận chuyến & Gửi thông tin cho Khách hàng]
     ConfirmBooking --> Transition[Chuyển sang Luồng Thực hiện chuyến đi]
 
-    DriverResponse -- Từ chối / Hết giờ --> ForwardNext[Tự động chuyển tiếp yêu cầu tới tài xế tiếp theo]
-    ForwardNext --> CheckFound
+    DriverResponse -- Từ chối / Hết giờ --> ForwardNext[Tự động bỏ qua tài xế hiện tại]
+    ForwardNext --> CheckTimeout
 ```
-
 ### 6.2. Quy trình Thực hiện Chuyến đi & Thanh toán
 ```mermaid
 flowchart TD
     Transition([Bắt đầu thực hiện chuyến đi]) --> DriverArrive[Tài xế cập nhật: Đã đến điểm đón]
+    
+    %% Nhánh rẽ: Khách hàng hủy chuyến
+    Transition -. Khách hàng chọn Hủy chuyến .-> CancelTrip[Hủy chuyến thành công & Cập nhật tỷ lệ hủy]
+    CancelTrip --> EndCancel([Kết thúc])
+
     DriverArrive --> NotifyArrived[Hệ thống gửi thông báo cho Khách hàng]
     
-    NotifyArrived --> StartTrip[Tài xế cập nhật: Đã đón khách / Đang di chuyển]
+    %% Nhánh rẽ: Khách không xuất hiện
+    NotifyArrived --> CheckNoShow{Khách xuất hiện?}
+    CheckNoShow -- Không quá 5 phút --> DriverCancel[Tài xế báo Vắng mặt & Hủy chuyến]
+    DriverCancel --> EndCancel
+    
+    CheckNoShow -- Có --> StartTrip[Tài xế cập nhật: Đã đón khách / Đang di chuyển]
     
     subgraph RealTimeTracking [Quá trình di chuyển]
         StartTrip --> GPSUpdate[Tài xế gửi tọa độ GPS liên tục]
