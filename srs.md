@@ -148,235 +148,221 @@ flowchart TD
     IssueInvoice --> Rating[Khách hàng đánh giá & phản hồi chất lượng dịch vụ]
     Rating --> EndTrip([Kết thúc chuyến đi])
 ```
-# 7. Functional Requirements (Yêu cầu Chức năng)
+## 7. Functional Requirements (Yêu cầu Chức năng)
 
-## 7.1. Module Quản lý Tài khoản & Định danh
+### 7.1. Module Quản lý Tài khoản & Định danh
 
-### FR01 – Đăng ký tài khoản Khách hàng
-- Hệ thống cho phép Khách hàng tạo tài khoản bằng các thông tin cần thiết.
-- Hệ thống kiểm tra tính hợp lệ và tính duy nhất của thông tin đăng ký.
-- Hệ thống thông báo kết quả đăng ký cho Khách hàng.
+**FR01 – Đăng ký tài khoản Khách hàng**
+* Hệ thống cho phép Khách hàng tạo tài khoản bằng các thông tin cần thiết.
+* Hệ thống kiểm tra tính hợp lệ và tính duy nhất của thông tin đăng ký.
+* Hệ thống thông báo kết quả đăng ký cho Khách hàng.
 
-### FR02 – Đăng nhập và Đăng xuất
-- Hệ thống cho phép Khách hàng, Tài xế và Nhân viên vận hành đăng nhập.
-- Hệ thống xác thực thông tin đăng nhập trước khi cấp quyền truy cập.
-- Hệ thống cho phép người dùng đăng xuất khỏi tài khoản.
+**FR02 – Đăng nhập và Đăng xuất**
+* Hệ thống cho phép Khách hàng, Tài xế và Nhân viên vận hành đăng nhập.
+* Hệ thống xác thực thông tin đăng nhập trước khi cấp quyền truy cập.
+* Hệ thống cho phép người dùng đăng xuất khỏi tài khoản.
 
-### FR03 – Quản lý hồ sơ Khách hàng
-- Khách hàng có thể xem và cập nhật thông tin cá nhân.
-- Hệ thống lưu trữ thông tin hồ sơ của Khách hàng.
-- Khách hàng có thể xem lịch sử các chuyến đi đã thực hiện.
+**FR03 – Quản lý hồ sơ Khách hàng**
+* Khách hàng có thể xem và cập nhật thông tin cá nhân.
+* Hệ thống lưu trữ thông tin hồ sơ của Khách hàng.
+* Khách hàng có thể xem lịch sử các chuyến đi đã thực hiện.
 
-### FR04 – Quản lý hồ sơ Tài xế
-- Tài xế có thể xem và cập nhật thông tin cá nhân theo quyền được cấp.
-- Nhân viên vận hành có thể tạo và cập nhật hồ sơ Tài xế.
-- Hệ thống lưu trữ thông tin phương tiện của Tài xế.
+**FR04 – Quản lý hồ sơ Tài xế**
+* Tài xế có thể xem và cập nhật thông tin cá nhân theo quyền được cấp.
+* Nhân viên vận hành có thể tạo và cập nhật hồ sơ Tài xế.
+* Hệ thống lưu trữ thông tin phương tiện của Tài xế.
 
-### FR05 – Quản lý trạng thái Tài xế
-- Tài xế có thể bật/tắt trạng thái sẵn sàng nhận chuyến.
-- Hệ thống cập nhật trạng thái Tài xế theo thời gian thực.
-- Chỉ Tài xế đang ở trạng thái sẵn sàng mới được đưa vào quá trình điều phối.
-
----
-
-## 7.2. Module Đặt xe & Phân công
-
-### FR06 – Tạo yêu cầu đặt xe
-- Khách hàng nhập điểm đón và điểm đến.
-- Khách hàng lựa chọn loại dịch vụ/loại xe.
-- Hệ thống kiểm tra thông tin trước khi tạo yêu cầu.
-- Hệ thống tạo yêu cầu đặt xe và chuyển sang quá trình tìm Tài xế.
-
-### FR07 – Xác định vị trí Khách hàng
-- Hệ thống xác định hoặc tiếp nhận vị trí điểm đón do Khách hàng cung cấp.
-- Hệ thống sử dụng vị trí điểm đón để phục vụ quá trình tìm kiếm Tài xế.
-
-### FR08 – Tìm kiếm Tài xế phù hợp
-- Hệ thống tìm các Tài xế đang sẵn sàng nhận chuyến.
-- Hệ thống xác định Tài xế dựa trên vị trí và các tiêu chí vận hành được cấu hình.
-- Hệ thống ưu tiên Tài xế phù hợp và ở vị trí thuận lợi.
-
-### FR09 – Gửi yêu cầu nhận chuyến
-- Hệ thống gửi thông tin yêu cầu chuyến đi đến Tài xế được lựa chọn.
-- Hệ thống hiển thị thời gian phản hồi cho Tài xế.
-- Tài xế có thể chấp nhận hoặc từ chối yêu cầu.
-
-### FR10 – Tự động chuyển tiếp yêu cầu
-- Nếu Tài xế từ chối yêu cầu, hệ thống tìm Tài xế phù hợp tiếp theo.
-- Nếu Tài xế không phản hồi trong thời gian quy định, hệ thống tự động chuyển yêu cầu.
-- Khách hàng không cần tạo lại yêu cầu đặt xe.
-
-### FR11 – Xử lý trường hợp không tìm thấy Tài xế
-- Hệ thống xác định khi không còn Tài xế phù hợp.
-- Hệ thống thông báo cho Khách hàng rằng chưa tìm được Tài xế.
-- Hệ thống cập nhật trạng thái yêu cầu đặt xe tương ứng.
+**FR05 – Quản lý trạng thái Tài xế**
+* Tài xế có thể bật/tắt trạng thái sẵn sàng nhận chuyến.
+* Hệ thống cập nhật trạng thái Tài xế theo thời gian thực.
+* Chỉ Tài xế đang ở trạng thái sẵn sàng mới được đưa vào quá trình điều phối.
 
 ---
 
-## 7.3. Module Quản lý Tiến trình Chuyến đi
+### 7.2. Module Đặt xe & Phân công
 
-### FR12 – Xác nhận chuyến đi
-- Khi Tài xế chấp nhận yêu cầu, hệ thống xác nhận chuyến đi.
-- Hệ thống cung cấp thông tin Tài xế và phương tiện cho Khách hàng.
-- Hệ thống cập nhật trạng thái chuyến đi.
+**FR06 – Tạo yêu cầu đặt xe**
+* Khách hàng nhập điểm đón và điểm đến.
+* Khách hàng lựa chọn loại dịch vụ/loại xe.
+* Hệ thống kiểm tra thông tin trước khi tạo yêu cầu.
+* Hệ thống tạo yêu cầu đặt xe và chuyển sang quá trình tìm Tài xế.
 
-### FR13 – Cập nhật trạng thái chuyến đi
-- Tài xế có thể cập nhật các trạng thái:
-  - Đã đến điểm đón.
-  - Đã đón khách.
-  - Đang di chuyển.
-  - Hoàn thành.
-- Hệ thống kiểm tra trạng thái hiện tại trước khi cho phép chuyển trạng thái.
-- Hệ thống lưu lại lịch sử thay đổi trạng thái.
+**FR07 – Xác định vị trí Khách hàng**
+* Hệ thống xác định hoặc tiếp nhận vị trí điểm đón do Khách hàng cung cấp.
+* Hệ thống sử dụng vị trí điểm đón để phục vụ quá trình tìm kiếm Tài xế.
 
-### FR14 – Theo dõi vị trí Tài xế
-- Tài xế gửi vị trí GPS trong quá trình thực hiện chuyến đi.
-- Hệ thống cập nhật vị trí Tài xế theo thời gian thực.
-- Khách hàng có thể xem vị trí hiện tại của Tài xế.
+**FR08 – Tìm kiếm Tài xế phù hợp**
+* Hệ thống tìm các Tài xế đang sẵn sàng nhận chuyến.
+* Hệ thống xác định Tài xế dựa trên vị trí và các tiêu chí vận hành được cấu hình.
+* Hệ thống ưu tiên Tài xế phù hợp và ở vị trí thuận lợi.
 
-### FR15 – Tính toán và hiển thị ETA
-- Hệ thống tính toán thời gian dự kiến Tài xế đến điểm đón hoặc điểm đến.
-- Hệ thống cập nhật ETA khi vị trí Tài xế thay đổi.
-- Khách hàng có thể theo dõi ETA trong quá trình thực hiện chuyến đi.
+**FR09 – Gửi yêu cầu nhận chuyến**
+* Hệ thống gửi thông tin yêu cầu chuyến đi đến Tài xế được lựa chọn.
+* Hệ thống hiển thị thời gian phản hồi cho Tài xế.
+* Tài xế có thể chấp nhận hoặc từ chối yêu cầu.
 
-### FR16 – Quản lý lịch sử chuyến đi
-- Hệ thống lưu thông tin các chuyến đi đã hoàn thành.
-- Khách hàng có thể xem lịch sử chuyến đi của mình.
-- Nhân viên vận hành có thể tra cứu thông tin chuyến đi theo quyền được cấp.
+**FR10 – Tự động chuyển tiếp yêu cầu**
+* Nếu Tài xế từ chối yêu cầu, hệ thống tìm Tài xế phù hợp tiếp theo.
+* Nếu Tài xế không phản hồi trong thời gian quy định, hệ thống tự động chuyển yêu cầu.
+* Khách hàng không cần tạo lại yêu cầu đặt xe.
 
----
-
-## 7.4. Module Tính cước & Thanh toán
-
-### FR17 – Tính cước chuyến đi
-- Hệ thống tự động tính tổng cước phí khi chuyến đi hoàn thành.
-- Cước phí được xác định dựa trên loại dịch vụ và thông tin chuyến đi.
-- Hệ thống hiển thị số tiền cần thanh toán cho Khách hàng.
-
-### FR18 – Thanh toán tiền mặt
-- Khách hàng có thể lựa chọn thanh toán bằng tiền mặt.
-- Khách hàng thanh toán trực tiếp cho Tài xế.
-- Tài xế xác nhận đã nhận tiền.
-- Hệ thống ghi nhận trạng thái thanh toán.
-
-### FR19 – Thanh toán điện tử
-- Hệ thống chuyển yêu cầu thanh toán đến Cổng thanh toán bên ngoài.
-- Hệ thống tiếp nhận kết quả giao dịch từ Cổng thanh toán.
-- Hệ thống cập nhật trạng thái thanh toán theo kết quả giao dịch.
-- Hệ thống không lưu trữ thông tin thẻ hoặc thông tin tài khoản thanh toán nhạy cảm.
-
-### FR20 – Xử lý thanh toán thất bại
-- Hệ thống thông báo cho Khách hàng khi giao dịch thanh toán thất bại.
-- Hệ thống cho phép thực hiện lại giao dịch theo chính sách nghiệp vụ.
-- Hệ thống ghi nhận kết quả của từng lần thanh toán.
-
-### FR21 – Ghi nhận giao dịch
-- Hệ thống lưu thông tin giao dịch và trạng thái thanh toán.
-- Nhân viên vận hành có thể tra cứu lịch sử giao dịch theo quyền được cấp.
-- Hệ thống liên kết giao dịch với chuyến đi tương ứng.
+**FR11 – Xử lý trường hợp không tìm thấy Tài xế**
+* Hệ thống xác định khi không còn Tài xế phù hợp.
+* Hệ thống thông báo cho Khách hàng rằng chưa tìm được Tài xế.
+* Hệ thống cập nhật trạng thái yêu cầu đặt xe tương ứng.
 
 ---
 
-## 7.5. Module Thông báo
+### 7.3. Module Quản lý Tiến trình Chuyến đi
 
-### FR22 – Gửi thông báo sự kiện chuyến đi
-Hệ thống gửi thông báo đến Khách hàng tại các sự kiện:
-- Đặt xe thành công.
-- Tài xế được phân công.
-- Tài xế đã đến điểm đón.
-- Chuyến đi bắt đầu.
-- Chuyến đi hoàn thành.
+**FR12 – Xác nhận chuyến đi**
+* Khi Tài xế chấp nhận yêu cầu, hệ thống xác nhận chuyến đi.
+* Hệ thống cung cấp thông tin Tài xế và phương tiện cho Khách hàng.
+* Hệ thống cập nhật trạng thái chuyến đi.
 
-### FR23 – Gửi thông báo cho Tài xế
-Hệ thống gửi thông báo đến Tài xế khi:
-- Có yêu cầu chuyến đi mới.
-- Yêu cầu chuyến đi bị thay đổi.
-- Chuyến đi bị hủy hoặc có sự kiện liên quan.
+**FR13 – Cập nhật trạng thái chuyến đi**
+* Tài xế có thể cập nhật các trạng thái: Đã đến điểm đón, Đã đón khách, Đang di chuyển, Hoàn thành.
+* Hệ thống kiểm tra trạng thái hiện tại trước khi cho phép chuyển trạng thái.
+* Hệ thống lưu lại lịch sử thay đổi trạng thái.
 
-### FR24 – Thông báo kết quả thanh toán
-- Hệ thống thông báo kết quả thanh toán cho Khách hàng.
-- Hệ thống thông báo khi giao dịch thành công hoặc thất bại.
-- Hệ thống hỗ trợ mở rộng thêm các kênh thông báo trong tương lai.
+**FR14 – Theo dõi vị trí Tài xế**
+* Tài xế gửi vị trí GPS trong quá trình thực hiện chuyến đi.
+* Hệ thống cập nhật vị trí Tài xế theo thời gian thực.
+* Khách hàng có thể xem vị trí hiện tại của Tài xế.
 
----
+**FR15 – Tính toán và hiển thị ETA**
+* Hệ thống tính toán thời gian dự kiến Tài xế đến điểm đón hoặc điểm đến.
+* Hệ thống cập nhật ETA khi vị trí Tài xế thay đổi.
+* Khách hàng có thể theo dõi ETA trong quá trình thực hiện chuyến đi.
 
-## 7.6. Module Vận hành & Quản trị
+**FR16 – Quản lý lịch sử chuyến đi**
+* Hệ thống lưu thông tin các chuyến đi đã hoàn thành.
+* Khách hàng có thể xem lịch sử chuyến đi của mình.
+* Nhân viên vận hành có thể tra cứu thông tin chuyến đi theo quyền được cấp.
 
-### FR25 – Giám sát chuyến đi
-- Nhân viên vận hành có thể xem danh sách các chuyến đang diễn ra.
-- Hệ thống hiển thị trạng thái hiện tại của từng chuyến.
-- Nhân viên vận hành có thể tra cứu thông tin cần thiết để hỗ trợ xử lý sự cố.
+**FR16a – Hủy yêu cầu đặt xe**
+* Hệ thống cho phép Khách hàng chủ động hủy chuyến trước khi Tài xế chuyển trạng thái "Đã đón khách".
+* Hệ thống ghi nhận lý do hủy, tính phí hủy (nếu có theo chính sách) và cập nhật tỷ lệ hủy chuyến.
 
-### FR26 – Theo dõi trạng thái Tài xế
-- Nhân viên vận hành có thể xem trạng thái hoạt động của Tài xế.
-- Hệ thống hiển thị Tài xế đang sẵn sàng, đang nhận chuyến hoặc đang thực hiện chuyến.
-- Nhân viên vận hành có thể tra cứu thông tin phương tiện theo quyền được cấp.
-
-### FR27 – Hỗ trợ xử lý chuyến lỗi
-- Nhân viên vận hành có thể tra cứu các chuyến gặp sự cố.
-- Hệ thống cung cấp thông tin liên quan đến chuyến đi và giao dịch.
-- Nhân viên vận hành có thể thực hiện các thao tác hỗ trợ theo quyền được cấp.
-- Các thao tác can thiệp phải được ghi nhận vào nhật ký hệ thống.
-
-### FR28 – Quản lý người dùng và dữ liệu
-- Nhân viên vận hành có quyền quản lý dữ liệu Khách hàng, Tài xế, phương tiện và chuyến đi theo phạm vi được phân quyền.
-- Hệ thống kiểm soát quyền trước khi thực hiện các thao tác quản trị.
+**FR16b – Báo cáo Khách vắng mặt (No-show)**
+* Hệ thống cho phép Tài xế hủy chuyến mà không bị phạt hiệu suất nếu Khách hàng không xuất hiện tại điểm đón sau khoảng thời gian quy định kể từ khi bấm "Đã đến điểm đón".
 
 ---
 
-## 7.7. Module Phân quyền & Bảo mật
+### 7.4. Module Tính cước & Thanh toán
 
-### FR29 – Phân quyền người dùng
-- Hệ thống phân quyền theo vai trò người dùng.
-- Các vai trò chính gồm:
-  - Khách hàng.
-  - Tài xế.
-  - Nhân viên vận hành.
-- Hệ thống chỉ cho phép người dùng thực hiện chức năng phù hợp với quyền được cấp.
+**FR17 – Tính cước chuyến đi**
+* Hệ thống tự động tính tổng cước phí khi chuyến đi hoàn thành.
+* Cước phí được xác định dựa trên loại dịch vụ và thông tin chuyến đi.
+* Hệ thống hiển thị số tiền cần thanh toán cho Khách hàng.
 
-### FR30 – Kiểm soát truy cập dữ liệu
-- Hệ thống kiểm tra quyền truy cập trước khi cho phép xem hoặc chỉnh sửa dữ liệu.
-- Dữ liệu cá nhân, phương tiện, vị trí và giao dịch phải được bảo vệ.
-- Các thao tác quản trị nhạy cảm chỉ được thực hiện bởi người có quyền phù hợp.
+**FR18 – Thanh toán tiền mặt**
+* Khách hàng có thể lựa chọn thanh toán bằng tiền mặt.
+* Khách hàng thanh toán trực tiếp cho Tài xế.
+* Tài xế xác nhận đã nhận tiền.
+* Hệ thống ghi nhận trạng thái thanh toán.
 
-### FR31 – Ghi nhật ký hoạt động
-- Hệ thống ghi nhận các thao tác quan trọng của người dùng.
-- Nhật ký bao gồm người thực hiện, thời điểm và hành động.
-- Nhật ký được sử dụng để hỗ trợ kiểm tra và xử lý sự cố.
+**FR19 – Thanh toán điện tử**
+* Hệ thống chuyển yêu cầu thanh toán đến Cổng thanh toán bên ngoài.
+* Hệ thống tiếp nhận kết quả giao dịch từ Cổng thanh toán.
+* Hệ thống cập nhật trạng thái thanh toán theo kết quả giao dịch.
+* Hệ thống không lưu trữ thông tin thẻ hoặc thông tin tài khoản thanh toán nhạy cảm.
 
----
+**FR20 – Xử lý thanh toán thất bại**
+* Hệ thống thông báo cho Khách hàng khi giao dịch thanh toán thất bại.
+* Hệ thống cho phép thực hiện lại giao dịch theo chính sách nghiệp vụ.
+* Hệ thống ghi nhận kết quả của từng lần thanh toán.
 
-## 7.8. Module Đánh giá & Phản hồi
-
-### FR32 – Đánh giá Tài xế
-- Sau khi chuyến đi hoàn thành, Khách hàng có thể đánh giá Tài xế.
-- Khách hàng có thể gửi điểm đánh giá và nhận xét.
-- Hệ thống lưu đánh giá gắn với chuyến đi tương ứng.
-
-### FR33 – Quản lý phản hồi
-- Hệ thống cho phép Nhân viên vận hành tra cứu các đánh giá và phản hồi.
-- Thông tin phản hồi được sử dụng để hỗ trợ đánh giá chất lượng dịch vụ.
+**FR21 – Ghi nhận giao dịch**
+* Hệ thống lưu thông tin giao dịch và trạng thái thanh toán.
+* Nhân viên vận hành có thể tra cứu lịch sử giao dịch theo quyền được cấp.
+* Hệ thống liên kết giao dịch với chuyến đi tương ứng.
 
 ---
 
-## 7.9. Module Báo cáo & Thống kê
+### 7.5. Module Thông báo
 
-### FR34 – Báo cáo hoạt động
-Hệ thống cung cấp các chỉ số:
-- Tổng số chuyến đi.
-- Doanh thu.
-- Tỷ lệ hoàn thành chuyến.
-- Tỷ lệ hủy chuyến.
-- Hiệu quả hoạt động của Tài xế.
+**FR22 – Gửi thông báo sự kiện chuyến đi**
+* Hệ thống gửi thông báo đến Khách hàng tại các sự kiện: Đặt xe thành công, Tài xế được phân công, Tài xế đã đến điểm đón, Chuyến đi bắt đầu, Chuyến đi hoàn thành.
 
-### FR35 – Tra cứu và lọc báo cáo
-- Người có quyền quản trị có thể tra cứu báo cáo theo khoảng thời gian.
-- Hệ thống hỗ trợ lọc dữ liệu theo các tiêu chí phù hợp.
-- Kết quả báo cáo được trình bày dưới dạng dễ theo dõi.
+**FR23 – Gửi thông báo cho Tài xế**
+* Hệ thống gửi thông báo đến Tài xế khi: Có yêu cầu chuyến đi mới, Yêu cầu chuyến đi bị thay đổi, Chuyến đi bị hủy hoặc có sự kiện liên quan.
+
+**FR24 – Thông báo kết quả thanh toán**
+* Hệ thống thông báo kết quả thanh toán cho Khách hàng.
+* Hệ thống thông báo khi giao dịch thành công hoặc thất bại.
+* Hệ thống hỗ trợ mở rộng thêm các kênh thông báo trong tương lai.
 
 ---
 
-## 7.10. Mapping Business Requirements và Functional Requirements
+### 7.6. Module Vận hành & Quản trị
+
+**FR25 – Giám sát chuyến đi**
+* Nhân viên vận hành có thể xem danh sách các chuyến đang diễn ra.
+* Hệ thống hiển thị trạng thái hiện tại của từng chuyến.
+* Nhân viên vận hành có thể tra cứu thông tin cần thiết để hỗ trợ xử lý sự cố.
+
+**FR26 – Theo dõi trạng thái Tài xế**
+* Nhân viên vận hành có thể xem trạng thái hoạt động của Tài xế.
+* Hệ thống hiển thị Tài xế đang sẵn sàng, đang nhận chuyến hoặc đang thực hiện chuyến.
+* Nhân viên vận hành có thể tra cứu thông tin phương tiện theo quyền được cấp.
+
+**FR27 – Hỗ trợ xử lý chuyến lỗi**
+* Nhân viên vận hành có thể tra cứu các chuyến gặp sự cố.
+* Hệ thống cung cấp thông tin liên quan đến chuyến đi và giao dịch.
+* Nhân viên vận hành có thể thực hiện các thao tác hỗ trợ theo quyền được cấp.
+* Các thao tác can thiệp phải được ghi nhận vào nhật ký hệ thống.
+
+**FR28 – Quản lý người dùng và dữ liệu**
+* Nhân viên vận hành có quyền quản lý dữ liệu Khách hàng, Tài xế, phương tiện và chuyến đi theo phạm vi được phân quyền.
+* Hệ thống kiểm soát quyền trước khi thực hiện các thao tác quản trị.
+
+---
+
+### 7.7. Module Phân quyền & Bảo mật
+
+**FR29 – Phân quyền người dùng**
+* Hệ thống phân quyền theo vai trò người dùng (Khách hàng, Tài xế, Nhân viên vận hành).
+* Hệ thống chỉ cho phép người dùng thực hiện chức năng phù hợp với quyền được cấp.
+
+**FR30 – Kiểm soát truy cập dữ liệu**
+* Hệ thống kiểm tra quyền truy cập trước khi cho phép xem hoặc chỉnh sửa dữ liệu.
+* Dữ liệu cá nhân, phương tiện, vị trí và giao dịch phải được bảo vệ.
+* Các thao tác quản trị nhạy cảm chỉ được thực hiện bởi người có quyền phù hợp.
+
+**FR31 – Ghi nhật ký hoạt động (Audit Log)**
+* Hệ thống ghi nhận các thao tác quan trọng của người dùng.
+* Nhật ký bao gồm người thực hiện, thời điểm và hành động.
+* Nhật ký được sử dụng để hỗ trợ kiểm tra và xử lý sự cố.
+
+---
+
+### 7.8. Module Đánh giá & Phản hồi
+
+**FR32 – Đánh giá Tài xế**
+* Sau khi chuyến đi hoàn thành, Khách hàng có thể đánh giá Tài xế.
+* Khách hàng có thể gửi điểm đánh giá và nhận xét.
+* Hệ thống lưu đánh giá gắn với chuyến đi tương ứng.
+
+**FR33 – Quản lý phản hồi**
+* Hệ thống cho phép Nhân viên vận hành tra cứu các đánh giá và phản hồi.
+* Thông tin phản hồi được sử dụng để hỗ trợ đánh giá chất lượng dịch vụ.
+
+---
+
+### 7.9. Module Báo cáo & Thống kê
+
+**FR34 – Báo cáo hoạt động**
+* Hệ thống cung cấp các chỉ số: Tổng số chuyến đi, Doanh thu, Tỷ lệ hoàn thành chuyến, Tỷ lệ hủy chuyến, Hiệu quả hoạt động của Tài xế.
+
+**FR35 – Tra cứu và lọc báo cáo**
+* Người có quyền quản trị có thể tra cứu báo cáo theo khoảng thời gian.
+* Hệ thống hỗ trợ lọc dữ liệu theo các tiêu chí phù hợp.
+* Kết quả báo cáo được trình bày dưới dạng dễ theo dõi.
+
+---
+
+### 7.10. Mapping Business Requirements và Functional Requirements
 
 | Business Requirement | Functional Requirements |
 |---|---|
@@ -387,7 +373,7 @@ Hệ thống cung cấp các chỉ số:
 | BR05 – Tự động Chuyển tiếp Điều phối | FR09, FR10 |
 | BR06 – Không tìm thấy Tài xế | FR11 |
 | BR07 – Tiếp nhận Chuyến đi | FR09, FR12 |
-| BR08 – Cập nhật Tiến trình | FR13 |
+| BR08 – Cập nhật Tiến trình | FR13, FR16a, FR16b |
 | BR09 – Theo dõi Real-time & ETA | FR14, FR15 |
 | BR10 – Tự động Tính cước | FR17 |
 | BR11 – Tích hợp Thanh toán | FR18, FR19 |
@@ -397,151 +383,153 @@ Hệ thống cung cấp các chỉ số:
 | BR15 – Phân quyền Quản trị | FR28, FR29, FR30 |
 | BR16 – Báo cáo Thống kê | FR34, FR35 |
 | BR17 – Đánh giá Dịch vụ | FR32, FR33 |
+| BR18 – Lưu vết Hệ thống (Audit Log) | FR31 |
 
-# 8. Business Rules (Quy tắc Nghiệp vụ)
+## 8. Business Rules (Quy tắc Nghiệp vụ)
 
-## 8.1. Quy tắc Quản lý Tài khoản
+### 8.1. Quy tắc Quản lý Tài khoản
 
 | ID | Business Rule | Mô tả |
 |---|---|---|
-| **BRULE01** | Tài khoản duy nhất | Mỗi tài khoản người dùng phải được định danh duy nhất trong hệ thống. |
+| **BRULE01** | Tài khoản duy nhất | Mỗi tài khoản người dùng phải được định danh duy nhất trong hệ thống thông qua số điện thoại hoặc email. |
 | **BRULE02** | Phân loại tài khoản | Mỗi tài khoản phải thuộc một vai trò: Khách hàng, Tài xế hoặc Nhân viên vận hành. |
-| **BRULE03** | Kiểm soát quyền truy cập | Người dùng chỉ được thực hiện các chức năng phù hợp với vai trò và quyền được cấp. |
-| **BRULE04** | Trạng thái Tài xế | Tài xế chỉ được nhận chuyến khi đang ở trạng thái sẵn sàng và không thực hiện chuyến khác. |
-| **BRULE05** | Thông tin Tài xế | Tài xế phải có thông tin hồ sơ và phương tiện hợp lệ trước khi được phép nhận chuyến. |
+| **BRULE03** | Kiểm soát quyền truy cập | Người dùng chỉ được thực hiện các chức năng phù hợp với vai trò và quyền được cấp (RBAC). |
+| **BRULE04** | Trạng thái Tài xế | Tài xế chỉ được nhận chuyến khi đang ở trạng thái "Sẵn sàng" và không thực hiện chuyến khác. |
+| **BRULE05** | Thông tin Tài xế | Tài xế phải có hồ sơ cá nhân và thông tin phương tiện hợp lệ (đã được duyệt) trước khi được phép nhận chuyến. |
 
 ---
 
-## 8.2. Quy tắc Đặt xe & Điều phối
+### 8.2. Quy tắc Đặt xe & Điều phối
 
 | ID | Business Rule | Mô tả |
 |---|---|---|
 | **BRULE06** | Thông tin đặt xe bắt buộc | Một yêu cầu đặt xe phải có điểm đón, điểm đến và loại dịch vụ/loại xe. |
-| **BRULE07** | Tìm Tài xế phù hợp | Hệ thống chỉ đề xuất các Tài xế đang sẵn sàng và đáp ứng điều kiện của chuyến đi. |
-| **BRULE08** | Ưu tiên Tài xế | Tài xế phù hợp có vị trí thuận lợi/gần điểm đón được ưu tiên trong quá trình điều phối. |
+| **BRULE07** | Tìm Tài xế phù hợp | Hệ thống chỉ đề xuất các Tài xế đang sẵn sàng và đáp ứng điều kiện của loại dịch vụ được yêu cầu. |
+| **BRULE08** | Ưu tiên Tài xế | Hệ thống chỉ quét và đề xuất chuyến cho các Tài xế đang sẵn sàng trong bán kính tối đa **3km** tính từ điểm đón, ưu tiên khoảng cách gần nhất. |
 | **BRULE09** | Một chuyến – một Tài xế | Một yêu cầu đặt xe chỉ được gán cho tối đa một Tài xế tại một thời điểm. |
-| **BRULE10** | Không trùng chuyến | Tài xế đang thực hiện hoặc đã nhận một chuyến chưa hoàn thành không được nhận thêm chuyến mới. |
-| **BRULE11** | Từ chối chuyến | Khi Tài xế từ chối yêu cầu, hệ thống phải tiếp tục tìm Tài xế phù hợp khác. |
-| **BRULE12** | Hết thời gian phản hồi | Nếu Tài xế không phản hồi trong thời gian quy định, yêu cầu được xem như không được chấp nhận và chuyển sang Tài xế tiếp theo. |
-| **BRULE13** | Không tìm thấy Tài xế | Khi không còn Tài xế phù hợp, hệ thống phải thông báo cho Khách hàng và cập nhật trạng thái yêu cầu. |
-| **BRULE14** | Không đặt lại chuyến | Khách hàng không phải tạo lại yêu cầu khi hệ thống tự động chuyển sang Tài xế khác. |
+| **BRULE10** | Không trùng chuyến | Tài xế đang thực hiện hoặc đã nhận một chuyến chưa hoàn thành không được phép nhận thêm chuyến mới. |
+| **BRULE11** | Từ chối chuyến | Khi Tài xế từ chối yêu cầu, hệ thống phải lập tức bỏ qua và tiếp tục tìm Tài xế phù hợp tiếp theo. |
+| **BRULE12** | Hết thời gian phản hồi | Nếu Tài xế không phản hồi trong vòng **15 giây**, yêu cầu tự động được xem là từ chối và chuyển sang Tài xế tiếp theo. |
+| **BRULE13** | Không tìm thấy Tài xế | Nếu quá thời gian quét **3 phút** hoặc sau **5 lượt** tài xế từ chối liên tiếp, hệ thống thông báo "Không tìm thấy xe" cho Khách hàng và kết thúc luồng. |
+| **BRULE14** | Không đặt lại chuyến | Khách hàng không phải tạo lại yêu cầu khi hệ thống tự động chuyển tiếp điều phối sang Tài xế khác. |
 
 ---
 
-## 8.3. Quy tắc Thực hiện Chuyến đi
+### 8.3. Quy tắc Thực hiện Chuyến đi
 
 | ID | Business Rule | Mô tả |
 |---|---|---|
-| **BRULE15** | Thứ tự trạng thái | Trạng thái chuyến đi phải được cập nhật theo trình tự nghiệp vụ hợp lệ. |
-| **BRULE16** | Trạng thái Đã đến | Tài xế chỉ được chuyển sang trạng thái "Đã đến điểm đón" sau khi đã nhận chuyến. |
-| **BRULE17** | Trạng thái Đã đón khách | Tài xế chỉ được chuyển sang "Đã đón khách" sau khi đã đến điểm đón. |
-| **BRULE18** | Trạng thái Đang di chuyển | Chuyến đi chỉ được chuyển sang "Đang di chuyển" sau khi Tài xế đã đón khách. |
-| **BRULE19** | Hoàn thành chuyến | Chuyến đi chỉ được chuyển sang "Hoàn thành" khi Tài xế kết thúc hành trình. |
-| **BRULE20** | Theo dõi vị trí | Trong thời gian chuyến đi đang diễn ra, hệ thống phải cập nhật vị trí Tài xế để phục vụ theo dõi và tính ETA. |
-| **BRULE21** | Lưu lịch sử trạng thái | Mọi thay đổi trạng thái quan trọng của chuyến đi phải được ghi nhận để phục vụ tra cứu và kiểm soát. |
+| **BRULE15** | Thứ tự trạng thái | Trạng thái chuyến đi phải được cập nhật theo trình tự: *Đã đến điểm đón -> Đã đón khách -> Đang di chuyển -> Hoàn thành*. Không được bỏ cóc bước. |
+| **BRULE16** | Trạng thái Đã đến | Tài xế chỉ được chuyển sang trạng thái "Đã đến điểm đón" sau khi đã bấm nhận chuyến và di chuyển tới vị trí khách hàng. |
+| **BRULE17** | Trạng thái Đã đón khách | Tài xế chỉ được chuyển sang "Đã đón khách" sau khi đã đến điểm đón. Nếu khách hàng không xuất hiện sau **5 phút**, Tài xế có quyền báo vắng mặt (No-show) và hủy chuyến mà không bị phạt hiệu suất. |
+| **BRULE18** | Trạng thái Đang di chuyển | Chuyến đi chỉ được chuyển sang "Đang di chuyển" sau khi Tài xế đã đón khách lên xe. |
+| **BRULE19** | Hoàn thành chuyến | Chuyến đi chỉ được chuyển sang "Hoàn thành" khi Tài xế kết thúc hành trình tại điểm đến. |
+| **BRULE20** | Theo dõi vị trí | Trong thời gian chuyến đi đang diễn ra, ứng dụng Tài xế phải gửi tọa độ GPS định kỳ để phục vụ theo dõi và tính toán lại ETA. |
+| **BRULE21** | Lưu lịch sử trạng thái | Mọi thay đổi trạng thái của chuyến đi phải được lưu vết thời gian (timestamp) để phục vụ tra cứu. |
 
 ---
 
-## 8.4. Quy tắc Tính cước
+### 8.4. Quy tắc Tính cước
 
 | ID | Business Rule | Mô tả |
 |---|---|---|
-| **BRULE22** | Tính cước tự động | Cước phí phải được hệ thống tự động tính dựa trên loại dịch vụ và thông tin chuyến đi. |
-| **BRULE23** | Thời điểm tính cước | Tổng cước phí được xác định khi chuyến đi hoàn thành. |
-| **BRULE24** | Minh bạch cước phí | Khách hàng phải được thông báo số tiền cần thanh toán trước khi thực hiện thanh toán. |
-| **BRULE25** | Không tự ý thay đổi cước | Cước phí đã được xác định không được thay đổi trái với quy tắc nghiệp vụ hoặc quyền được cấp. |
+| **BRULE22** | Tính cước tự động | Cước phí phải được hệ thống tự động tính dựa trên khoảng cách, thời gian dự kiến và loại dịch vụ. |
+| **BRULE23** | Thời điểm tính cước | Tổng cước phí được xác định ngay khi khách hàng nhập điểm đón và điểm đến. |
+| **BRULE24** | Minh bạch cước phí | Khách hàng phải được thông báo số tiền cần thanh toán trước khi đặt xe. Đây là **giá cố định (Fixed Fare)** và không thay đổi trừ khi Khách hàng yêu cầu đổi lộ trình. |
+| **BRULE25** | Không tự ý thay đổi cước | Cước phí đã được hệ thống chốt không được thay đổi trái phép. Mọi phụ phí phát sinh (nếu có) phải được xác nhận minh bạch. |
 
 ---
 
-## 8.5. Quy tắc Thanh toán
+### 8.5. Quy tắc Thanh toán
 
 | ID | Business Rule | Mô tả |
 |---|---|---|
-| **BRULE26** | Phương thức thanh toán | Khách hàng được lựa chọn thanh toán bằng tiền mặt hoặc thanh toán điện tử nếu phương thức đó khả dụng. |
-| **BRULE27** | Thanh toán điện tử | Giao dịch điện tử phải được xử lý thông qua Cổng thanh toán bên ngoài. |
-| **BRULE28** | Không lưu dữ liệu nhạy cảm | CAB không được lưu trữ trực tiếp thông tin thẻ hoặc thông tin tài khoản thanh toán nhạy cảm của Khách hàng. |
-| **BRULE29** | Xác nhận thanh toán | Chỉ ghi nhận giao dịch điện tử là thành công khi nhận được kết quả thành công từ Cổng thanh toán. |
-| **BRULE30** | Thanh toán thất bại | Khi thanh toán điện tử thất bại, hệ thống phải thông báo cho Khách hàng và cho phép thực hiện lại theo chính sách nghiệp vụ. |
-| **BRULE31** | Ghi nhận tiền mặt | Thanh toán tiền mặt chỉ được ghi nhận hoàn tất khi Tài xế xác nhận đã nhận tiền. |
-| **BRULE32** | Liên kết giao dịch | Mỗi giao dịch thanh toán phải được liên kết với chuyến đi tương ứng để phục vụ tra cứu và đối soát. |
+| **BRULE26** | Phương thức thanh toán | Khách hàng được lựa chọn thanh toán bằng Tiền mặt hoặc Thanh toán điện tử (Thẻ/Ví điện tử). |
+| **BRULE27** | Thanh toán điện tử | Giao dịch điện tử phải được xử lý thông qua Cổng thanh toán bên thứ ba (Payment Gateway). |
+| **BRULE28** | Không lưu dữ liệu nhạy cảm | CAB không được lưu trữ trực tiếp thông tin thẻ tín dụng (PAN/CVV) hoặc thông tin tài khoản thanh toán nhạy cảm của Khách hàng. |
+| **BRULE29** | Xác nhận thanh toán | Hệ thống chỉ chuyển trạng thái "Đã thanh toán" cho giao dịch điện tử khi nhận được callback thành công từ Cổng thanh toán. |
+| **BRULE30** | Thanh toán thất bại | Khi thanh toán điện tử thất bại (timeout, thẻ lỗi), hệ thống không hủy chuyến mà cho phép thanh toán lại hoặc chuyển sang Tiền mặt. |
+| **BRULE31** | Ghi nhận tiền mặt | Thanh toán bằng tiền mặt chỉ được ghi nhận hoàn tất khi Tài xế bấm xác nhận đã thu đủ tiền trên ứng dụng. |
+| **BRULE32** | Liên kết giao dịch | Mỗi mã giao dịch thanh toán phải được liên kết 1-1 với mã chuyến đi (Booking ID) để phục vụ đối soát. |
 
 ---
 
-## 8.6. Quy tắc Thông báo
+### 8.6. Quy tắc Thông báo
 
 | ID | Business Rule | Mô tả |
 |---|---|---|
-| **BRULE33** | Thông báo theo sự kiện | Hệ thống phải gửi thông báo khi xảy ra các sự kiện quan trọng của chuyến đi. |
-| **BRULE34** | Thông báo cho Khách hàng | Khách hàng phải nhận được thông báo về việc nhận chuyến, Tài xế đến điểm đón, hoàn thành chuyến và kết quả thanh toán. |
-| **BRULE35** | Thông báo cho Tài xế | Tài xế phải nhận được thông báo khi có yêu cầu chuyến mới hoặc thay đổi liên quan đến chuyến đi. |
-| **BRULE36** | Khả năng mở rộng kênh | Kiến trúc thông báo phải cho phép bổ sung kênh mới mà không cần thay đổi toàn bộ hệ thống. |
+| **BRULE33** | Thông báo theo sự kiện | Hệ thống phải gửi thông báo tự động (Push Notification/SMS) theo từng trạng thái cụ thể của chuyến đi. |
+| **BRULE34** | Thông báo cho Khách hàng | Gửi thông báo khi: Tài xế nhận chuyến, Tài xế đến điểm đón, Hoàn thành chuyến và Thanh toán thành công/thất bại. |
+| **BRULE35** | Thông báo cho Tài xế | Gửi thông báo khi: Có cuốc xe mới trong bán kính 3km, Khách hàng thay đổi yêu cầu hoặc Khách hàng hủy chuyến. |
+| **BRULE36** | Khả năng mở rộng kênh | Dịch vụ thông báo được thiết kế độc lập, cho phép cắm thêm (plug-in) các nhà cung cấp SMS/Email mới. |
 
 ---
 
-## 8.7. Quy tắc Đánh giá & Phản hồi
+### 8.7. Quy tắc Đánh giá & Phản hồi
 
 | ID | Business Rule | Mô tả |
 |---|---|---|
-| **BRULE37** | Chỉ đánh giá sau chuyến | Khách hàng chỉ được đánh giá sau khi chuyến đi đã hoàn thành. |
-| **BRULE38** | Đánh giá thuộc chuyến đi | Mỗi đánh giá phải được liên kết với chuyến đi cụ thể và Tài xế tương ứng. |
-| **BRULE39** | Không đánh giá trước khi hoàn thành | Hệ thống không cho phép gửi đánh giá cho chuyến chưa hoàn thành. |
+| **BRULE37** | Chỉ đánh giá sau chuyến | Khách hàng chỉ được phép đánh giá (chấm sao và bình luận) sau khi chuyến đi đã hoàn tất quá trình thanh toán. |
+| **BRULE38** | Đánh giá thuộc chuyến đi | Mỗi đánh giá phải được liên kết chặt chẽ với ID chuyến đi và ID Tài xế tương ứng. |
+| **BRULE39** | Không đánh giá trước khi hoàn thành | Hệ thống khóa tính năng gửi đánh giá đối với các chuyến đang diễn ra hoặc đã bị hủy. |
 
 ---
 
-## 8.8. Quy tắc Vận hành & Quản trị
+### 8.8. Quy tắc Vận hành & Quản trị
 
 | ID | Business Rule | Mô tả |
 |---|---|---|
-| **BRULE40** | Phân quyền vận hành | Nhân viên vận hành chỉ được thực hiện các thao tác nằm trong phạm vi quyền được cấp. |
-| **BRULE41** | Thao tác nhạy cảm | Các thao tác quản trị hoặc can thiệp dữ liệu nhạy cảm phải được giới hạn cho người có quyền phù hợp. |
-| **BRULE42** | Theo dõi chuyến đang diễn ra | Nhân viên vận hành được phép theo dõi các chuyến đang thực hiện theo phạm vi nghiệp vụ. |
-| **BRULE43** | Tra cứu giao dịch | Nhân viên vận hành có thể tra cứu lịch sử giao dịch để hỗ trợ xử lý sự cố và đối soát. |
-| **BRULE44** | Ghi nhận can thiệp | Mọi thao tác can thiệp quan trọng của Nhân viên vận hành phải được ghi nhận vào nhật ký hệ thống. |
+| **BRULE40** | Phân quyền vận hành | Nhân viên vận hành chỉ được thao tác trong phạm vi module được cấp quyền trên Web Admin. |
+| **BRULE41** | Thao tác nhạy cảm | Việc khóa tài khoản người dùng, thay đổi hạng thành viên hoặc điều chỉnh ví tiền nội bộ phải yêu cầu quyền Quản trị viên cấp cao. |
+| **BRULE42** | Theo dõi chuyến đang diễn ra | Nhân viên vận hành có quyền truy cập bản đồ live-tracking để giám sát toàn bộ các chuyến đang chạy. |
+| **BRULE43** | Tra cứu giao dịch | Nhân viên vận hành được quyền truy vấn lịch sử giao dịch (chỉ xem số thẻ bị che - masked PAN) để xử lý khiếu nại. |
+| **BRULE44** | Ghi nhận can thiệp (Audit) | Mọi thao tác cập nhật dữ liệu do Nhân viên vận hành thực hiện phải được ghi log (Ai làm, làm gì, lúc nào). |
 
 ---
 
-## 8.9. Quy tắc Báo cáo & Thống kê
+### 8.9. Quy tắc Báo cáo & Thống kê
 
 | ID | Business Rule | Mô tả |
 |---|---|---|
-| **BRULE45** | Dữ liệu báo cáo | Báo cáo phải được tổng hợp từ dữ liệu chuyến đi, thanh toán và hoạt động Tài xế đã được ghi nhận trên hệ thống. |
-| **BRULE46** | Chỉ số vận hành | Hệ thống phải hỗ trợ thống kê tổng số chuyến, doanh thu, tỷ lệ hoàn thành và tỷ lệ hủy chuyến. |
-| **BRULE47** | Hiệu suất Tài xế | Hệ thống phải cung cấp dữ liệu phục vụ đánh giá hiệu quả hoạt động của Tài xế. |
-| **BRULE48** | Phân quyền báo cáo | Chỉ người dùng có quyền phù hợp mới được xem các báo cáo quản trị và dữ liệu doanh thu. |
+| **BRULE45** | Dữ liệu báo cáo | Dữ liệu báo cáo được trích xuất thời gian thực từ database chuyến đi, thanh toán và log vận hành. |
+| **BRULE46** | Chỉ số vận hành | Bảng điều khiển (Dashboard) phải thống kê: Tổng số chuyến, Tổng doanh thu, Tỷ lệ hoàn thành và Tỷ lệ hủy chuyến theo ngày/tuần/tháng. |
+| **BRULE47** | Hiệu suất Tài xế | Hệ thống tự động tính điểm sao trung bình, tỷ lệ nhận chuyến và tỷ lệ hủy chuyến để đánh giá xếp hạng Tài xế. |
+| **BRULE48** | Phân quyền báo cáo | Chỉ các tài khoản cấp Quản lý/Ban Giám đốc mới được phép xuất file báo cáo doanh thu tổng. |
 
 ---
 
-## 8.10. Quy tắc Bảo mật & Dữ liệu
+### 8.10. Quy tắc Bảo mật & Dữ liệu
 
 | ID | Business Rule | Mô tả |
 |---|---|---|
-| **BRULE49** | Xác thực người dùng | Người dùng phải được xác thực trước khi truy cập các chức năng yêu cầu đăng nhập. |
-| **BRULE50** | Bảo vệ dữ liệu cá nhân | Thông tin cá nhân, thông tin phương tiện và dữ liệu vị trí phải được bảo vệ khỏi truy cập trái phép. |
-| **BRULE51** | Bảo vệ dữ liệu giao dịch | Thông tin liên quan đến giao dịch phải được kiểm soát quyền truy cập và bảo vệ phù hợp. |
-| **BRULE52** | Nhật ký hệ thống | Các hoạt động quan trọng liên quan đến tài khoản, chuyến đi, thanh toán và quản trị phải được ghi nhận để phục vụ kiểm tra. |
-| **BRULE53** | Tính toàn vẹn dữ liệu | Hệ thống phải đảm bảo dữ liệu chuyến đi và giao dịch không bị tạo trùng hoặc cập nhật sai trạng thái. |
+| **BRULE49** | Xác thực người dùng | Yêu cầu xác thực token (JWT) cho mọi API liên quan đến thao tác nghiệp vụ, từ chối các request vô danh. |
+| **BRULE50** | Bảo vệ dữ liệu cá nhân | Mật khẩu người dùng phải được mã hóa (hashing). Dữ liệu vị trí GPS định danh không được chia sẻ cho bên thứ ba ngoài luồng điều phối. |
+| **BRULE51** | Bảo vệ dữ liệu giao dịch | Giao tiếp với cổng thanh toán phải được mã hóa SSL/TLS, tuân thủ tiêu chuẩn an toàn dữ liệu cơ bản. |
+| **BRULE52** | Nhật ký hệ thống | Dữ liệu log hành vi người dùng và log lỗi hệ thống phải được lưu trữ độc lập để kiểm toán bảo mật. |
+| **BRULE53** | Tính toàn vẹn dữ liệu | Sử dụng cơ chế khóa giao dịch (database lock) để tránh tình trạng một cuốc xe bị hai Tài xế nhận đồng thời. |
 
 ---
 
-## 8.11. Quy tắc Ngoại lệ & Khả năng mở rộng
+### 8.11. Quy tắc Ngoại lệ & Khả năng mở rộng
 
 | ID | Business Rule | Mô tả |
 |---|---|---|
-| **BRULE54** | Lỗi thanh toán độc lập | Lỗi từ Cổng thanh toán không được làm gián đoạn toàn bộ quy trình đặt và quản lý chuyến đi. |
-| **BRULE55** | Lỗi thông báo độc lập | Lỗi dịch vụ thông báo không được làm mất dữ liệu hoặc làm dừng quy trình đặt xe. |
-| **BRULE56** | Mở rộng dịch vụ | Hệ thống phải cho phép bổ sung loại hình dịch vụ mới mà không phải xây dựng lại toàn bộ hệ thống. |
-| **BRULE57** | Mở rộng thanh toán | Hệ thống phải cho phép tích hợp thêm phương thức hoặc đối tác thanh toán mới. |
-| **BRULE58** | Mở rộng thông báo | Hệ thống phải cho phép bổ sung nhà cung cấp/kênh thông báo mới mà không ảnh hưởng lớn đến các module khác. |
+| **BRULE54** | Lỗi thanh toán độc lập | Sự cố sập cổng thanh toán điện tử không được phép làm gián đoạn tính năng đặt xe, tự động chuyển về chế độ thanh toán Tiền mặt. |
+| **BRULE55** | Lỗi thông báo độc lập | Dịch vụ Push Notification bị quá tải không được làm gián đoạn quá trình kết nối API giữa ứng dụng và máy chủ. |
+| **BRULE56** | Mở rộng dịch vụ | Bảng dữ liệu dịch vụ phải linh hoạt để thêm mới cấu hình xe (ví dụ: Xe ghép, Xe giao hàng) mà không cần cấu trúc lại database cốt lõi. |
+| **BRULE57** | Mở rộng thanh toán | Kiến trúc module thanh toán tuân thủ mẫu thiết kế chuẩn, cho phép thêm ví điện tử mới thông qua việc cấu hình API key. |
+| **BRULE58** | Mở rộng thông báo | Cho phép tích hợp đa dạng nhà cung cấp tin nhắn (Zalo ZNS, SMS Brandname) bằng cách triển khai các interface chung. |
+
 # 9. Non-Functional Requirements (Yêu cầu Phi chức năng)
 
 ## 9.1. Hiệu năng (Performance)
 
 | ID | Yêu cầu | Mô tả |
 |---|---|---|
-| **NFR01** | Thời gian phản hồi | Hệ thống phải phản hồi các thao tác thông thường của người dùng trong thời gian phù hợp, mục tiêu không quá **3 giây** trong điều kiện tải bình thường. |
-| **NFR02** | Xử lý đặt xe | Hệ thống phải tiếp nhận và xử lý yêu cầu đặt xe nhanh chóng, không gây cảm giác chờ đợi kéo dài cho Khách hàng. |
-| **NFR03** | Cập nhật vị trí | Vị trí GPS của Tài xế phải được cập nhật gần thời gian thực để đảm bảo thông tin hiển thị và ETA có độ chính xác phù hợp. |
-| **NFR04** | Xử lý đồng thời | Hệ thống phải có khả năng xử lý nhiều Khách hàng và Tài xế hoạt động đồng thời mà không làm suy giảm nghiêm trọng hiệu năng. |
+| **NFR01** | Thời gian phản hồi API | Thời gian phản hồi API cho các thao tác thông thường (đăng nhập, tra cứu) phải dưới **2 giây**; thời gian render giao diện client dưới **3 giây** trong điều kiện tải bình thường. |
+| **NFR02** | Xử lý đặt xe | Thuật toán quét và đề xuất Tài xế phải bắt đầu trả về kết quả trong vòng **dưới 3 giây** kể từ khi Khách hàng bấm gửi yêu cầu. |
+| **NFR03** | Cập nhật vị trí (Tracking) | Vị trí GPS của Tài xế phải được đồng bộ lên hệ thống với chu kỳ **5 giây/lần**, độ trễ (latency) mạng không vượt quá **2 giây**. |
+| **NFR04** | Xử lý đồng thời (Concurrency) | Hệ thống phải xử lý mượt mà tối thiểu **10,000 CCU** (người dùng truy cập đồng thời) mà không làm rớt gói tin định vị hoặc gây gián đoạn luồng đặt xe. |
 
 ---
 
@@ -549,11 +537,11 @@ Hệ thống cung cấp các chỉ số:
 
 | ID | Yêu cầu | Mô tả |
 |---|---|---|
-| **NFR05** | Tính sẵn sàng | Hệ thống phải duy trì hoạt động ổn định trong thời gian phục vụ Khách hàng và Tài xế. |
-| **NFR06** | Hoạt động trong giờ cao điểm | Hệ thống phải có khả năng duy trì các chức năng đặt xe, điều phối và theo dõi chuyến trong thời gian nhu cầu tăng cao. |
-| **NFR07** | Cô lập lỗi | Lỗi của Cổng thanh toán hoặc dịch vụ thông báo không được làm sập hoặc dừng toàn bộ hệ thống đặt xe. |
-| **NFR08** | Khôi phục lỗi | Khi xảy ra lỗi tạm thời, hệ thống phải có khả năng khôi phục và tiếp tục xử lý mà hạn chế tối đa việc mất dữ liệu. |
-| **NFR09** | Tính toàn vẹn dữ liệu | Hệ thống phải đảm bảo dữ liệu chuyến đi, trạng thái và giao dịch không bị mất hoặc ghi nhận sai trong quá trình xử lý. |
+| **NFR05** | Tính sẵn sàng (Uptime) | Hệ thống lõi phải cam kết thời gian hoạt động (Uptime) đạt mức **99.9%** (chỉ cho phép downtime tối đa ~43 phút/tháng). |
+| **NFR06** | Hoạt động giờ cao điểm | Hệ thống phải tự động cảnh báo và duy trì được toàn bộ chức năng cốt lõi khi lưu lượng truy cập tăng đột biến (spike) lên gấp **3 lần** mức tải trung bình. |
+| **NFR07** | Cô lập lỗi (Fault Isolation) | Lỗi gián đoạn từ Cổng thanh toán (Payment Gateway) hoặc Dịch vụ thông báo (Push/SMS) tuyệt đối không được làm sập luồng điều phối xe cốt lõi. |
+| **NFR08** | Khôi phục lỗi (Resilience) | Khi rớt kết nối mạng hoặc server khởi động lại, ứng dụng phải tự động khôi phục lại trạng thái chuyến đi gần nhất (resume state) mà không bắt người dùng thao tác lại. |
+| **NFR09** | Tính toàn vẹn dữ liệu | Sử dụng cơ chế database transaction/lock để đảm bảo tuyệt đối không xảy ra tình trạng 1 chuyến xe bị trừ tiền 2 lần hoặc 1 chuyến gán cho 2 Tài xế. |
 
 ---
 
@@ -561,13 +549,13 @@ Hệ thống cung cấp các chỉ số:
 
 | ID | Yêu cầu | Mô tả |
 |---|---|---|
-| **NFR10** | Xác thực | Các chức năng yêu cầu quyền truy cập phải yêu cầu người dùng đăng nhập và xác thực hợp lệ. |
-| **NFR11** | Phân quyền | Hệ thống phải kiểm soát quyền truy cập dựa trên vai trò của người dùng. |
-| **NFR12** | Bảo vệ dữ liệu cá nhân | Thông tin cá nhân của Khách hàng và Tài xế phải được bảo vệ khỏi truy cập hoặc sử dụng trái phép. |
-| **NFR13** | Bảo vệ dữ liệu vị trí | Dữ liệu vị trí của Tài xế phải được giới hạn quyền truy cập và chỉ sử dụng cho các mục đích nghiệp vụ phù hợp. |
-| **NFR14** | Bảo vệ dữ liệu thanh toán | CAB không được lưu trữ trực tiếp thông tin thẻ hoặc thông tin tài khoản thanh toán nhạy cảm. |
-| **NFR15** | Nhật ký kiểm toán | Các thao tác quan trọng như đăng nhập, thay đổi dữ liệu, thanh toán và can thiệp của Nhân viên vận hành phải được ghi nhận. |
-| **NFR16** | Bảo mật truyền thông | Dữ liệu trao đổi giữa ứng dụng và hệ thống phải được truyền qua kết nối an toàn. |
+| **NFR10** | Xác thực & Phiên làm việc | Sử dụng **JWT (JSON Web Token)** để xác thực. Tự động đăng xuất người dùng (timeout) sau **30 ngày** không hoạt động đối với App và **30 phút** đối với Web Admin. |
+| **NFR11** | Phân quyền (RBAC) | Áp dụng cơ chế Role-Based Access Control chặt chẽ: API tự động từ chối (HTTP 403) nếu token không chứa quyền hợp lệ. |
+| **NFR12** | Mã hóa mật khẩu | Mật khẩu người dùng phải được mã hóa một chiều bằng thuật toán **bcrypt** (hoặc tương đương) trước khi lưu vào database. |
+| **NFR13** | Bảo vệ dữ liệu vị trí | API trả về tọa độ xe phải được xác thực chéo với mã cuốc xe (Booking ID); chỉ khách hàng sở hữu cuốc xe mới gọi được API định vị Tài xế đó. |
+| **NFR14** | Tiêu chuẩn thanh toán | CAB tuân thủ chuẩn an toàn bảo mật **PCI-DSS**: tuyệt đối không lưu trữ thông tin thẻ (PAN, CVV), chỉ lưu giữ mã Token định danh giao dịch. |
+| **NFR15** | Nhật ký kiểm toán (Audit Log) | Mọi thao tác cấu hình, đổi trạng thái chuyến thủ công và hoàn tiền của Nhân viên vận hành phải được ghi log (User ID, IP, Timestamp, Payload thay đổi). |
+| **NFR16** | Bảo mật truyền thông | 100% dữ liệu trao đổi giữa Client và Server phải được mã hóa qua giao thức **HTTPS (TLS 1.2 trở lên)**. |
 
 ---
 
@@ -575,10 +563,10 @@ Hệ thống cung cấp các chỉ số:
 
 | ID | Yêu cầu | Mô tả |
 |---|---|---|
-| **NFR17** | Mở rộng người dùng | Hệ thống phải có khả năng mở rộng để phục vụ số lượng Khách hàng và Tài xế tăng lên trong tương lai. |
-| **NFR18** | Mở rộng tải | Hệ thống phải cho phép tăng tài nguyên xử lý khi lượng yêu cầu đặt xe tăng cao. |
-| **NFR19** | Mở rộng độc lập | Các thành phần như Đặt xe, Điều phối, Thanh toán và Thông báo nên có khả năng mở rộng độc lập. |
-| **NFR20** | Mở rộng chức năng | Việc bổ sung chức năng mới không được yêu cầu xây dựng lại toàn bộ hệ thống hiện tại. |
+| **NFR17** | Mở rộng theo chiều ngang | Kiến trúc backend phải hỗ trợ **Horizontal Scaling**, cho phép cắm thêm các node server mới vào Load Balancer mà không cần dừng hệ thống. |
+| **NFR18** | Auto-scaling | Hạ tầng Cloud tự động cấp phát thêm tài nguyên (CPU/RAM) khi tải hệ thống vượt quá ngưỡng **75%** công suất hiện tại. |
+| **NFR19** | Phân tách Microservices | Các cụm chức năng nặng (như Tracking vị trí GPS, Thuật toán matching) phải được tách thành các dịch vụ chạy độc lập với Web Admin. |
+| **NFR20** | Tính mở của dữ liệu | Cấu trúc Database phải hỗ trợ linh hoạt việc bổ sung các bảng/trường dữ liệu cho các loại dịch vụ xe mới (Delivery, Carpool) sau này. |
 
 ---
 
@@ -586,10 +574,10 @@ Hệ thống cung cấp các chỉ số:
 
 | ID | Yêu cầu | Mô tả |
 |---|---|---|
-| **NFR21** | Kiến trúc module | Hệ thống phải được thiết kế theo các module có trách nhiệm rõ ràng và hạn chế phụ thuộc chặt chẽ giữa các module. |
-| **NFR22** | Dễ bảo trì | Mã nguồn và cấu hình hệ thống phải được tổ chức rõ ràng để Dev/QA có thể dễ dàng sửa lỗi và nâng cấp. |
-| **NFR23** | Triển khai độc lập | Có khả năng triển khai hoặc cập nhật một chức năng mới mà hạn chế ảnh hưởng đến các chức năng đang hoạt động. |
-| **NFR24** | Logging | Hệ thống phải cung cấp log đủ thông tin để hỗ trợ phát hiện, phân tích và xử lý lỗi. |
+| **NFR21** | Nguyên tắc thiết kế mã | Mã nguồn tuân thủ nguyên tắc **SOLID** và sử dụng mô hình MVC (hoặc kiến trúc Clean Architecture) để tách bạch logic nghiệp vụ và giao diện. |
+| **NFR22** | Mức độ phức tạp | Hàm/phương thức mã nguồn không được vượt quá độ phức tạp vòng (Cyclomatic Complexity) cho phép, đảm bảo Dev mới dễ dàng đọc hiểu. |
+| **NFR23** | Triển khai không gián đoạn | Hỗ trợ cơ chế **Zero-downtime Deployment** (ví dụ: Blue-Green deployment) khi cập nhật phiên bản ứng dụng mới. |
+| **NFR24** | Quản lý Log tập trung | Log hệ thống (Error log, Access log) phải được đẩy về một nền tảng quản lý tập trung (như ELK stack) để dễ dàng truy vết bug. |
 
 ---
 
@@ -597,10 +585,10 @@ Hệ thống cung cấp các chỉ số:
 
 | ID | Yêu cầu | Mô tả |
 |---|---|---|
-| **NFR25** | Tích hợp Payment Gateway | Hệ thống phải hỗ trợ kết nối với Cổng thanh toán bên ngoài thông qua giao diện tích hợp phù hợp. |
-| **NFR26** | Tích hợp Notification Provider | Hệ thống phải có khả năng tích hợp với các nhà cung cấp Push/SMS khác nhau. |
-| **NFR27** | Thay thế đối tác | Việc thay đổi nhà cung cấp thanh toán hoặc thông báo không được yêu cầu thay đổi lớn đối với các module nghiệp vụ cốt lõi. |
-| **NFR28** | Khả năng tương tác | Các thành phần của hệ thống phải trao đổi dữ liệu theo giao diện và định dạng được chuẩn hóa. |
+| **NFR25** | Giao thức API tích hợp | Mọi luồng tích hợp với bên thứ 3 (Thanh toán, Bản đồ, Thông báo) phải giao tiếp qua chuẩn **RESTful API** hoặc **gRPC**. |
+| **NFR26** | Cơ chế Retry (Webhook) | Nếu API Cổng thanh toán trả về lỗi timeout, hệ thống CAB phải có cơ chế **Exponential Backoff Retry** (thử lại với khoảng thời gian tăng dần) tối đa 3 lần. |
+| **NFR27** | Giao diện Adapter | Sử dụng Adapter Design Pattern cho các kết nối SMS/Push Notification để việc thay thế nhà cung cấp chỉ cần cập nhật file cấu hình, không sửa code lõi. |
+| **NFR28** | Rate Limiting bảo vệ tích hợp | Áp dụng giới hạn tỷ lệ gọi API (Rate Limit) cho các đối tác tích hợp nhằm chống lại các cuộc tấn công DDoS vào cổng kết nối. |
 
 ---
 
@@ -608,10 +596,10 @@ Hệ thống cung cấp các chỉ số:
 
 | ID | Yêu cầu | Mô tả |
 |---|---|---|
-| **NFR29** | Giao diện dễ sử dụng | Giao diện dành cho Khách hàng và Tài xế phải đơn giản, trực quan và dễ thao tác. |
-| **NFR30** | Hiển thị trạng thái | Trạng thái chuyến đi, thông tin Tài xế, ETA và kết quả thanh toán phải được hiển thị rõ ràng. |
-| **NFR31** | Thông báo lỗi | Khi xảy ra lỗi, hệ thống phải hiển thị thông báo dễ hiểu và hướng dẫn người dùng xử lý khi có thể. |
-| **NFR32** | Tương thích thiết bị | Giao diện người dùng phải phù hợp với các thiết bị và kích thước màn hình được hệ thống hỗ trợ. |
+| **NFR29** | Thao tác tinh gọn | Khách hàng có thể hoàn tất việc đặt một chuyến xe tiêu chuẩn chỉ với tối đa **3 lần chạm (clicks/taps)** sau khi mở ứng dụng. |
+| **NFR30** | Trực quan hóa bản đồ | Biểu tượng xe của Tài xế trên bản đồ Khách hàng phải di chuyển mượt mà (sử dụng animation nội suy vị trí) thay vì nhảy cóc giật cục. |
+| **NFR31** | Phản hồi lỗi thân thiện | Mã lỗi kỹ thuật (ví dụ: HTTP 500, Database timeout) tuyệt đối không được hiển thị nguyên văn lên UI. Phải chuyển đổi thành thông báo tiếng Việt dễ hiểu. |
+| **NFR32** | Khả năng tiếp cận (Accessibility) | Giao diện Mobile App hỗ trợ chế độ Dark Mode và kích thước font chữ động, tương thích với cả thiết bị iOS và Android đời cũ (ít nhất hỗ trợ ngược 4 phiên bản OS). |
 
 ---
 
@@ -619,9 +607,9 @@ Hệ thống cung cấp các chỉ số:
 
 | ID | Yêu cầu | Mô tả |
 |---|---|---|
-| **NFR33** | Kiểm thử chức năng | Các chức năng chính phải có khả năng được kiểm thử độc lập. |
-| **NFR34** | Kiểm thử tích hợp | Các kết nối với Payment Gateway và Notification Provider phải có khả năng kiểm thử mà không ảnh hưởng đến dữ liệu thật. |
-| **NFR35** | Theo dõi lỗi | Hệ thống phải cung cấp log và thông tin lỗi cần thiết để QA xác định nguyên nhân sự cố. |
+| **NFR33** | Tự động hóa kiểm thử | Mức độ bao phủ kiểm thử đơn vị (Unit Test Coverage) đối với các module tính cước và thuật toán điều phối xe phải đạt tối thiểu **80%**. |
+| **NFR34** | Môi trường Sandbox | Hệ thống cung cấp cơ chế Mock API hoặc cấu hình trỏ sang môi trường Sandbox để QA có thể test luồng thanh toán mà không dùng tiền thật. |
+| **NFR35** | Hỗ trợ gỡ lỗi UI | Các thành phần giao diện trên App phải được gắn thẻ ID độc lập (ví dụ: `test-id="btn-book-ride"`) để hỗ trợ công cụ Automation Test (Appium, Selenium). |
 
 ---
 
@@ -629,9 +617,9 @@ Hệ thống cung cấp các chỉ số:
 
 | ID | Yêu cầu | Mô tả |
 |---|---|---|
-| **NFR36** | Sao lưu dữ liệu | Dữ liệu quan trọng của hệ thống phải được sao lưu theo chính sách vận hành. |
-| **NFR37** | Khôi phục dữ liệu | Hệ thống phải có khả năng khôi phục dữ liệu khi xảy ra sự cố hệ thống hoặc mất dữ liệu. |
-| **NFR38** | Không mất dữ liệu giao dịch | Dữ liệu giao dịch và thông tin chuyến đi đã xác nhận phải được bảo vệ khỏi mất mát ngoài ý muốn. |
+| **NFR36** | Tần suất sao lưu | Database chính phải được sao lưu toàn phần (Full Backup) hàng ngày vào lúc 02:00 AM và sao lưu gia tăng (Incremental Backup) mỗi giờ. |
+| **NFR37** | Tiêu chuẩn khôi phục | Thời gian phục hồi mục tiêu (**RTO**) không quá **4 giờ**; Điểm phục hồi mục tiêu (**RPO**) không quá **1 giờ** (tức chỉ chấp nhận mất tối đa 1 giờ dữ liệu nếu sập máy chủ vật lý). |
+| **NFR38** | Lưu trữ Off-site | Các bản sao lưu dữ liệu giao dịch phải được tự động chuyển sang một trung tâm dữ liệu (Vùng Cloud) dự phòng khác vị trí địa lý với server chính. |
 
 ---
 
@@ -639,9 +627,9 @@ Hệ thống cung cấp các chỉ số:
 
 | ID | Yêu cầu | Mô tả |
 |---|---|---|
-| **NFR39** | Triển khai độc lập | Hệ thống phải có khả năng triển khai trên môi trường phát triển, kiểm thử và production. |
-| **NFR40** | Cập nhật hệ thống | Việc triển khai phiên bản mới phải hạn chế tối đa thời gian hệ thống không khả dụng. |
-| **NFR41** | Cấu hình môi trường | Các thông tin cấu hình theo từng môi trường phải được quản lý tách biệt với mã nguồn nghiệp vụ. |
+| **NFR39** | Môi trường biệt lập | Phân tách rạch ròi 3 môi trường: **Development**, **Staging/UAT** (dành cho kiểm thử), và **Production** (thực tế). |
+| **NFR40** | Tự động hóa CI/CD | Áp dụng luồng Continuous Integration / Continuous Deployment: code đẩy lên nhánh `main` phải tự động chạy qua hệ thống test trước khi được deploy. |
+| **NFR41** | Quản lý biến môi trường | Không hard-code các thông tin nhạy cảm (API Keys bản đồ, mật khẩu database). Toàn bộ phải được quản lý qua file `.env` hoặc hệ thống Secret Manager của Cloud. |
 
 ---
 
@@ -659,6 +647,7 @@ Hệ thống cung cấp các chỉ số:
 | **Testability** | NFR33 – NFR35 |
 | **Backup & Recovery** | NFR36 – NFR38 |
 | **Deployability** | NFR39 – NFR41 |
+
 ## 10. Entity Relationship Diagram (Mô hình Dữ liệu ERD)
 
 ### 10.1. ERD tổng thể
@@ -740,6 +729,8 @@ erDiagram
         string status
         decimal distance
         decimal fare_amount
+        string cancelled_by
+        string cancellation_reason
     }
 
     LOCATION {
@@ -748,7 +739,7 @@ erDiagram
         int driver_id FK
         decimal latitude
         decimal longitude
-        decimal eta
+        int eta
         datetime recorded_at
     }
 
@@ -757,6 +748,7 @@ erDiagram
         int trip_id FK
         string payment_method
         decimal amount
+        string currency
         string payment_status
         string transaction_reference
         datetime paid_at
@@ -845,7 +837,7 @@ erDiagram
 | **VEHICLE** | Quản lý phương tiện của Tài xế | Thuộc Driver, được sử dụng trong Trip |
 | **BOOKING** | Lưu yêu cầu đặt xe của Khách hàng | Thuộc Customer, có Assignment và có thể tạo Trip |
 | **DRIVER_ASSIGNMENT** | Theo dõi quá trình hệ thống đề xuất chuyến cho từng Tài xế | Liên kết Booking và Driver |
-| **TRIP** | Lưu thông tin chuyến đi thực tế | Liên kết Booking, Driver và Vehicle |
+| **TRIP** | Lưu thông tin chuyến đi thực tế, bao gồm cả ngoại lệ hủy chuyến | Liên kết Booking, Driver và Vehicle |
 | **LOCATION** | Lưu vị trí GPS và ETA của Tài xế trong chuyến đi | Thuộc Trip và Driver |
 | **PAYMENT** | Lưu thông tin thanh toán của chuyến đi | Thuộc Trip, có PaymentAttempt |
 | **PAYMENT_ATTEMPT** | Lưu từng lần thử thanh toán điện tử | Thuộc Payment |
@@ -856,70 +848,59 @@ erDiagram
 ### 10.3. Các quan hệ nghiệp vụ chính
 
 #### 1. Customer – Booking
-- Một **Customer** có thể tạo nhiều **Booking**.
-- Một **Booking** chỉ thuộc về một **Customer**.
-
-**Cardinality:** `CUSTOMER 1 — N BOOKING`
+* Một **Customer** có thể tạo nhiều **Booking**.
+* Một **Booking** chỉ thuộc về một **Customer**.
+* **Cardinality:** `CUSTOMER 1 — N BOOKING`
 
 #### 2. Booking – Driver Assignment
-- Một **Booking** có thể được gửi lần lượt cho nhiều **Driver**.
-- Mỗi **Driver Assignment** đại diện cho một lần hệ thống đề xuất chuyến cho một Tài xế.
-- `attempt_number` dùng để xác định thứ tự điều phối.
-
-**Cardinality:** `BOOKING 1 — N DRIVER_ASSIGNMENT`
+* Một **Booking** có thể được gửi lần lượt cho nhiều **Driver**.
+* Mỗi **Driver Assignment** đại diện cho một lần hệ thống đề xuất chuyến cho một Tài xế.
+* `attempt_number` dùng để xác định thứ tự điều phối.
+* **Cardinality:** `BOOKING 1 — N DRIVER_ASSIGNMENT`
 
 #### 3. Driver – Driver Assignment
-- Một **Driver** có thể nhận nhiều yêu cầu theo thời gian.
-- Một **Driver Assignment** chỉ liên kết với một **Driver**.
-
-**Cardinality:** `DRIVER 1 — N DRIVER_ASSIGNMENT`
+* Một **Driver** có thể nhận nhiều yêu cầu theo thời gian.
+* Một **Driver Assignment** chỉ liên kết với một **Driver**.
+* **Cardinality:** `DRIVER 1 — N DRIVER_ASSIGNMENT`
 
 #### 4. Booking – Trip
-- Một **Booking** có thể tạo tối đa một **Trip**.
-- Trip được tạo khi một Tài xế chấp nhận Booking.
-
-**Cardinality:** `BOOKING 1 — 0..1 TRIP`
+* Một **Booking** có thể tạo tối đa một **Trip**.
+* Trip được tạo khi một Tài xế chấp nhận Booking.
+* **Cardinality:** `BOOKING 1 — 0..1 TRIP`
 
 #### 5. Driver – Vehicle
-- Một **Driver** có thể có một hoặc nhiều **Vehicle** được quản lý trên hệ thống.
-- Mỗi **Vehicle** thuộc về một **Driver**.
-
-**Cardinality:** `DRIVER 1 — N VEHICLE`
+* Một **Driver** có thể có một hoặc nhiều **Vehicle** được quản lý trên hệ thống.
+* Mỗi **Vehicle** thuộc về một **Driver**.
+* **Cardinality:** `DRIVER 1 — N VEHICLE`
 
 #### 6. Driver – Trip
-- Một **Driver** có thể thực hiện nhiều **Trip** theo thời gian.
-- Mỗi **Trip** chỉ có một **Driver** thực hiện.
-
-**Cardinality:** `DRIVER 1 — N TRIP`
+* Một **Driver** có thể thực hiện nhiều **Trip** theo thời gian.
+* Mỗi **Trip** chỉ có một **Driver** thực hiện.
+* **Cardinality:** `DRIVER 1 — N TRIP`
 
 #### 7. Trip – Location
-- Một **Trip** có nhiều bản ghi vị trí GPS.
-- Các bản ghi được lưu theo thời gian để phục vụ theo dõi hành trình và tính ETA.
-
-**Cardinality:** `TRIP 1 — N LOCATION`
+* Một **Trip** có nhiều bản ghi vị trí GPS.
+* Các bản ghi được lưu theo thời gian để phục vụ theo dõi hành trình và tính ETA.
+* **Cardinality:** `TRIP 1 — N LOCATION`
 
 #### 8. Trip – Payment
-- Một **Trip** có tối đa một **Payment**.
-- Payment có thể được thực hiện bằng tiền mặt hoặc thanh toán điện tử.
-
-**Cardinality:** `TRIP 1 — 0..1 PAYMENT`
+* Một **Trip** có tối đa một **Payment**.
+* Payment có thể được thực hiện bằng tiền mặt hoặc thanh toán điện tử.
+* **Cardinality:** `TRIP 1 — 0..1 PAYMENT`
 
 #### 9. Payment – Payment Attempt
-- Một **Payment** có thể có nhiều lần thử thanh toán.
-- Điều này hỗ trợ nghiệp vụ thanh toán thất bại và thực hiện lại giao dịch.
-
-**Cardinality:** `PAYMENT 1 — N PAYMENT_ATTEMPT`
+* Một **Payment** có thể có nhiều lần thử thanh toán.
+* Điều này hỗ trợ nghiệp vụ thanh toán thất bại và thực hiện lại giao dịch.
+* **Cardinality:** `PAYMENT 1 — N PAYMENT_ATTEMPT`
 
 #### 10. Trip – Rating
-- Một **Trip** có thể có tối đa một **Rating** từ Khách hàng.
-- Rating chỉ được tạo sau khi Trip hoàn thành.
-
-**Cardinality:** `TRIP 1 — 0..1 RATING`
+* Một **Trip** có thể có tối đa một **Rating** từ Khách hàng.
+* Rating chỉ được tạo sau khi Trip hoàn thành.
+* **Cardinality:** `TRIP 1 — 0..1 RATING`
 
 ### 10.4. Trạng thái chính
 
-#### Booking Status
-
+**Booking Status**
 ```text
 PENDING
    ↓
@@ -929,11 +910,12 @@ DRIVER_ASSIGNED
    ↓
 CONFIRMED
    ↓
+IN_PROGRESS
+   ↓
 COMPLETED / CANCELLED
 ```
 
-#### Driver Assignment Status
-
+**Driver Assignment Status**
 ```text
 OFFERED
    ├── ACCEPTED
@@ -941,8 +923,7 @@ OFFERED
    └── EXPIRED
 ```
 
-#### Trip Status
-
+**Trip Status**
 ```text
 ASSIGNED
    ↓
@@ -955,15 +936,14 @@ IN_PROGRESS
 COMPLETED
 ```
 
-#### Payment Status
-
+**Payment Status**
 ```text
 PENDING
    ├── SUCCESS
    └── FAILED
-          ↓
+         ↓
        RETRY
-          ↓
+         ↓
        SUCCESS
 ```
 
@@ -982,9 +962,9 @@ PENDING
 | **DR09** | Payment Attempt phải thuộc về một Payment tồn tại. |
 | **DR10** | Rating chỉ được tạo cho Trip đã hoàn thành. |
 | **DR11** | Rating phải thuộc về đúng Customer và Driver của Trip tương ứng. |
-| **DR12** | Điểm Rating phải nằm trong khoảng giá trị được hệ thống quy định. |
-| **DR13** | Location phải thuộc về Trip hợp lệ và được ghi nhận theo thời gian. |
-| **DR14** | Các thao tác quản trị quan trọng phải được ghi nhận trong Audit Log. |
+| **DR12** | Điểm Rating phải nằm trong khoảng giá trị được hệ thống quy định (ví dụ: 1 đến 5 sao). |
+| **DR13** | Location phải thuộc về Trip hợp lệ và được ghi nhận tuần tự theo thời gian. |
+| **DR14** | Các thao tác quản trị quan trọng (xóa, khóa tài khoản, hoàn tiền) bắt buộc phải được ghi nhận trong Audit Log. |
 
 # 11. Use Case Diagram (Mô hình Use Case)
 
