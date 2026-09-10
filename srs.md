@@ -966,9 +966,9 @@ PENDING
 | **DR13** | Location phải thuộc về Trip hợp lệ và được ghi nhận tuần tự theo thời gian. |
 | **DR14** | Các thao tác quản trị quan trọng (xóa, khóa tài khoản, hoàn tiền) bắt buộc phải được ghi nhận trong Audit Log. |
 
-# 11. Use Case Diagram (Mô hình Use Case)
+## 11. Use Case Diagram (Mô hình Use Case)
 
-## 11.1. Actors
+### 11.1. Actors
 
 | Actor | Mô tả |
 |---|---|
@@ -980,525 +980,242 @@ PENDING
 
 ---
 
-## 11.2. Danh sách Use Case
+### 11.2. Danh sách Use Case
 
-### Nhóm 1 – Quản lý tài khoản
+**Nhóm 1 – Quản lý tài khoản**
+* **UC01:** Đăng ký tài khoản (Khách hàng)
+* **UC02:** Đăng nhập, Đăng xuất (Khách hàng, Tài xế, Admin)
+* **UC03:** Quản lý hồ sơ cá nhân (Khách hàng, Tài xế)
+* **UC04:** Quản lý hồ sơ & phương tiện Tài xế (Tài xế, Admin)
+* **UC05:** Quản lý trạng thái sẵn sàng (Tài xế)
 
-| ID | Use Case | Actor chính |
-|---|---|---|
-| **UC01** | Đăng ký tài khoản | Khách hàng |
-| **UC02** | Đăng nhập | Khách hàng, Tài xế, Nhân viên vận hành |
-| **UC03** | Đăng xuất | Khách hàng, Tài xế, Nhân viên vận hành |
-| **UC04** | Quản lý hồ sơ cá nhân | Khách hàng, Tài xế |
-| **UC05** | Quản lý hồ sơ Tài xế | Nhân viên vận hành |
-| **UC06** | Quản lý phương tiện | Tài xế, Nhân viên vận hành |
-| **UC07** | Quản lý trạng thái sẵn sàng | Tài xế |
+**Nhóm 2 – Đặt xe & Điều phối**
+* **UC06:** Tạo yêu cầu đặt xe (Khách hàng)
+* **UC07:** Hủy yêu cầu đặt xe (Khách hàng)
+* **UC08:** Tìm kiếm Tài xế phù hợp (Hệ thống)
+* **UC09:** Điều phối & Tự động chuyển tiếp (Hệ thống)
+* **UC10:** Tiếp nhận / Từ chối chuyến đi (Tài xế)
+* **UC11:** Báo khách vắng mặt - No show (Tài xế)
 
----
+**Nhóm 3 – Thực hiện & Theo dõi chuyến đi**
+* **UC12:** Theo dõi chuyến đi & ETA (Khách hàng)
+* **UC13:** Cập nhật trạng thái chuyến đi (Tài xế)
+* **UC14:** Cập nhật vị trí GPS (Tài xế)
+* **UC15:** Hoàn thành chuyến đi (Tài xế)
+* **UC16:** Xem lịch sử chuyến đi (Khách hàng)
 
-### Nhóm 2 – Đặt xe & Điều phối
+**Nhóm 4 – Tính cước & Thanh toán**
+* **UC17:** Tính cước tự động (Hệ thống)
+* **UC18:** Thanh toán Tiền mặt (Khách hàng, Tài xế)
+* **UC19:** Thanh toán Điện tử (Khách hàng, Cổng thanh toán)
+* **UC20:** Xử lý thanh toán thất bại (Hệ thống, Cổng thanh toán)
 
-| ID | Use Case | Actor chính |
-|---|---|---|
-| **UC08** | Tạo yêu cầu đặt xe | Khách hàng |
-| **UC09** | Tìm kiếm Tài xế phù hợp | Hệ thống |
-| **UC10** | Gửi yêu cầu nhận chuyến | Hệ thống |
-| **UC11** | Tiếp nhận chuyến đi | Tài xế |
-| **UC12** | Tự động chuyển tiếp Tài xế | Hệ thống |
-| **UC13** | Xử lý không tìm thấy Tài xế | Hệ thống |
-| **UC14** | Xác nhận chuyến đi | Hệ thống |
+**Nhóm 5 – Đánh giá & Phản hồi**
+* **UC21:** Đánh giá Tài xế (Khách hàng)
 
----
-
-### Nhóm 3 – Thực hiện & Theo dõi chuyến đi
-
-| ID | Use Case | Actor chính |
-|---|---|---|
-| **UC15** | Cập nhật trạng thái chuyến đi | Tài xế |
-| **UC16** | Cập nhật vị trí GPS | Tài xế |
-| **UC17** | Theo dõi chuyến đi | Khách hàng |
-| **UC18** | Tính toán ETA | Hệ thống |
-| **UC19** | Hoàn thành chuyến đi | Tài xế |
-| **UC20** | Xem lịch sử chuyến đi | Khách hàng |
+**Nhóm 6 – Vận hành & Hệ thống**
+* **UC22:** Gửi thông báo đa kênh (Hệ thống, Dịch vụ thông báo)
+* **UC23:** Giám sát chuyến & Xử lý sự cố (Admin)
+* **UC24:** Tra cứu giao dịch & Xem Audit Log (Admin)
+* **UC25:** Báo cáo, Thống kê & Quản lý người dùng (Admin)
 
 ---
 
-### Nhóm 4 – Tính cước & Thanh toán
-
-| ID | Use Case | Actor chính |
-|---|---|---|
-| **UC21** | Tính cước chuyến đi | Hệ thống |
-| **UC22** | Thanh toán tiền mặt | Khách hàng, Tài xế |
-| **UC23** | Thanh toán điện tử | Khách hàng, Cổng thanh toán |
-| **UC24** | Xử lý thanh toán thất bại | Khách hàng, Cổng thanh toán |
-| **UC25** | Tra cứu giao dịch | Nhân viên vận hành |
-
----
-
-### Nhóm 5 – Thông báo
-
-| ID | Use Case | Actor chính |
-|---|---|---|
-| **UC26** | Gửi thông báo cho Khách hàng | Hệ thống, Dịch vụ thông báo |
-| **UC27** | Gửi thông báo cho Tài xế | Hệ thống, Dịch vụ thông báo |
-| **UC28** | Gửi kết quả thanh toán | Hệ thống, Dịch vụ thông báo |
-
----
-
-### Nhóm 6 – Đánh giá & Phản hồi
-
-| ID | Use Case | Actor chính |
-|---|---|---|
-| **UC29** | Đánh giá Tài xế | Khách hàng |
-| **UC30** | Xem phản hồi và đánh giá | Nhân viên vận hành |
-
----
-
-### Nhóm 7 – Vận hành & Quản trị
-
-| ID | Use Case | Actor chính |
-|---|---|---|
-| **UC31** | Giám sát chuyến đi | Nhân viên vận hành |
-| **UC32** | Theo dõi trạng thái Tài xế | Nhân viên vận hành |
-| **UC33** | Xử lý chuyến đi gặp sự cố | Nhân viên vận hành |
-| **UC34** | Quản lý người dùng | Nhân viên vận hành |
-| **UC35** | Phân quyền người dùng | Nhân viên vận hành |
-| **UC36** | Xem Audit Log | Nhân viên vận hành |
-
----
-
-### Nhóm 8 – Báo cáo & Thống kê
-
-| ID | Use Case | Actor chính |
-|---|---|---|
-| **UC37** | Xem báo cáo hoạt động | Nhân viên vận hành |
-| **UC38** | Xem báo cáo doanh thu | Nhân viên vận hành |
-| **UC39** | Xem thống kê chuyến đi | Nhân viên vận hành |
-| **UC40** | Xem hiệu suất Tài xế | Nhân viên vận hành |
-
----
-
-## 11.3. Use Case Diagram tổng thể
+### 11.3. Use Case Diagram Tổng thể
 
 ```mermaid
 flowchart LR
 
-    KH[👤 Khách hàng]
-    TX[🚗 Tài xế]
-    NV[👨‍💼 Nhân viên vận hành]
-    PG[💳 Cổng thanh toán]
-    NS[🔔 Dịch vụ thông báo]
+    KH([👤 Khách hàng])
+    TX([🚗 Tài xế])
+    NV([👨‍💼 Nhân viên vận hành])
+    PG([💳 Cổng thanh toán])
+    NS([🔔 Dịch vụ thông báo])
 
-    subgraph CAB["CAB SYSTEM"]
-
-        UC1((Đăng ký tài khoản))
-        UC2((Đăng nhập))
-        UC3((Quản lý hồ sơ))
+    subgraph CAB_SYSTEM ["CAB SYSTEM (Core Use Cases)"]
         
-        UC4((Tạo yêu cầu đặt xe))
-        UC5((Tìm Tài xế phù hợp))
-        UC6((Tiếp nhận chuyến))
-        UC7((Điều phối Tài xế))
+        UC02((UC02: Đăng nhập/Đăng xuất))
+        UC06((UC06: Tạo yêu cầu đặt xe))
+        UC07((UC07: Hủy chuyến))
         
-        UC8((Theo dõi chuyến đi))
-        UC9((Cập nhật trạng thái))
-        UC10((Cập nhật GPS))
-        UC11((Tính ETA))
-        UC12((Hoàn thành chuyến))
+        UC08((UC08: Tìm Tài xế))
+        UC09((UC09: Điều phối / Chuyển tiếp))
+        UC10((UC10: Tiếp nhận chuyến))
+        UC11((UC11: Báo vắng mặt))
         
-        UC13((Tính cước))
-        UC14((Thanh toán điện tử))
-        UC15((Thanh toán tiền mặt))
-        UC16((Xử lý thanh toán lỗi))
+        UC12((UC12: Theo dõi chuyến & ETA))
+        UC13((UC13: Cập nhật trạng thái))
         
-        UC17((Gửi thông báo))
-        UC18((Đánh giá Tài xế))
+        UC15((UC15: Hoàn thành chuyến))
+        UC17((UC17: Tính cước tự động))
+        UC19((UC19: Thanh toán điện tử))
         
-        UC19((Giám sát chuyến đi))
-        UC20((Quản lý Tài xế))
-        UC21((Quản lý người dùng))
-        UC22((Xử lý sự cố))
-        UC23((Tra cứu giao dịch))
-        
-        UC24((Báo cáo & Thống kê))
-        UC25((Phân quyền))
-        UC26((Audit Log))
+        UC21((UC21: Đánh giá Tài xế))
+        UC22((UC22: Gửi thông báo))
+        UC23((UC23: Giám sát & Xử lý sự cố))
+        UC24((UC24: Tra cứu & Audit Log))
     end
 
-    KH --> UC1
-    KH --> UC2
-    KH --> UC3
-    KH --> UC4
-    KH --> UC8
-    KH --> UC14
-    KH --> UC15
-    KH --> UC18
-
-    TX --> UC2
-    TX --> UC3
-    TX --> UC6
-    TX --> UC9
+    KH --> UC02
+    KH --> UC06
+    KH --> UC12
+    KH --> UC19
+    KH --> UC21
+    
+    TX --> UC02
     TX --> UC10
-    TX --> UC12
+    TX --> UC13
     TX --> UC15
 
-    NV --> UC2
-    NV --> UC19
-    NV --> UC20
-    NV --> UC21
-    NV --> UC22
+    NV --> UC02
     NV --> UC23
     NV --> UC24
-    NV --> UC25
-    NV --> UC26
 
-    PG --> UC14
-    PG --> UC16
+    PG --> UC19
+    NS --> UC22
 
-    NS --> UC17
-
-    UC4 --> UC5
-    UC5 --> UC7
-    UC7 --> UC6
-
-    UC9 --> UC11
-    UC10 --> UC11
-
-    UC12 --> UC13
-    UC13 --> UC14
-    UC13 --> UC15
-
-    UC14 --> UC16
-    UC16 --> UC14
-
-    UC4 --> UC17
-    UC6 --> UC17
-    UC12 --> UC17
+    %% Quan hệ Include / Extend trực quan
+    UC06 -. "<<include>>" .-> UC08
+    UC08 -. "<<include>>" .-> UC09
+    UC09 -. "<<include>>" .-> UC10
+    
+    UC07 -. "<<extend>>" .-> UC06
+    UC11 -. "<<extend>>" .-> UC13
+    
+    UC15 -. "<<include>>" .-> UC17
+    UC19 -. "<<extend>>" .-> UC17
+    
+    UC06 -. "<<include>>" .-> UC22
+    UC13 -. "<<include>>" .-> UC22
+    UC19 -. "<<include>>" .-> UC22
 ```
 
 ---
 
-## 11.4. Quan hệ Include / Extend giữa các Use Case
+### 11.4. Quan hệ Include / Extend giữa các Use Case
 
 | Use Case chính | Quan hệ | Use Case phụ | Giải thích |
 |---|---|---|---|
-| **UC08 – Tạo yêu cầu đặt xe** | `<<include>>` | UC09 – Tìm Tài xế phù hợp | Sau khi tạo yêu cầu, hệ thống phải tìm Tài xế. |
-| **UC09 – Tìm Tài xế** | `<<include>>` | UC10 – Gửi yêu cầu nhận chuyến | Hệ thống gửi yêu cầu cho Tài xế phù hợp. |
-| **UC10 – Gửi yêu cầu nhận chuyến** | `<<extend>>` | UC12 – Chuyển tiếp Tài xế | Chỉ xảy ra khi Tài xế từ chối hoặc hết thời gian phản hồi. |
-| **UC11 – Tiếp nhận chuyến** | `<<include>>` | UC14 – Xác nhận chuyến | Khi Tài xế chấp nhận, hệ thống xác nhận chuyến. |
-| **UC15 – Cập nhật trạng thái** | `<<include>>` | UC16 – Cập nhật GPS | Trong quá trình thực hiện chuyến, vị trí được cập nhật. |
-| **UC17 – Theo dõi chuyến** | `<<include>>` | UC18 – Tính ETA | ETA được sử dụng để hiển thị thời gian dự kiến. |
-| **UC19 – Hoàn thành chuyến** | `<<include>>` | UC21 – Tính cước | Khi chuyến hoàn thành, hệ thống tính cước. |
-| **UC21 – Tính cước** | `<<include>>` | UC23 – Thanh toán | Sau khi tính cước, Khách hàng thực hiện thanh toán. |
-| **UC23 – Thanh toán điện tử** | `<<extend>>` | UC24 – Xử lý thanh toán thất bại | Chỉ xảy ra khi giao dịch điện tử thất bại. |
-| **UC19 – Hoàn thành chuyến** | `<<include>>` | UC29 – Đánh giá Tài xế | Sau khi hoàn thành, Khách hàng có thể đánh giá. |
+| **UC06 – Tạo yêu cầu đặt xe** | `<<include>>` | UC08 – Tìm Tài xế phù hợp | Sau khi tạo yêu cầu, hệ thống bắt buộc tìm Tài xế. |
+| **UC06 – Tạo yêu cầu đặt xe** | `<<extend>>` | UC07 – Hủy yêu cầu đặt xe | Khách hàng có thể chủ động hủy chuyến trong lúc chờ hoặc khi xe đang đến. |
+| **UC13 – Cập nhật trạng thái** | `<<extend>>` | UC11 – Báo khách vắng mặt | Tài xế kích hoạt ngoại lệ hủy chuyến nếu khách không xuất hiện. |
+| **UC08 – Tìm kiếm Tài xế** | `<<include>>` | UC09 – Điều phối & Chuyển tiếp | Hệ thống quét và tự động chuyển luồng nếu tài xế từ chối. |
+| **UC13 – Cập nhật trạng thái** | `<<include>>` | UC14 – Cập nhật GPS | Hệ thống tự ngầm định lấy GPS liên tục khi xe di chuyển. |
+| **UC15 – Hoàn thành chuyến** | `<<include>>` | UC17 – Tính cước tự động | Bắt buộc tính cước ngay khi kết thúc hành trình. |
+| **UC17 – Tính cước tự động** | `<<extend>>` | UC19 – Thanh toán Điện tử | Khách hàng chọn nhánh thanh toán qua cổng điện tử. |
+| **UC19 – Thanh toán Điện tử** | `<<extend>>` | UC20 – Xử lý thanh toán thất bại | Rẽ nhánh nếu thẻ lỗi, hết tiền hoặc timeout. |
 
 ---
 
-## 11.5. Mapping Use Case với Business Requirements
+### 11.5. Mapping Use Case với Business Requirements
 
-| Business Requirement | Use Case |
+| Business Requirement | Use Case (ID mới) |
 |---|---|
 | **BR01** – Đăng ký & Quản lý Khách hàng | UC01, UC02, UC03 |
-| **BR02** – Đăng ký & Quản lý Tài xế | UC02, UC03, UC05, UC06, UC07 |
-| **BR03** – Tạo yêu cầu Đặt xe | UC08 |
-| **BR04** – Định vị & Đề xuất Tài xế | UC09, UC10 |
-| **BR05** – Tự động Chuyển tiếp Điều phối | UC12 |
-| **BR06** – Không tìm thấy Tài xế | UC13 |
-| **BR07** – Tiếp nhận Chuyến đi | UC11, UC14 |
-| **BR08** – Cập nhật Tiến trình | UC15, UC19 |
-| **BR09** – Theo dõi Real-time & ETA | UC16, UC17, UC18 |
-| **BR10** – Tự động Tính cước | UC21 |
-| **BR11** – Tích hợp Thanh toán | UC22, UC23 |
-| **BR12** – Xử lý Lỗi Thanh toán | UC24 |
-| **BR13** – Thông báo Tức thời | UC26, UC27, UC28 |
-| **BR14** – Giám sát & Hỗ trợ Vận hành | UC31, UC32, UC33 |
-| **BR15** – Phân quyền Quản trị | UC35 |
-| **BR16** – Báo cáo Thống kê | UC37, UC38, UC39, UC40 |
-| **BR17** – Đánh giá Dịch vụ | UC29, UC30 |
-# 12. Acceptance Criteria (Tiêu chí Chấp nhận)
+| **BR02** – Đăng ký & Quản lý Tài xế | UC02, UC03, UC04, UC05 |
+| **BR03** – Tạo yêu cầu Đặt xe | UC06 |
+| **BR04** – Định vị & Đề xuất Tài xế | UC08, UC14 |
+| **BR05** – Tự động Chuyển tiếp Điều phối | UC09 |
+| **BR06** – Không tìm thấy Tài xế | UC09 |
+| **BR07** – Tiếp nhận Chuyến đi | UC10 |
+| **BR08** – Cập nhật Tiến trình (Ngoại lệ) | UC07, UC11, UC13, UC15 |
+| **BR09** – Theo dõi Real-time & ETA | UC12, UC14 |
+| **BR10** – Tự động Tính cước | UC17 |
+| **BR11** – Tích hợp Thanh toán | UC18, UC19 |
+| **BR12** – Xử lý Lỗi Thanh toán | UC20 |
+| **BR13** – Thông báo Tức thời | UC22 |
+| **BR14** – Giám sát & Hỗ trợ Vận hành | UC23 |
+| **BR15** – Phân quyền Quản trị | UC25 |
+| **BR16** – Báo cáo Thống kê | UC25 |
+| **BR17** – Đánh giá Dịch vụ | UC21 |
+| **BR18** – Lưu vết Hệ thống (Audit Log) | UC24 |
 
-## 12.1. Tiêu chí chấp nhận tổng quát
+## 12. Acceptance Criteria (Tiêu chí Chấp nhận)
+
+### 12.1. Tiêu chí chấp nhận tổng quát
 
 | ID | Acceptance Criteria | Điều kiện chấp nhận |
 |---|---|---|
-| **AC01** | Hoàn thành chức năng | Tất cả chức năng thuộc phạm vi MVP phải hoạt động đúng theo FR đã xác định. |
-| **AC02** | Đáp ứng nghiệp vụ | Hệ thống phải tuân thủ các Business Rules đã được xác định. |
-| **AC03** | Tính ổn định | Các lỗi của Payment Gateway hoặc dịch vụ thông báo không được làm dừng chức năng đặt xe cốt lõi. |
-| **AC04** | Bảo mật | Người dùng không thể truy cập hoặc thực hiện chức năng ngoài quyền được cấp. |
-| **AC05** | Dữ liệu | Dữ liệu người dùng, chuyến đi và giao dịch phải được lưu trữ chính xác và nhất quán. |
-| **AC06** | Kiểm thử | Các chức năng chính phải vượt qua các Test Case tương ứng trước khi nghiệm thu. |
+| **AC01** | Hoàn thành chức năng | Tất cả chức năng thuộc phạm vi MVP phải hoạt động đúng theo Yêu cầu Chức năng (FR). |
+| **AC02** | Đáp ứng nghiệp vụ | Hệ thống phải tuân thủ nghiêm ngặt các Business Rules (BRULE) đã định lượng. |
+| **AC03** | Tính ổn định | Sự cố từ Payment Gateway hoặc Dịch vụ thông báo (bên thứ 3) tuyệt đối không làm gián đoạn luồng đặt xe cốt lõi. |
+| **AC04** | Bảo mật | Người dùng không thể gọi API hoặc truy cập UI ngoài phạm vi quyền hạn (RBAC). |
+| **AC05** | Toàn vẹn dữ liệu | Không xảy ra tình trạng tạo trùng cuốc xe, gán 1 cuốc cho 2 Tài xế hoặc trừ tiền 2 lần. |
 
 ---
 
-## 12.2. Acceptance Criteria – Quản lý Tài khoản
+### 12.2. Nhóm Quản lý Tài khoản
 
-### UC01 – Đăng ký tài khoản
-
-| ID | Tiêu chí |
-|---|---|
-| **AC07** | Khách hàng nhập đầy đủ thông tin hợp lệ thì hệ thống tạo tài khoản thành công. |
-| **AC08** | Hệ thống từ chối đăng ký nếu thông tin định danh đã tồn tại. |
-| **AC09** | Hệ thống hiển thị thông báo rõ ràng khi thông tin đăng ký không hợp lệ. |
-| **AC10** | Sau khi đăng ký thành công, tài khoản có thể sử dụng để đăng nhập. |
-
-### UC02 – Đăng nhập
-
-| ID | Tiêu chí |
-|---|---|
-| **AC11** | Người dùng nhập đúng thông tin xác thực thì đăng nhập thành công. |
-| **AC12** | Người dùng nhập sai thông tin thì hệ thống từ chối đăng nhập và hiển thị thông báo lỗi. |
-| **AC13** | Hệ thống xác định đúng vai trò của người dùng sau khi đăng nhập. |
+**UC01 & UC02 – Đăng ký & Đăng nhập**
+* **AC06:** Hệ thống tạo tài khoản thành công khi Khách hàng/Tài xế nhập đủ thông tin hợp lệ; mật khẩu được mã hóa bcrypt.
+* **AC07:** Từ chối đăng ký và báo lỗi nếu Email/Số điện thoại đã tồn tại trong hệ thống.
+* **AC08:** Cấp đúng quyền truy cập (Token JWT) tương ứng với vai trò (Khách, Tài xế, Admin) khi đăng nhập thành công.
 
 ---
 
-## 12.3. Acceptance Criteria – Đặt xe & Điều phối
+### 12.3. Nhóm Đặt xe & Điều phối
 
-### UC08 – Tạo yêu cầu đặt xe
+**UC06 – Tạo yêu cầu đặt xe & UC07 – Hủy chuyến**
+* **AC09:** Nút "Đặt xe" chỉ sáng lên khi Khách hàng chọn đầy đủ: Điểm đón, Điểm đến và Loại xe.
+* **AC10:** Hệ thống tự động tính và hiển thị giá cước cố định (Fixed Fare) ngay khi chọn xong lộ trình.
+* **AC11:** Khách hàng được phép bấm hủy chuyến (UC07). Nếu hủy trước khi Tài xế bấm "Đã đón khách", hệ thống cập nhật trạng thái CANCELLED và giải phóng Tài xế.
 
-| ID | Tiêu chí |
-|---|---|
-| **AC14** | Khách hàng có thể nhập điểm đón, điểm đến và lựa chọn loại xe/dịch vụ. |
-| **AC15** | Hệ thống không cho gửi yêu cầu nếu thiếu thông tin bắt buộc. |
-| **AC16** | Yêu cầu hợp lệ được lưu với trạng thái đang tìm Tài xế. |
+**UC08 – Tìm Tài xế & UC09 – Điều phối tự động**
+* **AC12:** Thuật toán chỉ quét các Tài xế trạng thái "Sẵn sàng" trong bán kính tối đa 3km.
+* **AC13:** Nếu Tài xế từ chối hoặc bỏ qua quá 15 giây, hệ thống tự động chuyển cuốc cho Tài xế phù hợp tiếp theo mà không bắt Khách đặt lại.
+* **AC14:** Thông báo "Không tìm thấy xe" và kết thúc luồng nếu quét quá 3 phút hoặc 5 lượt từ chối liên tiếp.
 
-### UC09 – Tìm Tài xế phù hợp
-
-| ID | Tiêu chí |
-|---|---|
-| **AC17** | Hệ thống chỉ tìm các Tài xế đang sẵn sàng và phù hợp với yêu cầu. |
-| **AC18** | Tài xế có vị trí thuận lợi/gần điểm đón được ưu tiên theo quy tắc điều phối. |
-| **AC19** | Hệ thống không đề xuất Tài xế đang thực hiện chuyến khác. |
-
-### UC10 – Gửi yêu cầu nhận chuyến
-
-| ID | Tiêu chí |
-|---|---|
-| **AC20** | Tài xế phù hợp nhận được thông báo yêu cầu chuyến. |
-| **AC21** | Tài xế có thể chấp nhận hoặc từ chối yêu cầu. |
-| **AC22** | Hệ thống ghi nhận chính xác kết quả phản hồi của Tài xế. |
-
-### UC12 – Tự động chuyển tiếp Tài xế
-
-| ID | Tiêu chí |
-|---|---|
-| **AC23** | Khi Tài xế từ chối, hệ thống tự động tìm Tài xế tiếp theo. |
-| **AC24** | Khi Tài xế không phản hồi trong thời gian quy định, hệ thống tự động chuyển yêu cầu. |
-| **AC25** | Khách hàng không phải tạo lại yêu cầu khi hệ thống chuyển Tài xế. |
-| **AC26** | Nếu không còn Tài xế phù hợp, hệ thống thông báo rõ ràng cho Khách hàng. |
+**UC10 – Tiếp nhận chuyến & UC11 – Báo vắng mặt (No-show)**
+* **AC15:** Tài xế nhận được popup có đếm ngược 15 giây để Chấp nhận/Từ chối.
+* **AC16:** (Ngoại lệ UC11) Tài xế có quyền bấm nút "Báo vắng mặt" và hủy chuyến mà không bị trừ hiệu suất nếu đã chờ tại điểm đón quá 5 phút.
 
 ---
 
-## 12.4. Acceptance Criteria – Thực hiện Chuyến đi
+### 12.4. Nhóm Thực hiện Chuyến đi
 
-### UC15 – Cập nhật trạng thái chuyến đi
+**UC13 – Cập nhật trạng thái & UC14 – Cập nhật GPS**
+* **AC17:** Tài xế bắt buộc phải cập nhật trạng thái theo đúng trình tự: *Đã đến điểm đón -> Đã đón khách -> Hoàn thành*. Không được bỏ bước.
+* **AC18:** Ứng dụng Tài xế tự động bắn tọa độ GPS về máy chủ mỗi 5 giây/lần khi chuyến xe đang diễn ra.
 
-| ID | Tiêu chí |
-|---|---|
-| **AC27** | Tài xế có thể cập nhật trạng thái "Đã đến điểm đón". |
-| **AC28** | Tài xế chỉ có thể chuyển sang "Đã đón khách" sau khi đã đến điểm đón. |
-| **AC29** | Tài xế có thể cập nhật trạng thái "Đang di chuyển" sau khi đón khách. |
-| **AC30** | Tài xế có thể cập nhật trạng thái "Hoàn thành" khi kết thúc chuyến. |
-| **AC31** | Hệ thống không cho phép chuyển trạng thái trái với trình tự nghiệp vụ. |
-
-### UC16 – Cập nhật GPS
-
-| ID | Tiêu chí |
-|---|---|
-| **AC32** | Hệ thống tiếp nhận vị trí GPS của Tài xế trong quá trình thực hiện chuyến. |
-| **AC33** | Vị trí mới được cập nhật và hiển thị cho Khách hàng theo thời gian thực. |
-| **AC34** | Hệ thống không hiển thị dữ liệu vị trí cho người dùng không có quyền. |
-
-### UC17 – Theo dõi chuyến đi
-
-| ID | Tiêu chí |
-|---|---|
-| **AC35** | Khách hàng có thể xem trạng thái hiện tại của chuyến. |
-| **AC36** | Khách hàng có thể xem vị trí Tài xế trên bản đồ. |
-| **AC37** | Khách hàng có thể xem ETA được hệ thống tính toán. |
+**UC12 – Theo dõi chuyến đi & ETA**
+* **AC19:** Khách hàng nhìn thấy biểu tượng xe di chuyển trên bản đồ theo thời gian thực (độ trễ không quá 2s).
+* **AC20:** Thời gian dự kiến đến (ETA) tự động tính toán lại và cập nhật liên tục dựa trên GPS của xe.
 
 ---
 
-## 12.5. Acceptance Criteria – Tính cước & Thanh toán
+### 12.5. Nhóm Tính cước & Thanh toán
 
-### UC21 – Tính cước
+**UC17, UC18, UC19 – Thanh toán Tiền mặt / Điện tử**
+* **AC21:** Hệ thống chốt số tiền cuối cùng và hiển thị màn hình thanh toán ngay khi Tài xế bấm "Hoàn thành".
+* **AC22:** Tiền mặt: Trạng thái chuyến chỉ hoàn tất khi Tài xế xác nhận "Đã nhận đủ tiền".
+* **AC23:** Điện tử: Không lưu số thẻ Khách hàng. Giao dịch chỉ thành công khi nhận callback HTTP 200 từ Cổng thanh toán.
 
-| ID | Tiêu chí |
-|---|---|
-| **AC38** | Khi chuyến hoàn thành, hệ thống tự động tính cước. |
-| **AC39** | Cước phí được tính dựa trên loại dịch vụ và thông tin chuyến đi. |
-| **AC40** | Hệ thống hiển thị số tiền cần thanh toán cho Khách hàng. |
-
-### UC22 – Thanh toán tiền mặt
-
-| ID | Tiêu chí |
-|---|---|
-| **AC41** | Khách hàng có thể lựa chọn phương thức thanh toán tiền mặt. |
-| **AC42** | Tài xế có thể xác nhận đã nhận tiền. |
-| **AC43** | Sau khi Tài xế xác nhận, hệ thống cập nhật trạng thái thanh toán thành công. |
-
-### UC23 – Thanh toán điện tử
-
-| ID | Tiêu chí |
-|---|---|
-| **AC44** | Khách hàng có thể thực hiện thanh toán thông qua Payment Gateway. |
-| **AC45** | Hệ thống nhận và xử lý kết quả giao dịch từ Payment Gateway. |
-| **AC46** | Khi thanh toán thành công, hệ thống ghi nhận giao dịch thành công. |
-| **AC47** | CAB không lưu thông tin thẻ hoặc tài khoản thanh toán nhạy cảm. |
-
-### UC24 – Xử lý thanh toán thất bại
-
-| ID | Tiêu chí |
-|---|---|
-| **AC48** | Hệ thống thông báo cho Khách hàng khi thanh toán thất bại. |
-| **AC49** | Khách hàng có thể thực hiện lại giao dịch theo chính sách hệ thống. |
-| **AC50** | Hệ thống ghi nhận từng lần thử thanh toán. |
-| **AC51** | Nếu tiếp tục thất bại, hệ thống thông báo giao dịch chưa hoàn tất. |
+**UC20 – Xử lý thanh toán lỗi**
+* **AC24:** Nếu thẻ lỗi hoặc timeout, hệ thống không hủy chuyến, hiển thị cảnh báo và cho phép Khách hàng chọn thanh toán lại hoặc đổi sang Tiền mặt.
 
 ---
 
-## 12.6. Acceptance Criteria – Thông báo
+### 12.6. Nhóm Thông báo, Đánh giá & Vận hành
 
-### UC26/UC27 – Gửi thông báo
-
-| ID | Tiêu chí |
-|---|---|
-| **AC52** | Khách hàng nhận được thông báo khi đặt xe thành công. |
-| **AC53** | Khách hàng nhận được thông tin Tài xế sau khi chuyến được nhận. |
-| **AC54** | Khách hàng nhận được thông báo khi Tài xế đến điểm đón. |
-| **AC55** | Khách hàng nhận được thông báo khi chuyến hoàn thành. |
-| **AC56** | Người dùng nhận được thông báo kết quả thanh toán. |
-| **AC57** | Tài xế nhận được thông báo khi có yêu cầu chuyến mới. |
-| **AC58** | Lỗi dịch vụ thông báo không làm mất dữ liệu hoặc hủy yêu cầu đặt xe. |
+* **AC25 (UC22 - Thông báo):** Bắn Push Notification chuẩn xác tại 4 mốc: Nhận chuyến, Xe đến, Hoàn thành, Kết quả thanh toán.
+* **AC26 (UC21 - Đánh giá):** Form chấm sao (1-5) chỉ hiển thị sau khi luồng thanh toán đã hoàn tất.
+* **AC27 (UC23, UC24 - Vận hành):** Admin có thể tra cứu chuyến bằng Booking ID, xem vị trí live và xem Audit Log của các thao tác hoàn tiền/hủy chuyến.
 
 ---
-
-## 12.7. Acceptance Criteria – Đánh giá
-
-### UC29 – Đánh giá Tài xế
-
-| ID | Tiêu chí |
-|---|---|
-| **AC59** | Khách hàng chỉ có thể đánh giá sau khi chuyến hoàn thành. |
-| **AC60** | Khách hàng có thể nhập điểm đánh giá và nhận xét. |
-| **AC61** | Hệ thống lưu đánh giá gắn với đúng chuyến đi và Tài xế. |
-| **AC62** | Hệ thống không cho phép đánh giá một chuyến chưa hoàn thành. |
-
----
-
-## 12.8. Acceptance Criteria – Vận hành & Quản trị
-
-### UC31 – Giám sát chuyến đi
-
-| ID | Tiêu chí |
-|---|---|
-| **AC63** | Nhân viên vận hành có thể xem danh sách chuyến đang diễn ra. |
-| **AC64** | Hệ thống hiển thị trạng thái hiện tại của từng chuyến. |
-| **AC65** | Nhân viên vận hành có thể tra cứu thông tin cần thiết để hỗ trợ xử lý sự cố. |
-
-### UC33 – Xử lý chuyến gặp sự cố
-
-| ID | Tiêu chí |
-|---|---|
-| **AC66** | Nhân viên vận hành có thể tra cứu chuyến gặp sự cố. |
-| **AC67** | Chỉ người có quyền phù hợp mới được thực hiện thao tác can thiệp. |
-| **AC68** | Mọi thao tác can thiệp quan trọng được ghi nhận vào Audit Log. |
-
-### UC35 – Phân quyền
-
-| ID | Tiêu chí |
-|---|---|
-| **AC69** | Người dùng chỉ truy cập được chức năng thuộc quyền của mình. |
-| **AC70** | Nhân viên vận hành thông thường không thể thực hiện thao tác quản trị nhạy cảm nếu không được cấp quyền. |
-| **AC71** | Hệ thống từ chối truy cập khi người dùng không có quyền phù hợp. |
-
----
-
-## 12.9. Acceptance Criteria – Báo cáo
-
-### UC37 – Báo cáo & Thống kê
-
-| ID | Tiêu chí |
-|---|---|
-| **AC72** | Người có quyền có thể xem tổng số chuyến đi. |
-| **AC73** | Người có quyền có thể xem doanh thu. |
-| **AC74** | Hệ thống cung cấp tỷ lệ hoàn thành và tỷ lệ hủy chuyến. |
-| **AC75** | Hệ thống cung cấp dữ liệu đánh giá hiệu quả hoạt động của Tài xế. |
-| **AC76** | Báo cáo có thể được lọc theo khoảng thời gian. |
-
----
-
-## 12.10. Acceptance Criteria – Phi chức năng
-
-| ID | Tiêu chí | Mức chấp nhận |
-|---|---|---|
-| **AC77** | Hiệu năng | Các thao tác thông thường có thời gian phản hồi mục tiêu không quá **3 giây** trong điều kiện tải bình thường. |
-| **AC78** | Tính ổn định | Hệ thống tiếp tục phục vụ chức năng đặt xe khi Payment Gateway hoặc Notification Service gặp lỗi. |
-| **AC79** | Bảo mật | Không thể truy cập dữ liệu hoặc chức năng khi không có quyền phù hợp. |
-| **AC80** | Tính toàn vẹn | Không tạo trùng Trip hoặc Payment cho cùng một nghiệp vụ ngoài quy tắc cho phép. |
-| **AC81** | Khả năng mở rộng | Có thể bổ sung Payment Gateway hoặc Notification Provider mới mà không phải thay đổi toàn bộ hệ thống. |
-| **AC82** | Khả năng bảo trì | Các module chính có thể được kiểm thử và cập nhật tương đối độc lập. |
-
----
-
-## 12.11. Tiêu chí nghiệm thu MVP
-
-Hệ thống CAB MVP được xem là đạt nghiệm thu khi đáp ứng đồng thời các điều kiện:
-
-1. **Đăng ký, đăng nhập và phân quyền** hoạt động đúng.
-2. Khách hàng có thể **tạo yêu cầu đặt xe** với đầy đủ thông tin.
-3. Hệ thống có thể **tìm và phân công Tài xế** phù hợp.
-4. Hệ thống tự động **chuyển tiếp sang Tài xế khác** khi Tài xế từ chối hoặc hết thời gian phản hồi.
-5. Khách hàng có thể **theo dõi vị trí, trạng thái và ETA** của chuyến đi.
-6. Tài xế có thể cập nhật đầy đủ **tiến trình chuyến đi**.
-7. Hệ thống có thể **tính cước và xử lý thanh toán tiền mặt/điện tử**.
-8. Hệ thống xử lý được **trường hợp thanh toán thất bại và thử lại**.
-9. Hệ thống gửi được **thông báo tại các sự kiện quan trọng**.
-10. Khách hàng có thể **đánh giá Tài xế sau chuyến đi**.
-11. Nhân viên vận hành có thể **giám sát chuyến, hỗ trợ sự cố và tra cứu giao dịch**.
-12. Hệ thống cung cấp **báo cáo cơ bản về chuyến đi, doanh thu và hiệu suất Tài xế**.
-13. Các yêu cầu về **bảo mật, phân quyền, tính toàn vẹn dữ liệu và hiệu năng** đạt mức đã quy định.
 
 ## 13. Traceability Matrix (Bảng Truy vết Nghiệp vụ & Kỹ thuật)
 
-Bảng truy vết tổng hợp mối quan hệ xuyên suốt từ Mục tiêu Kinh doanh (BG) → Yêu cầu Nghiệp vụ (BR) → Module MVP → Yêu cầu Chức năng (FR) → Use Case (UC) → Tiêu chí Chấp nhận (AC):
+Bảng truy vết đảm bảo mọi Mục tiêu Kinh doanh (BG) đều được giải quyết bằng các Yêu cầu Chức năng (FR), được hiện thực hóa qua các Use Case (UC) và được kiểm chứng bởi Tiêu chí Chấp nhận (AC).
 
-| Mã BG | Tên Mục tiêu Kinh doanh | Mã BR | Mã Module | Mã FR | Mã UC | Mã AC |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **BG01** | Tự động hóa & Mở rộng Vận hành | **BR02** | **MOD02** | **FR02.1** | UC07 | **AC-FR02.1** |
-| | | | | **FR02.2** | UC08 | **AC-FR02.2** |
-| | | | | **FR02.3** | UC08 | **AC-FR02.3** |
-| | | | | **FR02.4** | UC05, UC06 | **AC-FR02.4** |
-| **BG02** | Tối ưu Doanh thu & Chuyến đi | **BR03** | **MOD03** | **FR03.1** | UC08 | **AC-FR03.1** |
-| | | | | **FR03.2** | UC09 | **AC-FR03.2** |
-| | | | | **FR03.3** | UC10 | **AC-FR03.3** |
-| | | **BR04** | **MOD03** | **FR03.4** | UC11, UC12 | **AC-FR03.4** |
-| | | | | **FR03.5** | UC13 | **AC-FR03.5** |
-| **BG03** | Nâng cao Trải nghiệm Khách hàng | **BR01** | **MOD01** | **FR01.1** | UC01 | **AC-FR01.1** |
-| | | | | **FR01.2** | UC02 | **AC-FR01.2** |
-| | | | | **FR01.3** | UC03, UC04 | **AC-FR01.3** |
-| | | **BR03** | **MOD03** | **FR03.1** | UC08 | **AC-FR03.1** |
-| | | | | **FR03.2** | UC09 | **AC-FR03.2** |
-| | | | | **FR03.3** | UC14 | **AC-FR03.3** |
-| | | **BR05** | **MOD05** | **FR05.1** | UC15 | **AC-FR05.1** |
-| | | | | **FR05.2** | UC16, UC17 | **AC-FR05.2** |
-| | | | | **FR05.3** | UC18 | **AC-FR05.3** |
-| **BG04** | Tối ưu Hiệu quả cho Tài xế | **BR02** | **MOD02** | **FR02.1** | UC07 | **AC-FR02.1** |
-| | | | | **FR02.3** | UC10, UC11 | **AC-FR02.3** |
-| | | **BR04** | **MOD03** | **FR03.2** | UC09 | **AC-FR03.2** |
-| | | | | **FR03.3** | UC10, UC11 | **AC-FR03.3** |
-| | | **BR06** | **MOD05** | **FR05.1** | UC15 | **AC-FR05.1** |
-| | | | | **FR05.2** | UC16 | **AC-FR05.2** |
-| **BG05** | Nâng cao Năng lực Quản trị | **BR01** | **MOD01** | **FR01.4** | UC04 | **AC-FR01.4** |
-| | | **BR07** | **MOD06** | **FR06.1** | UC31 | **AC-FR06.1** |
-| | | | | **FR06.2** | UC32 | **AC-FR06.2** |
-| | | | | **FR06.3** | UC33 | **AC-FR06.3** |
-| | | | | **FR06.4** | UC34 | **AC-FR06.4** |
-| | | **BR08** | **MOD06** | **FR06.5** | UC35 | **AC-FR06.5** |
-| | | | | **FR06.6** | UC36 | **AC-FR06.6** |
-| **BG06** | Kiến trúc Nền tảng Linh hoạt | **BR01** | **MOD01** | **FR01.1** | UC01 | **AC-FR01.1** |
-| | | | | **FR01.2** | UC02 | **AC-FR01.2** |
-| | | **BR05** | **MOD05** | **FR05.1** | UC15, UC17 | **AC-FR05.1** |
-| | | | | **FR05.2** | UC16, UC18 | **AC-FR05.2** |
-| | | **BR06** | **MOD05** | **FR05.3** | UC26, UC27 | **AC-FR05.3** |
-| | | | | **FR05.4** | UC28 | **AC-FR05.4** |
+| Mã BG (Mục tiêu) | Phân hệ (Module) | Mã FR (Chức năng) | Mã UC (Use Case) | Mã AC (Tiêu chí nghiệm thu) |
+| :--- | :--- | :--- | :--- | :--- |
+| **BG01:** Tự động hóa & Tối ưu vận hành | Mod 2: Đặt xe & Phân công | FR08, FR09, FR10, FR11 | UC06, UC08, UC09 | AC09, AC12, AC13, AC14 |
+| **BG02:** Nâng cao năng lực phục vụ | Mod 2: Đặt xe & Phân công | FR10 (Chuyển tiếp tự động) | UC09, UC10 | AC13, AC15 |
+| **BG03:** Tối ưu trải nghiệm Khách hàng | Mod 3: Tiến trình chuyến | FR14, FR15, FR16a | UC07, UC12, UC14 | AC11, AC19, AC20 |
+| | Mod 4: Thanh toán | FR19, FR20 | UC19, UC20 | AC23, AC24 |
+| **BG04:** Tăng hiệu quả cho Tài xế | Mod 3: Tiến trình chuyến | FR05, FR16b (No-show) | UC05, UC11 | AC16 |
+| | Mod 5: Thông báo | FR23 | UC22 | AC25 |
+| **BG05:** Năng lực quản trị & Dữ liệu | Mod 6: Vận hành & Quản trị | FR25, FR26, FR27 | UC23 | AC27 |
+| | Mod 7 & 9: Bảo mật, Báo cáo | FR28, FR31, FR34 | UC24, UC25 | AC27 |
+| **BG06:** Kiến trúc nền tảng linh hoạt | Mod 4: Thanh toán | FR19 (Cổng thanh toán ngoài) | UC19 | AC03, AC23 |
+| | Mod 5: Thông báo | FR24 (Mở rộng kênh) | UC22 | AC03, AC25 |
