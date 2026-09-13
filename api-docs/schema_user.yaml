@@ -1,0 +1,16 @@
+LoginRequest:
+  type: object
+  properties:
+    phone:
+      type: string
+      example: "0901234567"
+    password:
+      type: string
+LoginResponse:
+  type: object
+  properties:
+    token:
+      type: string
+    role:
+      type: string
+      example: "CUSTOMER"
