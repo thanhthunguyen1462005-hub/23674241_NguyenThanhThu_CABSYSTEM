@@ -7,52 +7,120 @@ servers:
 paths:
   /auth/login:
     post:
-      $ref: './paths_auth.yaml'
+      summary: Đăng nhập hệ thống
+      tags: [Auth]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './schema_user.yaml#/LoginRequest'
+      responses:
+        '200':
+          description: Đăng nhập thành công
   /bookings:
     post:
-      $ref: './paths_booking.yaml#/BookingRoot'
+      summary: Tạo yêu cầu đặt xe
+      tags: [Booking]
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './schema_booking.yaml#/BookingRequest'
+      responses:
+        '201':
+          description: Tạo thành công
   /bookings/{id}/cancel:
-    parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
     post:
-      $ref: './paths_booking.yaml#/BookingCancel'
+      summary: Khách hàng hủy chuyến
+      tags: [Booking]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Hủy thành công
   /bookings/{id}/accept:
-    parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
     patch:
-      $ref: './paths_driver.yaml'
+      summary: Tài xế chấp nhận cuốc xe
+      tags: [Driver]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Nhận chuyến thành công
   /trips/{id}/status:
-    parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
     patch:
-      $ref: './paths_trip.yaml#/TripStatus'
+      summary: Cập nhật tiến trình chuyến đi
+      tags: [Trip]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './schema_trip.yaml#/StatusUpdate'
+      responses:
+        '200':
+          description: Cập nhật thành công
   /trips/{id}/location:
-    parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
     patch:
-      $ref: './paths_trip.yaml#/TripLocation'
+      summary: Đồng bộ GPS liên tục
+      tags: [Trip]
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: './schema_trip.yaml#/LocationUpdate'
+      responses:
+        '200':
+          description: Đã đồng bộ tọa độ
   /payments:
     post:
-      $ref: './paths_payment.yaml'
+      summary: Xử lý thanh toán điện tử
+      tags: [Payment]
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Thanh toán thành công
+        '400':
+          description: Thanh toán thất bại
   /admin/reports:
     get:
-      $ref: './paths_admin.yaml'
+      summary: Lấy báo cáo doanh thu tổng
+      tags: [Admin]
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lấy dữ liệu thành công
 components:
   securitySchemes:
     bearerAuth:
