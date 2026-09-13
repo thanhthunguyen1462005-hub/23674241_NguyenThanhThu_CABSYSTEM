@@ -1,8 +1,0 @@
-patch:
-  summary: Tài xế chấp nhận cuốc xe
-  tags: [Driver]
-  security:
-    - bearerAuth: []
-  responses:
-    '200':
-      description: Nhận chuyến thành công
