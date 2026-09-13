@@ -1,0 +1,23 @@
+BookingRoot:
+  post:
+    summary: Tạo yêu cầu đặt xe
+    tags: [Booking]
+    security:
+      - bearerAuth: []
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: './schema_booking.yaml#/BookingRequest'
+    responses:
+      '201':
+        description: Tạo thành công
+BookingCancel:
+  post:
+    summary: Khách hàng hủy chuyến
+    tags: [Booking]
+    security:
+      - bearerAuth: []
+    responses:
+      '200':
+        description: Hủy thành công
