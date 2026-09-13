@@ -1,8 +1,0 @@
-get:
-  summary: Lấy báo cáo doanh thu tổng
-  tags: [Admin]
-  security:
-    - bearerAuth: []
-  responses:
-    '200':
-      description: Lấy dữ liệu thành công
