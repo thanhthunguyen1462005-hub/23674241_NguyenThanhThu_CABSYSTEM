@@ -1,0 +1,50 @@
+openapi: 3.0.3
+info:
+  title: CAB System - Authentication API
+  version: 1.0.0
+servers:
+  - url: https://api.cab-system.com/v1
+security:
+  - BearerAuth: []
+paths:
+  /auth/login:
+    post:
+      summary: Đăng nhập & Xác thực OTP / Mật khẩu
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [phone_number]
+              properties:
+                phone_number: {type: string, example: "+84901234567"}
+                otp_code: {type: string, example: "123456"}
+                password: {type: string, example: "Password123!"}
+      responses:
+        '200':
+          description: Đăng nhập thành công
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token: {type: string}
+                  token_type: {type: string, example: Bearer}
+                  user: {$ref: '#/components/schemas/User'}
+        '401': {description: OTP hoặc mật khẩu không chính xác}
+components:
+  securitySchemes:
+    BearerAuth: {type: http, scheme: bearer, bearerFormat: JWT}
+  schemas:
+    User:
+      type: object
+      properties:
+        id: {type: integer, example: 101}
+        phone_number: {type: string, example: "+84901234567"}
+        full_name: {type: string, example: "Nguyễn Văn A"}
+        email: {type: string, example: "nguyenvana@example.com"}
+        role: {type: string, enum: [CUSTOMER, DRIVER, OPERATOR, ADMIN]}
+        status: {type: string, enum: [ACTIVE, INACTIVE, LOCKED]}
+        created_at: {type: string, format: date-time}

@@ -1,0 +1,70 @@
+openapi: 3.0.3
+info:
+  title: CAB System - Vehicles API
+  version: 1.0.0
+servers:
+  - url: https://api.cab-system.com/v1
+security:
+  - BearerAuth: []
+paths:
+  /vehicles:
+    post:
+      summary: Thêm mới phương tiện cho tài xế
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/VehicleInput'}
+      responses:
+        '201':
+          description: Tạo thành công
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Vehicle'}
+  /vehicles/{id}:
+    get:
+      summary: Xem chi tiết phương tiện
+      parameters:
+        - {name: id, in: path, required: true, schema: {type: integer}}
+      responses:
+        '200':
+          description: Thành công
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Vehicle'}
+    put:
+      summary: Cập nhật thông tin phương tiện
+      parameters:
+        - {name: id, in: path, required: true, schema: {type: integer}}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/VehicleInput'}
+      responses:
+        '200': {description: Cập nhật phương tiện thành công}
+    delete:
+      summary: Xóa phương tiện khỏi hệ thống
+      parameters:
+        - {name: id, in: path, required: true, schema: {type: integer}}
+      responses:
+        '204': {description: Xóa phương tiện thành công}
+components:
+  securitySchemes:
+    BearerAuth: {type: http, scheme: bearer, bearerFormat: JWT}
+  schemas:
+    VehicleInput:
+      type: object
+      required: [license_plate, vehicle_type]
+      properties:
+        license_plate: {type: string, example: "59-X1 123.45"}
+        vehicle_type: {type: string, enum: [CAR_4_SEATS, CAR_7_SEATS, BIKE]}
+        model: {type: string, example: "Toyota Vios"}
+        color: {type: string, example: "Trắng"}
+    Vehicle:
+      allOf:
+        - type: object
+          properties:
+            id: {type: integer, example: 20}
+            driver_id: {type: integer, example: 50}
+        - $ref: '#/components/schemas/VehicleInput'

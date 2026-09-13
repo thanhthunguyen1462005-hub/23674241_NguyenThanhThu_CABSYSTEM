@@ -1,0 +1,126 @@
+openapi: 3.0.3
+info:
+  title: CAB System - Trips API
+  version: 1.0.0
+servers:
+  - url: https://api.cab-system.com/v1
+security:
+  - BearerAuth: []
+paths:
+  /trips:
+    post:
+      summary: Tạo yêu cầu đặt xe mới
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [pickup_address, pickup_lat, pickup_lng, dropoff_address, dropoff_lat, dropoff_lng, vehicle_type]
+              properties:
+                pickup_address: {type: string, example: "220 Điện Biên Phủ, Bình Thạnh, TP.HCM"}
+                pickup_lat: {type: number, format: double, example: 10.796321}
+                pickup_lng: {type: number, format: double, example: 106.708123}
+                dropoff_address: {type: string, example: "Chợ Bến Thành, Quận 1, TP.HCM"}
+                dropoff_lat: {type: number, format: double, example: 10.772543}
+                dropoff_lng: {type: number, format: double, example: 106.698021}
+                vehicle_type: {type: string, enum: [CAR_4_SEATS, CAR_7_SEATS, BIKE]}
+      responses:
+        '201':
+          description: Tạo chuyến đi thành công
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Trip'}
+    get:
+      summary: Tra cứu lịch sử chuyến đi
+      parameters:
+        - {name: page, in: query, schema: {type: integer, default: 1}}
+        - {name: limit, in: query, schema: {type: integer, default: 10}}
+        - {name: status, in: query, schema: {type: string, enum: [PENDING, ACCEPTED, ARRIVED, IN_PROGRESS, COMPLETED, CANCELLED]}}
+      responses:
+        '200':
+          description: Danh sách chuyến đi
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {$ref: '#/components/schemas/Trip'}
+  /trips/{trip_id}:
+    get:
+      summary: Xem chi tiết chuyến đi
+      parameters:
+        - {name: trip_id, in: path, required: true, schema: {type: integer}}
+      responses:
+        '200':
+          description: Chi tiết chuyến đi
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Trip'}
+  /trips/{trip_id}/respond:
+    post:
+      summary: Tài xế chấp nhận hoặc từ chối chuyến
+      parameters:
+        - {name: trip_id, in: path, required: true, schema: {type: integer}}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [action]
+              properties:
+                action: {type: string, enum: [ACCEPT, REJECT]}
+      responses:
+        '200': {description: Xử lý phản hồi thành công}
+  /trips/{trip_id}/status:
+    patch:
+      summary: Cập nhật trạng thái tiến trình chuyến đi
+      parameters:
+        - {name: trip_id, in: path, required: true, schema: {type: integer}}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [status]
+              properties:
+                status: {type: string, enum: [ARRIVED, IN_PROGRESS, COMPLETED]}
+      responses:
+        '200': {description: Cập nhật tiến trình thành công}
+  /trips/{trip_id}/cancel:
+    post:
+      summary: Hủy chuyến đi
+      parameters:
+        - {name: trip_id, in: path, required: true, schema: {type: integer}}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [reason]
+              properties:
+                reason: {type: string, example: "Khách không xuất hiện tại điểm đón"}
+      responses:
+        '200': {description: Hủy chuyến thành công}
+components:
+  securitySchemes:
+    BearerAuth: {type: http, scheme: bearer, bearerFormat: JWT}
+  schemas:
+    Trip:
+      type: object
+      properties:
+        id: {type: integer, example: 5001}
+        customer_id: {type: integer, example: 101}
+        driver_id: {type: integer, nullable: true, example: 102}
+        pickup_address: {type: string}
+        pickup_lat: {type: number, format: double}
+        pickup_lng: {type: number, format: double}
+        dropoff_address: {type: string}
+        dropoff_lat: {type: number, format: double}
+        dropoff_lng: {type: number, format: double}
+        fare_amount: {type: number, format: double, example: 85000.00}
+        status: {type: string, enum: [PENDING, ACCEPTED, ARRIVED, IN_PROGRESS, COMPLETED, CANCELLED]}
+        created_at: {type: string, format: date-time}
+        completed_at: {type: string, format: date-time, nullable: true}

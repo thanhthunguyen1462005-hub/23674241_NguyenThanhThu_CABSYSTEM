@@ -1,0 +1,54 @@
+openapi: 3.0.3
+info:
+  title: CAB System - Payments API
+  version: 1.0.0
+servers:
+  - url: https://api.cab-system.com/v1
+security:
+  - BearerAuth: []
+paths:
+  /trips/{trip_id}/pay:
+    post:
+      summary: Xử lý / Tạo giao dịch thanh toán
+      parameters:
+        - {name: trip_id, in: path, required: true, schema: {type: integer}}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [payment_method]
+              properties:
+                payment_method: {type: string, enum: [CASH, E_WALLET, CREDIT_CARD]}
+      responses:
+        '200':
+          description: Thanh toán thành công
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Payment'}
+  /payments/{payment_id}:
+    get:
+      summary: Xem chi tiết giao dịch thanh toán
+      parameters:
+        - {name: payment_id, in: path, required: true, schema: {type: integer}}
+      responses:
+        '200':
+          description: Thông tin thanh toán
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Payment'}
+components:
+  securitySchemes:
+    BearerAuth: {type: http, scheme: bearer, bearerFormat: JWT}
+  schemas:
+    Payment:
+      type: object
+      properties:
+        id: {type: integer, example: 9001}
+        trip_id: {type: integer, example: 5001}
+        amount: {type: number, format: double, example: 85000.00}
+        payment_method: {type: string, enum: [CASH, E_WALLET, CREDIT_CARD]}
+        payment_status: {type: string, enum: [PENDING, SUCCESS, FAILED]}
+        transaction_id: {type: string, example: TXN_123456789}
+        paid_at: {type: string, format: date-time}

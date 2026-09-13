@@ -1,0 +1,76 @@
+openapi: 3.0.3
+info:
+  title: CAB System - Ratings API
+  version: 1.0.0
+servers:
+  - url: https://api.cab-system.com/v1
+security:
+  - BearerAuth: []
+paths:
+  /trips/{trip_id}/rate:
+    post:
+      summary: Đánh giá chất lượng chuyến đi
+      parameters:
+        - {name: trip_id, in: path, required: true, schema: {type: integer}}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [score]
+              properties:
+                score: {type: integer, minimum: 1, maximum: 5, example: 5}
+                comment: {type: string, example: "Tài xế lái xe an toàn, phục vụ tốt."}
+      responses:
+        '201':
+          description: Gửi đánh giá thành công
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Rating'}
+  /drivers/{driver_id}/ratings:
+    get:
+      summary: Tra cứu đánh giá của tài xế
+      parameters:
+        - {name: driver_id, in: path, required: true, schema: {type: integer}}
+      responses:
+        '200':
+          description: Danh sách đánh giá
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {$ref: '#/components/schemas/Rating'}
+  /ratings/{rating_id}:
+    put:
+      summary: Chỉnh sửa đánh giá
+      parameters:
+        - {name: rating_id, in: path, required: true, schema: {type: integer}}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                score: {type: integer, minimum: 1, maximum: 5}
+                comment: {type: string}
+      responses:
+        '200': {description: Đã cập nhật đánh giá}
+    delete:
+      summary: Xóa đánh giá (Admin Only)
+      parameters:
+        - {name: rating_id, in: path, required: true, schema: {type: integer}}
+      responses:
+        '204': {description: Đã xóa đánh giá thành công}
+components:
+  securitySchemes:
+    BearerAuth: {type: http, scheme: bearer, bearerFormat: JWT}
+  schemas:
+    Rating:
+      type: object
+      properties:
+        id: {type: integer, example: 301}
+        trip_id: {type: integer, example: 5001}
+        score: {type: integer, minimum: 1, maximum: 5, example: 5}
+        comment: {type: string, example: "Dịch vụ rất tốt!"}
+        created_at: {type: string, format: date-time}

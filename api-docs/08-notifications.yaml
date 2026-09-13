@@ -1,0 +1,58 @@
+openapi: 3.0.3
+info:
+  title: CAB System - Notifications API
+  version: 1.0.0
+servers:
+  - url: https://api.cab-system.com/v1
+security:
+  - BearerAuth: []
+paths:
+  /notifications:
+    get:
+      summary: Lấy danh sách thông báo
+      parameters:
+        - {name: page, in: query, schema: {type: integer, default: 1}}
+        - {name: limit, in: query, schema: {type: integer, default: 20}}
+      responses:
+        '200':
+          description: Danh sách thông báo
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {$ref: '#/components/schemas/Notification'}
+  /notifications/{notification_id}/read:
+    patch:
+      summary: Đánh dấu thông báo đã đọc
+      parameters:
+        - {name: notification_id, in: path, required: true, schema: {type: integer}}
+      responses:
+        '200': {description: Đánh dấu đã đọc thành công}
+  /notifications/device:
+    post:
+      summary: Đăng ký thiết bị nhận thông báo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [device_token]
+              properties:
+                device_token: {type: string}
+                platform: {type: string, enum: [IOS, ANDROID, WEB]}
+      responses:
+        '201': {description: Đăng ký thiết bị thành công}
+components:
+  securitySchemes:
+    BearerAuth: {type: http, scheme: bearer, bearerFormat: JWT}
+  schemas:
+    Notification:
+      type: object
+      properties:
+        id: {type: integer, example: 1001}
+        title: {type: string, example: "Tài xế đã nhận chuyến"}
+        message: {type: string, example: "Tài xế Nguyễn Văn A đang đến điểm đón."}
+        type: {type: string, enum: [TRIP, PAYMENT, SYSTEM]}
+        is_read: {type: boolean, example: false}
+        created_at: {type: string, format: date-time}

@@ -1,0 +1,88 @@
+openapi: 3.0.3
+info:
+  title: CAB System - Drivers API
+  version: 1.0.0
+servers:
+  - url: https://api.cab-system.com/v1
+security:
+  - BearerAuth: []
+paths:
+  /drivers/profile:
+    post:
+      summary: Đăng ký / Tạo hồ sơ tài xế
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [license_number, identity_card_number, vehicle]
+              properties:
+                license_number: {type: string, example: A1-987654}
+                identity_card_number: {type: string, example: "012345678901"}
+                vehicle: {$ref: '#/components/schemas/VehicleInput'}
+      responses:
+        '201':
+          description: Gửi hồ sơ thành công
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/DriverProfile'}
+    get:
+      summary: Xem hồ sơ tài xế hiện tại
+      responses:
+        '200':
+          description: Thành công
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/DriverProfile'}
+    put:
+      summary: Cập nhật hồ sơ tài xế
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                license_number: {type: string}
+                identity_card_number: {type: string}
+      responses:
+        '200': {description: Cập nhật hồ sơ tài xế thành công}
+  /drivers/status:
+    patch:
+      summary: Bật/Tắt trạng thái sẵn sàng nhận chuyến
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [status]
+              properties:
+                status: {type: string, enum: [READY, OFFLINE], example: READY}
+                current_lat: {type: number, format: double, example: 10.776889}
+                current_lng: {type: number, format: double, example: 106.700806}
+      responses:
+        '200': {description: Cập nhật trạng thái hoạt động thành công}
+components:
+  securitySchemes:
+    BearerAuth: {type: http, scheme: bearer, bearerFormat: JWT}
+  schemas:
+    DriverProfile:
+      type: object
+      properties:
+        id: {type: integer, example: 50}
+        user_id: {type: integer, example: 102}
+        license_number: {type: string, example: A1-987654}
+        identity_card_number: {type: string, example: "012345678901"}
+        status: {type: string, enum: [PENDING_APPROVAL, APPROVED, REJECTED, LOCKED]}
+        rating_avg: {type: number, format: float, example: 4.85}
+        created_at: {type: string, format: date-time}
+    VehicleInput:
+      type: object
+      required: [license_plate, vehicle_type]
+      properties:
+        license_plate: {type: string, example: "59-X1 123.45"}
+        vehicle_type: {type: string, enum: [CAR_4_SEATS, CAR_7_SEATS, BIKE]}
+        model: {type: string, example: "Toyota Vios"}
+        color: {type: string, example: "Trắng"}

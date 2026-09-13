@@ -1,0 +1,82 @@
+openapi: 3.0.3
+info:
+  title: CAB System - Shared Components
+  version: 1.0.0
+servers:
+  - url: https://api.cab-system.com/v1
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    User:
+      type: object
+      properties:
+        id: {type: integer, example: 101}
+        phone_number: {type: string, example: "+84901234567"}
+        full_name: {type: string, example: "Nguyễn Văn A"}
+        email: {type: string, example: "nguyenvana@example.com"}
+        role: {type: string, enum: [CUSTOMER, DRIVER, OPERATOR, ADMIN]}
+        status: {type: string, enum: [ACTIVE, INACTIVE, LOCKED]}
+        created_at: {type: string, format: date-time}
+    DriverProfile:
+      type: object
+      properties:
+        id: {type: integer, example: 50}
+        user_id: {type: integer, example: 102}
+        license_number: {type: string, example: A1-987654}
+        identity_card_number: {type: string, example: "012345678901"}
+        status: {type: string, enum: [PENDING_APPROVAL, APPROVED, REJECTED, LOCKED]}
+        rating_avg: {type: number, format: float, example: 4.85}
+        created_at: {type: string, format: date-time}
+    VehicleInput:
+      type: object
+      required: [license_plate, vehicle_type]
+      properties:
+        license_plate: {type: string, example: "59-X1 123.45"}
+        vehicle_type: {type: string, enum: [CAR_4_SEATS, CAR_7_SEATS, BIKE]}
+        model: {type: string, example: "Toyota Vios"}
+        color: {type: string, example: "Trắng"}
+    Vehicle:
+      allOf:
+        - type: object
+          properties:
+            id: {type: integer, example: 20}
+            driver_id: {type: integer, example: 50}
+        - $ref: '#/components/schemas/VehicleInput'
+    Trip:
+      type: object
+      properties:
+        id: {type: integer, example: 5001}
+        customer_id: {type: integer, example: 101}
+        driver_id: {type: integer, nullable: true, example: 102}
+        pickup_address: {type: string}
+        pickup_lat: {type: number, format: double}
+        pickup_lng: {type: number, format: double}
+        dropoff_address: {type: string}
+        dropoff_lat: {type: number, format: double}
+        dropoff_lng: {type: number, format: double}
+        fare_amount: {type: number, format: double, example: 85000.00}
+        status: {type: string, enum: [PENDING, ACCEPTED, ARRIVED, IN_PROGRESS, COMPLETED, CANCELLED]}
+        created_at: {type: string, format: date-time}
+        completed_at: {type: string, format: date-time, nullable: true}
+    Payment:
+      type: object
+      properties:
+        id: {type: integer, example: 9001}
+        trip_id: {type: integer, example: 5001}
+        amount: {type: number, format: double, example: 85000.00}
+        payment_method: {type: string, enum: [CASH, E_WALLET, CREDIT_CARD]}
+        payment_status: {type: string, enum: [PENDING, SUCCESS, FAILED]}
+        transaction_id: {type: string, example: TXN_123456789}
+        paid_at: {type: string, format: date-time}
+    Rating:
+      type: object
+      properties:
+        id: {type: integer, example: 301}
+        trip_id: {type: integer, example: 5001}
+        score: {type: integer, minimum: 1, maximum: 5, example: 5}
+        comment: {type: string, example: "Dịch vụ rất tốt!"}
+        created_at: {type: string, format: date-time}

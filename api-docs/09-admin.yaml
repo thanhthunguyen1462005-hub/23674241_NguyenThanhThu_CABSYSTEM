@@ -1,0 +1,54 @@
+openapi: 3.0.3
+info:
+  title: CAB System - Admin & Operations API
+  version: 1.0.0
+servers:
+  - url: https://api.cab-system.com/v1
+security:
+  - BearerAuth: []
+paths:
+  /admin/trips/monitor:
+    get:
+      summary: Giám sát toàn bộ chuyến đi theo thời gian thực
+      parameters:
+        - {name: status, in: query, schema: {type: string, enum: [PENDING, ACCEPTED, IN_PROGRESS, DISRUPTED]}}
+      responses:
+        '200':
+          description: Danh sách chuyến đi đang hoạt động
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {$ref: '#/components/schemas/Trip'}
+  /admin/reports/analytics:
+    get:
+      summary: Xem báo cáo thống kê doanh thu và hiệu suất
+      parameters:
+        - {name: start_date, in: query, required: true, schema: {type: string, format: date, example: '2026-09-01'}}
+        - {name: end_date, in: query, required: true, schema: {type: string, format: date, example: '2026-09-13'}}
+      responses:
+        '200':
+          description: Dữ liệu báo cáo tổng hợp
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_trips: {type: integer, example: 1250}
+                  completed_trips: {type: integer, example: 1100}
+                  cancelled_trips: {type: integer, example: 150}
+                  total_revenue: {type: number, format: double, example: 125000000.00}
+                  commission_revenue: {type: number, format: double, example: 18750000.00}
+components:
+  securitySchemes:
+    BearerAuth: {type: http, scheme: bearer, bearerFormat: JWT}
+  schemas:
+    Trip:
+      type: object
+      properties:
+        id: {type: integer}
+        customer_id: {type: integer}
+        driver_id: {type: integer, nullable: true}
+        status: {type: string}
+        fare_amount: {type: number, format: double}
+        created_at: {type: string, format: date-time}

@@ -1,0 +1,59 @@
+openapi: 3.0.3
+info:
+  title: CAB System - Users API
+  version: 1.0.0
+servers:
+  - url: https://api.cab-system.com/v1
+security:
+  - BearerAuth: []
+paths:
+  /users/me:
+    get:
+      summary: Lấy thông tin người dùng hiện tại
+      responses:
+        '200':
+          description: Thành công
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/User'}
+    put:
+      summary: Cập nhật thông tin người dùng
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                full_name: {type: string}
+                email: {type: string, format: email}
+      responses:
+        '200': {description: Cập nhật thành công}
+  /users/{id}:
+    get:
+      summary: Lấy thông tin người dùng theo ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: {type: integer}
+      responses:
+        '200':
+          description: Thành công
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/User'}
+components:
+  securitySchemes:
+    BearerAuth: {type: http, scheme: bearer, bearerFormat: JWT}
+  schemas:
+    User:
+      type: object
+      properties:
+        id: {type: integer}
+        phone_number: {type: string}
+        full_name: {type: string}
+        email: {type: string, format: email}
+        role: {type: string, enum: [CUSTOMER, DRIVER, OPERATOR, ADMIN]}
+        status: {type: string, enum: [ACTIVE, INACTIVE, LOCKED]}
+        created_at: {type: string, format: date-time}
