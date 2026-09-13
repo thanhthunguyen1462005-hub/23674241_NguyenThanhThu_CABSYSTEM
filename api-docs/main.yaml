@@ -1,0 +1,29 @@
+openapi: 3.0.3
+info:
+  title: CAB SYSTEM API
+  version: 1.0.0
+servers:
+  - url: https://api.cabsystem.local/v1
+paths:
+  /auth/login:
+    $ref: './paths_auth.yaml'
+  /bookings:
+    $ref: './paths_booking.yaml#/BookingRoot'
+  /bookings/{id}/cancel:
+    $ref: './paths_booking.yaml#/BookingCancel'
+  /bookings/{id}/accept:
+    $ref: './paths_driver.yaml'
+  /trips/{id}/status:
+    $ref: './paths_trip.yaml#/TripStatus'
+  /trips/{id}/location:
+    $ref: './paths_trip.yaml#/TripLocation'
+  /payments:
+    $ref: './paths_payment.yaml'
+  /admin/reports:
+    $ref: './paths_admin.yaml'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
