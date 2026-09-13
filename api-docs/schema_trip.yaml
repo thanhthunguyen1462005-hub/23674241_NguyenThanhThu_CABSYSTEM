@@ -1,0 +1,14 @@
+StatusUpdate:
+  type: object
+  required: [status]
+  properties:
+    status:
+      type: string
+      enum: [DRIVER_ARRIVED, PICKED_UP, COMPLETED, NO_SHOW]
+LocationUpdate:
+  type: object
+  properties:
+    latitude:
+      type: number
+    longitude:
+      type: number
